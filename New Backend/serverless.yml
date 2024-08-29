@@ -1,0 +1,65 @@
+org: khalil1
+
+app: Backend
+
+service: Backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  vpc:
+    securityGroupIds:
+      - sg-0ed40a5999e1650e0
+    subnetIds:
+      - subnet-0dbe603c213c8c82d
+      - subnet-0bff18fbd7188e54b
+      - subnet-03484be23648c333e
+      - subnet-0c623cae1caa5f231
+      - subnet-0197af1832aebc247
+      - subnet-07e8ac42dc572ddcc
+  environment:
+    DB_HOST: localhost
+    DB_USER: root
+    DB_PASSWORD: "#mysql$"
+    DB_NAME: POSystemdb
+    DB_PORT: 3306
+
+package:
+  individually: true
+
+functions:
+  createUser:
+    handler: src/users/controller.createUser
+    events:
+      - http:
+          path: user
+          method: post
+  getAllUsers:
+    handler: src/users/controller.getAllUsers
+    events:
+      - http:
+          path: users
+          method: get
+  updateUser:
+    handler: src/users/controller.updateUser
+    events:
+      - http:
+          path: user/{id}
+          method: put
+  deleteUser:
+    handler: src/users/controller.deleteUser
+    events:
+      - http:
+          path: user/{id}
+          method: delete
+
+
+build:
+  esbuild: false
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+custom:
+  serverless-offline:
+    noPrependStageInUrl: true
