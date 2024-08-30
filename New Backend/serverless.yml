@@ -17,63 +17,72 @@ provider:
       - subnet-0c623cae1caa5f231
       - subnet-0197af1832aebc247
       - subnet-07e8ac42dc572ddcc
-      
   environment:
     DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com
     DB_USER: admin
     DB_PASSWORD: posystem01
     DB_NAME: POSystemdb
     DB_PORT: 3306
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - "cognito-idp:AdminListGroupsForUser"
-        - "cognito-idp:ListUsersInGroup"
-      Resource: "*"
-  region: us-east-1
+
+package:
+  individually: true
 
 functions:
   createUser:
-    handler: src/users/controller.createUser
+    handler: modules/users/controller.createUser
     events:
       - http:
           path: user
           method: post
   getAllUsers:
-    handler: src/users/controller.getAllUsers
+    handler:  modules/users/controller.getAllUsers
     events:
       - http:
           path: users
           method: get
   updateUser:
-    handler: src/users/controller.updateUser
+    handler:  modules/users/controller.updateUser
     events:
       - http:
           path: user/{id}
           method: put
   deleteUser:
-    handler: src/users/controller.deleteUser
+    handler:  modules/users/controller.deleteUser
     events:
       - http:
           path: user/{id}
           method: delete
-
-  cognitoTrigger:
-    handler: src/triggers/index.handler
+  getOrders:
+    handler:  modules/orders/order.getAllOrdersHandler
+    timeout: 30
     events:
-      - cognitoUserPool:
-          pool: us-east-1_7np4XcTfB
-          trigger: PostConfirmation
-
+      - httpApi:
+          path: /orders
+          method: get
+  getOrderByIdWorker:
+    handler:  modules/orders/order.getOrderByIdHandler
+    timeout: 30
+    events:
+      - httpApi:
+          path: /orders/{id}
+          method: get
+  createOrder:
+    handler:  modules/orders/order.createOrderHandler
+    timeout: 30
+    events:
+      - httpApi:
+          path: /createorders
+          method: post
 
 
 plugins:
   - serverless-offline
-
-
+  - serverless-esbuild
 custom:
   serverless-offline:
     noPrependStageInUrl: true
   esbuild:
     bundle: true
-    minify: true
+    minify: true  
+
+
