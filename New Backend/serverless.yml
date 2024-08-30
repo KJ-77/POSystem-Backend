@@ -17,15 +17,20 @@ provider:
       - subnet-0c623cae1caa5f231
       - subnet-0197af1832aebc247
       - subnet-07e8ac42dc572ddcc
+      
   environment:
-    DB_HOST: localhost
-    DB_USER: root
-    DB_PASSWORD: "#mysql$"
+    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com
+    DB_USER: admin
+    DB_PASSWORD: posystem01
     DB_NAME: POSystemdb
     DB_PORT: 3306
-
-package:
-  individually: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "cognito-idp:AdminListGroupsForUser"
+        - "cognito-idp:ListUsersInGroup"
+      Resource: "*"
+  region: us-east-1
 
 functions:
   createUser:
@@ -53,13 +58,22 @@ functions:
           path: user/{id}
           method: delete
 
+  cognitoTrigger:
+    handler: src/triggers/index.handler
+    events:
+      - cognitoUserPool:
+          pool: us-east-1_7np4XcTfB
+          trigger: PostConfirmation
 
-build:
-  esbuild: false
+
+
 plugins:
   - serverless-offline
-  - serverless-plugin-typescript
+  - serverless-esbuild
 
 custom:
   serverless-offline:
     noPrependStageInUrl: true
+  esbuild:
+    bundle: true
+    minify: true

@@ -1,11 +1,12 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, updateUserservice} from "./service";
 import { CreateUserDTO, UpdateUserDTO } from "./dto";
+
 import { createUserValidate } from '../middleware/validationSchema';
-import middy from '@middy/core';
+import middy from "@middy/core"
 import validationMiddleware from '../middleware/validationUser';
 
- const createUserc = async (
+export const createUserc = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
@@ -91,5 +92,7 @@ export const updateUser = async (
     };
   }
 };
+
+//exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
 export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));

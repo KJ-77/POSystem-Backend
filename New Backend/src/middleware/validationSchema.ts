@@ -7,3 +7,4 @@ export const createUserValidate = yup.object({
   .oneOf(['admin', 'authorizer', 'employee'], 'Invalid position')
   .required('Position is required'),
 });
+
