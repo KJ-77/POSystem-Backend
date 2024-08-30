@@ -1,6 +1,6 @@
-import { createConnection } from '../../config/db';
-import { FieldPacket } from 'mysql2';
-import { Order, User } from './types/order.interface';
+import { createConnection } from "../../config/db";
+import { FieldPacket } from "mysql2";
+import { Order, User } from "./types/order.interface";
 
 export const getAllOrders = async () => {
   try {
@@ -9,12 +9,15 @@ export const getAllOrders = async () => {
       SELECT * FROM POSystemdb.orders
     `);
     const orderPromises = orders.map(async (order: Order) => {
-      const [userResult]: [User[], FieldPacket[]] = await connection.query(`
+      const [userResult]: [User[], FieldPacket[]] = await connection.query(
+        `
         SELECT FULLNAME FROM POSystemdb.users WHERE id = ?
-      `, [order.worker_id]);
+      `,
+        [order.worker_id]
+      );
       return {
         ...order,
-        user_fullname: userResult[0]?.FULLNAME || 'Unknown User',
+        user_fullname: userResult[0]?.FULLNAME || "Unknown User",
       };
     });
     const ordersWithUserNames = await Promise.all(orderPromises);
@@ -28,20 +31,26 @@ export const getAllOrders = async () => {
 export const getOrderById = async (orderId: number) => {
   try {
     const connection = await createConnection();
-    const [orderResults]: [Order[], FieldPacket[]] = await connection.query(`
+    const [orderResults]: [Order[], FieldPacket[]] = await connection.query(
+      `
       SELECT * FROM POSystemdb.orders WHERE ID = ?
-    `, [orderId]);
+    `,
+      [orderId]
+    );
 
     if (orderResults.length === 0) {
-      throw new Error('Order not found');
+      throw new Error("Order not found");
     }
     const order = orderResults[0];
-    const [userResult]: [User[], FieldPacket[]] = await connection.query(`
+    const [userResult]: [User[], FieldPacket[]] = await connection.query(
+      `
       SELECT FULLNAME FROM POSystemdb.users WHERE id = ?
-    `, [order.worker_id]);
+    `,
+      [order.worker_id]
+    );
     return {
       ...order,
-      user_fullname: userResult[0]?.FULLNAME || 'Unknown User', //adding the new property full name 
+      user_fullname: userResult[0]?.FULLNAME || "Unknown User", //adding the new property full name
     };
   } catch (error) {
     console.error("Error retrieving order by ID:", error);
@@ -68,24 +77,27 @@ export const createOrder = async (
     }
     console.log(`Converted unit_price to number: ${unitPriceNumber}`);
     const connection = await createConnection();
-    const []: [any, FieldPacket[]] = await connection.query(`
+    const []: [any, FieldPacket[]] = await connection.query(
+      `
       INSERT INTO POSystemdb.orders (
         order_name, order_desc, link, price_diff, order_status,
         worker_id, order_date, quantity, unit_price
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `, [
-      order_name,
-      order_desc,
-      link,
-      price_diff,
-      order_status,
-      worker_id,
-      order_date,
-      quantity,
-      unit_price
-    ]);
-    return { 
-      message:"order added sucessfully"
+    `,
+      [
+        order_name,
+        order_desc,
+        link,
+        price_diff,
+        order_status,
+        worker_id,
+        order_date,
+        quantity,
+        unit_price,
+      ]
+    );
+    return {
+      message: "order added sucessfully",
     };
   } catch (error: unknown) {
     if (error instanceof Error) {
