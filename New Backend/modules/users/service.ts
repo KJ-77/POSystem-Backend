@@ -1,5 +1,5 @@
 import { CreateUserDTO, UpdateUserDTO } from "./dto";
-import { createConnection } from "../utils/db";
+import { createConnection } from "../../config/db";
 
 export const createUserservice = async (userData: CreateUserDTO) => {
   let connection;
