@@ -1,4 +1,4 @@
-import { CreateUserDTO, UpdateUserDTO } from "./dto";
+import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
 import { createConnection } from "../../config/db";
 
 export const createUserservice = async (userData: CreateUserDTO) => {

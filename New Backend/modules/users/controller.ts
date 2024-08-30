@@ -1,10 +1,10 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, updateUserservice} from "./service";
-import { CreateUserDTO, UpdateUserDTO } from "./dto";
+import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
 
-import { createUserValidate } from '../middleware/validationSchema';
+import { createUserValidate } from './validationSchema';
 import middy from "@middy/core"
-import validationMiddleware from '../middleware/validationUser';
+import validationMiddleware from '../lib/validationMiddleware';
 
 export const createUserc = async (
   event: APIGatewayProxyEvent

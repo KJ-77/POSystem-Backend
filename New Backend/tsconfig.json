@@ -9,6 +9,8 @@
     "outDir": "./dist",
     "rootDir": "modules"
   },
-  "include": ["modules/**/*.ts", "config/db.ts"],
+  "include": ["modules/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
+
+
