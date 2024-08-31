@@ -3,24 +3,26 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import middy from '@middy/core';
 import {validateOrder,ensureIdMiddleware} from './middleware';
 
+const headers ={
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Credentials": true,
+  'Content-Type': 'application/json'
+}
+
 export const getAllOrdersHandler  = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   try {
     const orders = await getAllOrders();
     return {
       statusCode: 200,
       body: JSON.stringify(orders),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers
     };
   } catch (error) {
     console.error("Error handling get orders request:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Error retrieving orders" }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers
     };
   }
 };
@@ -53,7 +55,7 @@ export const getOrderByIdHandler = async (event: APIGatewayProxyEvent): Promise<
 };
 
 export const createOrderHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  const headers = { 'Content-Type': 'application/json' };
+
   try {
     const orderData = JSON.parse(event.body || '{}'); //extract the details from the incoming request body to pass to the createOrder function.
     const newOrder = await createOrder( //need this to provide feedback to the client about the newly created order.
@@ -69,8 +71,9 @@ export const createOrderHandler = async (event: APIGatewayProxyEvent): Promise<A
     );
     return {
       statusCode: 201,
+      headers,
       body: JSON.stringify(newOrder),
-      headers
+      
     };
   } catch (error) {
     console.error("Error handling create order request:", error);

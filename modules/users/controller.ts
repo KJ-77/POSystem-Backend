@@ -6,6 +6,12 @@ import { createUserValidate } from './validationSchema';
 import middy from "@middy/core"
 import validationMiddleware from '../lib/validationMiddleware';
 
+const headers ={
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Credentials": true,
+  'Content-Type': 'application/json'
+}
+
 export const createUserc = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
@@ -14,6 +20,7 @@ export const createUserc = async (
     await createUserservice(body);
     return {
       statusCode: 200,
+      headers ,
       body: JSON.stringify({message: "User created successfully"}),
     };
   } catch (error: any) {
@@ -30,12 +37,14 @@ export const getAllUsers = async (): Promise<APIGatewayProxyResult> => {
     const users = await getAllUsersservice();
     return {
       statusCode: 200,
+      headers ,
       body: JSON.stringify(users),
     };
   } catch (error: any) {
     console.error("Error fetching users:", error);
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({ error: error.message }),
     };
   }
@@ -50,18 +59,21 @@ export const deleteUser = async (
     if (!user) {
       return {
         statusCode: 404,
+        headers,
         body: JSON.stringify({ error: "User not found" }),
       };
     }
     await deleteUserservice(userId);
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify({message: "User deleted successfully!!!"}),
     };
   } catch (error: any) {
     console.error("Error deleting user:", error);
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({ error: error.message }),
     };
   }
@@ -77,17 +89,20 @@ export const updateUser = async (
     if (!user) {
       return {
         statusCode: 404,
+        headers,
         body: JSON.stringify({ error: "User not found" }),
       };}
     await updateUserservice(userId, userData);
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify({ message: 'User updated successfully' }),
     };
   } catch (error: any) {
     console.error('Error updating user:', error);
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({ error: error.message }),
     };
   }

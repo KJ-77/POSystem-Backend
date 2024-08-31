@@ -1,5 +1,5 @@
 {
-  "C:\\Users\\User\\Desktop\\backend-PO\\New Backend": {
+  "C:\\Users\\User\\Desktop\\backend-PO": {
     "versionSfCore": null,
     "versionFramework": "4.2.4",
     "isWithinCompose": false,
@@ -9,7 +9,7 @@
       "default-aws-credential-resolver": "<REDACTED>"
     },
     "composeServiceName": null,
-    "servicePath": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend",
+    "servicePath": "C:\\Users\\User\\Desktop\\backend-PO",
     "serviceConfigFileName": "serverless.yml",
     "service": {
       "org": "khalil1",
@@ -255,7 +255,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z/Backend-createUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-createUser.zip"
                 },
                 "Handler": "modules/users/controller.createUser",
                 "Runtime": "nodejs20.x",
@@ -303,7 +303,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z/Backend-getAllUsers.zip"
+                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-getAllUsers.zip"
                 },
                 "Handler": "modules/users/controller.getAllUsers",
                 "Runtime": "nodejs20.x",
@@ -351,7 +351,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z/Backend-updateUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-updateUser.zip"
                 },
                 "Handler": "modules/users/controller.updateUser",
                 "Runtime": "nodejs20.x",
@@ -399,7 +399,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z/Backend-deleteUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-deleteUser.zip"
                 },
                 "Handler": "modules/users/controller.deleteUser",
                 "Runtime": "nodejs20.x",
@@ -447,7 +447,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z/Backend-getOrders.zip"
+                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-getOrders.zip"
                 },
                 "Handler": "modules/orders/order.getAllOrdersHandler",
                 "Runtime": "nodejs20.x",
@@ -495,7 +495,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z/Backend-getOrderByIdWorker.zip"
+                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-getOrderByIdWorker.zip"
                 },
                 "Handler": "modules/orders/order.getOrderByIdHandler",
                 "Runtime": "nodejs20.x",
@@ -543,7 +543,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z/Backend-createOrder.zip"
+                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-createOrder.zip"
                 },
                 "Handler": "modules/orders/order.createOrderHandler",
                 "Runtime": "nodejs20.x",
@@ -584,74 +584,74 @@
                 "CreateOrderLogGroup"
               ]
             },
-            "CreateUserLambdaVersionp45fl8BCNf4wBDtfOoFIFGzAENVCZEgOOWfmp4T9RI": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "CreateUserLambdaFunction"
-                },
-                "CodeSha256": "eIxhE4dK8bAJg2vTLDCDdACSWKBTXwx+LCIrowCaFXE="
-              }
-            },
-            "GetAllUsersLambdaVersionJ7RIv758px5EpibSPM5T7RzpBUMUoc9zwPlUHBUMCA": {
+            "GetAllUsersLambdaVersion5aIadr4kw2BHoAZB8E5tmHySygE0wtfRJfeq8HQXos": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetAllUsersLambdaFunction"
                 },
-                "CodeSha256": "lAsfxZWqZuJnvrexZP5NYRLRLg0ryur8uxXEagZPAhI="
+                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
               }
             },
-            "DeleteUserLambdaVersionPByjHKXLNquRz2fcyzWzsRACE5DKHf76RccDTIcJQ": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "DeleteUserLambdaFunction"
-                },
-                "CodeSha256": "eIxhE4dK8bAJg2vTLDCDdACSWKBTXwx+LCIrowCaFXE="
-              }
-            },
-            "UpdateUserLambdaVersionK6zDf2X2OvaZdZVIW51eIfHVPod48GIIwkfedKgJP0": {
+            "UpdateUserLambdaVersion03d8bqp91SuiluALdZ854vLoKI4YbiIPs5UrjZOlI": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "UpdateUserLambdaFunction"
                 },
-                "CodeSha256": "eIxhE4dK8bAJg2vTLDCDdACSWKBTXwx+LCIrowCaFXE="
+                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
               }
             },
-            "GetOrdersLambdaVersionlzWpUPm7BENRPZBc6J0JGjgqwjPTjeZvTpV4n9z6pz4": {
+            "GetOrdersLambdaVersiongfssu9uKXrTqsunjpgpURubmKr9gGkORd1YxRVacI": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetOrdersLambdaFunction"
                 },
-                "CodeSha256": "si9Psv/sEfSBr7bB4L5N08l6nIoK+HLkfcvPA2hGycs="
+                "CodeSha256": "6w1zogarj0Drz6xCFRNjr1+YBTa+GozOKwXM7pdK75A="
               }
             },
-            "GetOrderByIdWorkerLambdaVersion4niaWins5b9FcGMWR84pAZoiBIWQsx3e827EJAkm04": {
+            "CreateUserLambdaVersionmIzPOjC7apnT6gP4SGxviEa7jiRppJM1NvpVdMTsQlI": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "CreateUserLambdaFunction"
+                },
+                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
+              }
+            },
+            "GetOrderByIdWorkerLambdaVersionNicEln0mzMD0bgLSLpBCuDmgCHFdkhMcHbrwF8KqS8o": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetOrderByIdWorkerLambdaFunction"
                 },
-                "CodeSha256": "si9Psv/sEfSBr7bB4L5N08l6nIoK+HLkfcvPA2hGycs="
+                "CodeSha256": "6w1zogarj0Drz6xCFRNjr1+YBTa+GozOKwXM7pdK75A="
               }
             },
-            "CreateOrderLambdaVersionoUNBuUXamIFzsucQizNecMwxaTe5gCURFerjKJXenyY": {
+            "DeleteUserLambdaVersionJcFZ5Qcpk42pY8TCDUpV1xqxe6JBPDi06TNIawcbQg": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "DeleteUserLambdaFunction"
+                },
+                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
+              }
+            },
+            "CreateOrderLambdaVersionirUYBUK4wNcAHz7PDsZ05t5zVyopYNNBhVeWSsUuvY": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "CreateOrderLambdaFunction"
                 },
-                "CodeSha256": "si9Psv/sEfSBr7bB4L5N08l6nIoK+HLkfcvPA2hGycs="
+                "CodeSha256": "6w1zogarj0Drz6xCFRNjr1+YBTa+GozOKwXM7pdK75A="
               }
             },
             "ApiGatewayRestApi": {
@@ -703,6 +703,318 @@
                   ]
                 },
                 "PathPart": "users",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayResourceOrders": {
+              "Type": "AWS::ApiGateway::Resource",
+              "Properties": {
+                "ParentId": {
+                  "Fn::GetAtt": [
+                    "ApiGatewayRestApi",
+                    "RootResourceId"
+                  ]
+                },
+                "PathPart": "orders",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayResourceOrdersIdVar": {
+              "Type": "AWS::ApiGateway::Resource",
+              "Properties": {
+                "ParentId": {
+                  "Ref": "ApiGatewayResourceOrders"
+                },
+                "PathPart": "{id}",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayResourceCreateorders": {
+              "Type": "AWS::ApiGateway::Resource",
+              "Properties": {
+                "ParentId": {
+                  "Fn::GetAtt": [
+                    "ApiGatewayRestApi",
+                    "RootResourceId"
+                  ]
+                },
+                "PathPart": "createorders",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodUserOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceUser"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodUsersOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceUsers"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodUserIdVarOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceUserIdVar"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodOrdersOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceOrders"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodOrdersIdVarOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceOrdersIdVar"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodCreateordersOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceCreateorders"
+                },
                 "RestApiId": {
                   "Ref": "ApiGatewayRestApi"
                 }
@@ -892,7 +1204,145 @@
                 "DeleteUserLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1725011376917": {
+            "ApiGatewayMethodOrdersGet": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "GET",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceOrders"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "GetOrdersLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "GetOrdersLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayMethodOrdersIdVarGet": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "GET",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceOrdersIdVar"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "GetOrderByIdWorkerLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "GetOrderByIdWorkerLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayMethodCreateordersPost": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "POST",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceCreateorders"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "CreateOrderLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "CreateOrderLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayDeployment1725121681130": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -901,10 +1351,19 @@
                 "StageName": "dev"
               },
               "DependsOn": [
+                "ApiGatewayMethodUserOptions",
+                "ApiGatewayMethodUsersOptions",
+                "ApiGatewayMethodUserIdVarOptions",
+                "ApiGatewayMethodOrdersOptions",
+                "ApiGatewayMethodOrdersIdVarOptions",
+                "ApiGatewayMethodCreateordersOptions",
                 "ApiGatewayMethodUserPost",
                 "ApiGatewayMethodUsersGet",
                 "ApiGatewayMethodUserIdVarPut",
-                "ApiGatewayMethodUserIdVarDelete"
+                "ApiGatewayMethodUserIdVarDelete",
+                "ApiGatewayMethodOrdersGet",
+                "ApiGatewayMethodOrdersIdVarGet",
+                "ApiGatewayMethodCreateordersPost"
               ]
             },
             "CreateUserLambdaPermissionApiGateway": {
@@ -1055,27 +1514,7 @@
                 }
               }
             },
-            "HttpApi": {
-              "Type": "AWS::ApiGatewayV2::Api",
-              "Properties": {
-                "Name": "dev-Backend",
-                "ProtocolType": "HTTP"
-              }
-            },
-            "HttpApiStage": {
-              "Type": "AWS::ApiGatewayV2::Stage",
-              "Properties": {
-                "ApiId": {
-                  "Ref": "HttpApi"
-                },
-                "StageName": "$default",
-                "AutoDeploy": true,
-                "DefaultRouteSettings": {
-                  "DetailedMetricsEnabled": false
-                }
-              }
-            },
-            "GetOrdersLambdaPermissionHttpApi": {
+            "GetOrdersLambdaPermissionApiGateway": {
               "Type": "AWS::Lambda::Permission",
               "Properties": {
                 "FunctionName": {
@@ -1104,53 +1543,15 @@
                       },
                       ":",
                       {
-                        "Ref": "HttpApi"
+                        "Ref": "ApiGatewayRestApi"
                       },
-                      "/*"
+                      "/*/*"
                     ]
                   ]
                 }
               }
             },
-            "HttpApiIntegrationGetOrders": {
-              "Type": "AWS::ApiGatewayV2::Integration",
-              "Properties": {
-                "ApiId": {
-                  "Ref": "HttpApi"
-                },
-                "IntegrationType": "AWS_PROXY",
-                "IntegrationUri": {
-                  "Fn::GetAtt": [
-                    "GetOrdersLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "PayloadFormatVersion": "2.0",
-                "TimeoutInMillis": 30000
-              }
-            },
-            "HttpApiRouteGetOrders": {
-              "Type": "AWS::ApiGatewayV2::Route",
-              "Properties": {
-                "ApiId": {
-                  "Ref": "HttpApi"
-                },
-                "RouteKey": "GET /orders",
-                "Target": {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      "integrations",
-                      {
-                        "Ref": "HttpApiIntegrationGetOrders"
-                      }
-                    ]
-                  ]
-                }
-              },
-              "DependsOn": "HttpApiIntegrationGetOrders"
-            },
-            "GetOrderByIdWorkerLambdaPermissionHttpApi": {
+            "GetOrderByIdWorkerLambdaPermissionApiGateway": {
               "Type": "AWS::Lambda::Permission",
               "Properties": {
                 "FunctionName": {
@@ -1179,53 +1580,15 @@
                       },
                       ":",
                       {
-                        "Ref": "HttpApi"
+                        "Ref": "ApiGatewayRestApi"
                       },
-                      "/*"
+                      "/*/*"
                     ]
                   ]
                 }
               }
             },
-            "HttpApiIntegrationGetOrderByIdWorker": {
-              "Type": "AWS::ApiGatewayV2::Integration",
-              "Properties": {
-                "ApiId": {
-                  "Ref": "HttpApi"
-                },
-                "IntegrationType": "AWS_PROXY",
-                "IntegrationUri": {
-                  "Fn::GetAtt": [
-                    "GetOrderByIdWorkerLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "PayloadFormatVersion": "2.0",
-                "TimeoutInMillis": 30000
-              }
-            },
-            "HttpApiRouteGetOrdersIdVar": {
-              "Type": "AWS::ApiGatewayV2::Route",
-              "Properties": {
-                "ApiId": {
-                  "Ref": "HttpApi"
-                },
-                "RouteKey": "GET /orders/{id}",
-                "Target": {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      "integrations",
-                      {
-                        "Ref": "HttpApiIntegrationGetOrderByIdWorker"
-                      }
-                    ]
-                  ]
-                }
-              },
-              "DependsOn": "HttpApiIntegrationGetOrderByIdWorker"
-            },
-            "CreateOrderLambdaPermissionHttpApi": {
+            "CreateOrderLambdaPermissionApiGateway": {
               "Type": "AWS::Lambda::Permission",
               "Properties": {
                 "FunctionName": {
@@ -1254,51 +1617,13 @@
                       },
                       ":",
                       {
-                        "Ref": "HttpApi"
+                        "Ref": "ApiGatewayRestApi"
                       },
-                      "/*"
+                      "/*/*"
                     ]
                   ]
                 }
               }
-            },
-            "HttpApiIntegrationCreateOrder": {
-              "Type": "AWS::ApiGatewayV2::Integration",
-              "Properties": {
-                "ApiId": {
-                  "Ref": "HttpApi"
-                },
-                "IntegrationType": "AWS_PROXY",
-                "IntegrationUri": {
-                  "Fn::GetAtt": [
-                    "CreateOrderLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "PayloadFormatVersion": "2.0",
-                "TimeoutInMillis": 30000
-              }
-            },
-            "HttpApiRoutePostCreateorders": {
-              "Type": "AWS::ApiGatewayV2::Route",
-              "Properties": {
-                "ApiId": {
-                  "Ref": "HttpApi"
-                },
-                "RouteKey": "POST /createorders",
-                "Target": {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      "integrations",
-                      {
-                        "Ref": "HttpApiIntegrationCreateOrder"
-                      }
-                    ]
-                  ]
-                }
-              },
-              "DependsOn": "HttpApiIntegrationCreateOrder"
             }
           },
           "Outputs": {
@@ -1310,37 +1635,19 @@
                 "Name": "sls-Backend-dev-ServerlessDeploymentBucketName"
               }
             },
-            "CreateUserLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "CreateUserLambdaVersionp45fl8BCNf4wBDtfOoFIFGzAENVCZEgOOWfmp4T9RI"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
-              }
-            },
             "GetAllUsersLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetAllUsersLambdaVersionJ7RIv758px5EpibSPM5T7RzpBUMUoc9zwPlUHBUMCA"
+                "Ref": "GetAllUsersLambdaVersion5aIadr4kw2BHoAZB8E5tmHySygE0wtfRJfeq8HQXos"
               },
               "Export": {
                 "Name": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
               }
             },
-            "DeleteUserLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "DeleteUserLambdaVersionPByjHKXLNquRz2fcyzWzsRACE5DKHf76RccDTIcJQ"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
-              }
-            },
             "UpdateUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "UpdateUserLambdaVersionK6zDf2X2OvaZdZVIW51eIfHVPod48GIIwkfedKgJP0"
+                "Ref": "UpdateUserLambdaVersion03d8bqp91SuiluALdZ854vLoKI4YbiIPs5UrjZOlI"
               },
               "Export": {
                 "Name": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
@@ -1349,25 +1656,43 @@
             "GetOrdersLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetOrdersLambdaVersionlzWpUPm7BENRPZBc6J0JGjgqwjPTjeZvTpV4n9z6pz4"
+                "Ref": "GetOrdersLambdaVersiongfssu9uKXrTqsunjpgpURubmKr9gGkORd1YxRVacI"
               },
               "Export": {
                 "Name": "sls-Backend-dev-GetOrdersLambdaFunctionQualifiedArn"
               }
             },
+            "CreateUserLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "CreateUserLambdaVersionmIzPOjC7apnT6gP4SGxviEa7jiRppJM1NvpVdMTsQlI"
+              },
+              "Export": {
+                "Name": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
+              }
+            },
             "GetOrderByIdWorkerLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetOrderByIdWorkerLambdaVersion4niaWins5b9FcGMWR84pAZoiBIWQsx3e827EJAkm04"
+                "Ref": "GetOrderByIdWorkerLambdaVersionNicEln0mzMD0bgLSLpBCuDmgCHFdkhMcHbrwF8KqS8o"
               },
               "Export": {
                 "Name": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
               }
             },
+            "DeleteUserLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "DeleteUserLambdaVersionJcFZ5Qcpk42pY8TCDUpV1xqxe6JBPDi06TNIawcbQg"
+              },
+              "Export": {
+                "Name": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
+              }
+            },
             "CreateOrderLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "CreateOrderLambdaVersionoUNBuUXamIFzsucQizNecMwxaTe5gCURFerjKJXenyY"
+                "Ref": "CreateOrderLambdaVersionirUYBUK4wNcAHz7PDsZ05t5zVyopYNNBhVeWSsUuvY"
               },
               "Export": {
                 "Name": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
@@ -1397,40 +1722,6 @@
               },
               "Export": {
                 "Name": "sls-Backend-dev-ServiceEndpoint"
-              }
-            },
-            "HttpApiId": {
-              "Description": "Id of the HTTP API",
-              "Value": {
-                "Ref": "HttpApi"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-HttpApiId"
-              }
-            },
-            "HttpApiUrl": {
-              "Description": "URL of the HTTP API",
-              "Value": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "https://",
-                    {
-                      "Ref": "HttpApi"
-                    },
-                    ".execute-api.",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ".",
-                    {
-                      "Ref": "AWS::URLSuffix"
-                    }
-                  ]
-                ]
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-HttpApiUrl"
               }
             }
           }
@@ -1521,7 +1812,7 @@
       "package": {
         "individually": true,
         "artifactsS3KeyDirname": "serverless/Backend/dev/code-artifacts",
-        "artifactDirectoryName": "serverless/Backend/dev/1725011381695-2024-08-30T09:49:41.695Z"
+        "artifactDirectoryName": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z"
       },
       "functions": {
         "createUser": {
@@ -1531,6 +1822,23 @@
               "http": {
                 "path": "user",
                 "method": "post",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "POST"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
                 "integration": "AWS_PROXY"
               }
             }
@@ -1540,13 +1848,13 @@
             "NODE_OPTIONS": "--enable-source-maps"
           },
           "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend\\.serverless\\build\\Backend-createUser.zip"
+            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-createUser.zip"
           },
           "memory": 1024,
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "CreateUserLambdaVersionp45fl8BCNf4wBDtfOoFIFGzAENVCZEgOOWfmp4T9RI"
+          "versionLogicalId": "CreateUserLambdaVersionmIzPOjC7apnT6gP4SGxviEa7jiRppJM1NvpVdMTsQlI"
         },
         "getAllUsers": {
           "handler": "modules/users/controller.getAllUsers",
@@ -1555,6 +1863,23 @@
               "http": {
                 "path": "users",
                 "method": "get",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "GET"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
                 "integration": "AWS_PROXY"
               }
             }
@@ -1564,13 +1889,13 @@
             "NODE_OPTIONS": "--enable-source-maps"
           },
           "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend\\.serverless\\build\\Backend-getAllUsers.zip"
+            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-getAllUsers.zip"
           },
           "memory": 1024,
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetAllUsersLambdaVersionJ7RIv758px5EpibSPM5T7RzpBUMUoc9zwPlUHBUMCA"
+          "versionLogicalId": "GetAllUsersLambdaVersion5aIadr4kw2BHoAZB8E5tmHySygE0wtfRJfeq8HQXos"
         },
         "updateUser": {
           "handler": "modules/users/controller.updateUser",
@@ -1579,6 +1904,23 @@
               "http": {
                 "path": "user/{id}",
                 "method": "put",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "PUT"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
                 "integration": "AWS_PROXY"
               }
             }
@@ -1588,13 +1930,13 @@
             "NODE_OPTIONS": "--enable-source-maps"
           },
           "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend\\.serverless\\build\\Backend-updateUser.zip"
+            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-updateUser.zip"
           },
           "memory": 1024,
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "UpdateUserLambdaVersionK6zDf2X2OvaZdZVIW51eIfHVPod48GIIwkfedKgJP0"
+          "versionLogicalId": "UpdateUserLambdaVersion03d8bqp91SuiluALdZ854vLoKI4YbiIPs5UrjZOlI"
         },
         "deleteUser": {
           "handler": "modules/users/controller.deleteUser",
@@ -1603,6 +1945,23 @@
               "http": {
                 "path": "user/{id}",
                 "method": "delete",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "DELETE"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
                 "integration": "AWS_PROXY"
               }
             }
@@ -1612,25 +1971,41 @@
             "NODE_OPTIONS": "--enable-source-maps"
           },
           "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend\\.serverless\\build\\Backend-deleteUser.zip"
+            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-deleteUser.zip"
           },
           "memory": 1024,
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "DeleteUserLambdaVersionPByjHKXLNquRz2fcyzWzsRACE5DKHf76RccDTIcJQ"
+          "versionLogicalId": "DeleteUserLambdaVersionJcFZ5Qcpk42pY8TCDUpV1xqxe6JBPDi06TNIawcbQg"
         },
         "getOrders": {
           "handler": "modules/orders/order.getAllOrdersHandler",
           "timeout": 30,
           "events": [
             {
-              "httpApi": {
-                "path": "/orders",
-                "method": "get"
-              },
-              "resolvedMethod": "GET",
-              "resolvedPath": "/orders"
+              "http": {
+                "path": "orders",
+                "method": "get",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "GET"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
             }
           ],
           "name": "Backend-dev-getOrders",
@@ -1638,24 +2013,40 @@
             "NODE_OPTIONS": "--enable-source-maps"
           },
           "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend\\.serverless\\build\\Backend-getOrders.zip"
+            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-getOrders.zip"
           },
           "memory": 1024,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetOrdersLambdaVersionlzWpUPm7BENRPZBc6J0JGjgqwjPTjeZvTpV4n9z6pz4"
+          "versionLogicalId": "GetOrdersLambdaVersiongfssu9uKXrTqsunjpgpURubmKr9gGkORd1YxRVacI"
         },
         "getOrderByIdWorker": {
           "handler": "modules/orders/order.getOrderByIdHandler",
           "timeout": 30,
           "events": [
             {
-              "httpApi": {
-                "path": "/orders/{id}",
-                "method": "get"
-              },
-              "resolvedMethod": "GET",
-              "resolvedPath": "/orders/{id}"
+              "http": {
+                "path": "orders/{id}",
+                "method": "get",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "GET"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
             }
           ],
           "name": "Backend-dev-getOrderByIdWorker",
@@ -1663,24 +2054,40 @@
             "NODE_OPTIONS": "--enable-source-maps"
           },
           "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend\\.serverless\\build\\Backend-getOrderByIdWorker.zip"
+            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-getOrderByIdWorker.zip"
           },
           "memory": 1024,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetOrderByIdWorkerLambdaVersion4niaWins5b9FcGMWR84pAZoiBIWQsx3e827EJAkm04"
+          "versionLogicalId": "GetOrderByIdWorkerLambdaVersionNicEln0mzMD0bgLSLpBCuDmgCHFdkhMcHbrwF8KqS8o"
         },
         "createOrder": {
           "handler": "modules/orders/order.createOrderHandler",
           "timeout": 30,
           "events": [
             {
-              "httpApi": {
-                "path": "/createorders",
-                "method": "post"
-              },
-              "resolvedMethod": "POST",
-              "resolvedPath": "/createorders"
+              "http": {
+                "path": "createorders",
+                "method": "post",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "POST"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
             }
           ],
           "name": "Backend-dev-createOrder",
@@ -1688,12 +2095,12 @@
             "NODE_OPTIONS": "--enable-source-maps"
           },
           "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\New Backend\\.serverless\\build\\Backend-createOrder.zip"
+            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-createOrder.zip"
           },
           "memory": 1024,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "CreateOrderLambdaVersionoUNBuUXamIFzsucQizNecMwxaTe5gCURFerjKJXenyY"
+          "versionLogicalId": "CreateOrderLambdaVersionirUYBUK4wNcAHz7PDsZ05t5zVyopYNNBhVeWSsUuvY"
         }
       },
       "plugins": [
@@ -1709,7 +2116,7 @@
         }
       }
     },
-    "serviceRawFile": "org: khalil1\r\n\r\napp: Backend\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  vpc:\r\n    securityGroupIds:\r\n      - sg-0ed40a5999e1650e0\r\n    subnetIds:\r\n      - subnet-0dbe603c213c8c82d\r\n      - subnet-0bff18fbd7188e54b\r\n      - subnet-03484be23648c333e\r\n      - subnet-0c623cae1caa5f231\r\n      - subnet-0197af1832aebc247\r\n      - subnet-07e8ac42dc572ddcc\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: user\r\n          method: post\r\n  getAllUsers:\r\n    handler:  modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: users\r\n          method: get\r\n  updateUser:\r\n    handler:  modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: user/{id}\r\n          method: put\r\n  deleteUser:\r\n    handler:  modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: user/{id}\r\n          method: delete\r\n  getOrders:\r\n    handler:  modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - httpApi:\r\n          path: /orders\r\n          method: get\r\n  getOrderByIdWorker:\r\n    handler:  modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - httpApi:\r\n          path: /orders/{id}\r\n          method: get\r\n  createOrder:\r\n    handler:  modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - httpApi:\r\n          path: /createorders\r\n          method: post\r\n\r\n\r\nplugins:\r\n  - serverless-offline\r\n  #- serverless-esbuild\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true  \r\n\r\n\r\n",
+    "serviceRawFile": "org: khalil1\r\n\r\napp: Backend\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  vpc:\r\n    securityGroupIds:\r\n      - sg-0ed40a5999e1650e0\r\n    subnetIds:\r\n      - subnet-0dbe603c213c8c82d\r\n      - subnet-0bff18fbd7188e54b\r\n      - subnet-03484be23648c333e\r\n      - subnet-0c623cae1caa5f231\r\n      - subnet-0197af1832aebc247\r\n      - subnet-07e8ac42dc572ddcc\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders\r\n          method: post\r\n          cors: true\r\n\r\nplugins:\r\n  - serverless-offline\r\n  #- serverless-esbuild\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
     "command": [
       "deploy"
     ],
@@ -1747,75 +2154,63 @@
     "versionSf": "4.2.4",
     "serviceProviderAwsCfStackName": "Backend-dev",
     "integrations": {},
-    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ab13d500-6682-11ef-8703-0ea03abc55ff",
-    "serviceProviderAwsCfStackCreated": "2024-08-30T03:48:07.479Z",
-    "serviceProviderAwsCfStackUpdated": "2024-08-30T09:49:58.060Z",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
+    "serviceProviderAwsCfStackCreated": "2024-08-31T15:15:57.392Z",
+    "serviceProviderAwsCfStackUpdated": "2024-08-31T16:29:21.269Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "CreateOrderLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:1",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:8",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "DeleteUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:10",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:17",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrderByIdWorkerLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:1",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:7",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetAllUsersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:16",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:22",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "UpdateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:10",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:16",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrdersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:1",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:7",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrdersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CreateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:16",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:22",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
       },
       {
-        "OutputKey": "HttpApiId",
-        "OutputValue": "ill6774ggh",
-        "Description": "Id of the HTTP API",
-        "ExportName": "sls-Backend-dev-HttpApiId"
-      },
-      {
         "OutputKey": "ServiceEndpoint",
-        "OutputValue": "https://kdd81t8049.execute-api.us-east-1.amazonaws.com/dev",
+        "OutputValue": "https://n1458hy4ek.execute-api.us-east-1.amazonaws.com/dev",
         "Description": "URL of the service endpoint",
         "ExportName": "sls-Backend-dev-ServiceEndpoint"
       },
       {
         "OutputKey": "ServerlessDeploymentBucketName",
-        "OutputValue": "backend-dev-serverlessdeploymentbucket-ofgyogeoc5gx",
+        "OutputValue": "backend-dev-serverlessdeploymentbucket-zecwkbvtuitg",
         "ExportName": "sls-Backend-dev-ServerlessDeploymentBucketName"
-      },
-      {
-        "OutputKey": "HttpApiUrl",
-        "OutputValue": "https://ill6774ggh.execute-api.us-east-1.amazonaws.com",
-        "Description": "URL of the HTTP API",
-        "ExportName": "sls-Backend-dev-HttpApiUrl"
       }
     ]
   }
