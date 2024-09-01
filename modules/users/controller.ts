@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, updateUserservice} from "./service";
+import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService} from "./service";
 import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
-
 import { createUserValidate } from './validationSchema';
 import middy from "@middy/core"
 import validationMiddleware from '../lib/validationMiddleware';
@@ -17,7 +16,8 @@ export const createUserc = async (
 ): Promise<APIGatewayProxyResult> => {
   try {
     const body: CreateUserDTO = JSON.parse(event.body || "{}");
-    await createUserservice(body);
+    const id =  await createCognitoUser(body);
+    await createUserservice(body , id);
     return {
       statusCode: 200,
       headers ,
@@ -64,6 +64,7 @@ export const deleteUser = async (
       };
     }
     await deleteUserservice(userId);
+    await deleteCognitoUser(userId);
     return {
       statusCode: 200,
       headers,
@@ -92,6 +93,13 @@ export const updateUser = async (
         headers,
         body: JSON.stringify({ error: "User not found" }),
       };}
+      if (!userData.FULLNAME && !userData.email) {
+        return {
+          statusCode: 400,
+          body: JSON.stringify({ message: "At least one of newEmail or newUsername is required" }),
+        };
+      }
+    await updateEmailAndUsernameBySubService(userId,userData.FULLNAME,userData.email)
     await updateUserservice(userId, userData);
     return {
       statusCode: 200,
@@ -110,4 +118,4 @@ export const updateUser = async (
 
 //exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
-export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
+//export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));

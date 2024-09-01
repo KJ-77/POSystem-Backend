@@ -13,24 +13,11 @@
     "serviceConfigFileName": "serverless.yml",
     "service": {
       "org": "khalil1",
-      "app": "Backend",
+      "app": "backend",
       "service": "Backend",
       "provider": {
         "name": "aws",
         "runtime": "nodejs20.x",
-        "vpc": {
-          "securityGroupIds": [
-            "sg-0ed40a5999e1650e0"
-          ],
-          "subnetIds": [
-            "subnet-0dbe603c213c8c82d",
-            "subnet-0bff18fbd7188e54b",
-            "subnet-03484be23648c333e",
-            "subnet-0c623cae1caa5f231",
-            "subnet-0197af1832aebc247",
-            "subnet-07e8ac42dc572ddcc"
-          ]
-        },
         "environment": {
           "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
           "DB_USER": "admin",
@@ -38,1890 +25,143 @@
           "DB_NAME": "POSystemdb",
           "DB_PORT": "3306"
         },
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "cognito-idp:AdminCreateUser",
+              "cognito-idp:AdminAddUserToGroup",
+              "cognito-idp:AdminGetUser",
+              "cognito-idp:ListUsers",
+              "cognito-idp:AdminListUsers",
+              "cognito-idp:AdminUpdateUserAttributes",
+              "cognito-idp:AdminDeleteUser"
+            ],
+            "Resource": "arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB"
+          }
+        ],
         "stage": "dev",
         "region": "us-east-1",
         "versionFunctions": true,
-        "compiledCloudFormationTemplate": {
-          "AWSTemplateFormatVersion": "2010-09-09",
-          "Description": "The AWS CloudFormation template for this Serverless application",
-          "Resources": {
-            "ServerlessDeploymentBucket": {
-              "Type": "AWS::S3::Bucket",
-              "Properties": {
-                "BucketEncryption": {
-                  "ServerSideEncryptionConfiguration": [
-                    {
-                      "ServerSideEncryptionByDefault": {
-                        "SSEAlgorithm": "AES256"
-                      }
-                    }
-                  ]
-                }
+        "remoteFunctionData": {
+          "Configuration": {
+            "FunctionName": "Backend-dev-updateUser",
+            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser",
+            "Runtime": "nodejs20.x",
+            "Role": "arn:aws:iam::891377200709:role/Backend-dev-us-east-1-lambdaRole",
+            "Handler": "modules/users/controller.updateUser",
+            "CodeSize": 8179242,
+            "Description": "",
+            "Timeout": 6,
+            "MemorySize": 1024,
+            "LastModified": "2024-09-01T17:45:58.000+0000",
+            "CodeSha256": "yXivEX/5rtX7FXijiT7XRR1mXP3mfDvFZZD1RJaM0gw=",
+            "Version": "$LATEST",
+            "VpcConfig": {
+              "SubnetIds": [],
+              "SecurityGroupIds": [],
+              "VpcId": "",
+              "Ipv6AllowedForDualStack": false
+            },
+            "Environment": {
+              "Variables": {
+                "DB_PORT": "3306",
+                "DB_USER": "admin",
+                "NODE_OPTIONS": "--enable-source-maps",
+                "DB_NAME": "POSystemdb",
+                "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
+                "DB_PASSWORD": "<REDACTED>"
               }
             },
-            "ServerlessDeploymentBucketPolicy": {
-              "Type": "AWS::S3::BucketPolicy",
-              "Properties": {
-                "Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "PolicyDocument": {
-                  "Statement": [
-                    {
-                      "Action": "s3:*",
-                      "Effect": "Deny",
-                      "Principal": "*",
-                      "Resource": [
-                        {
-                          "Fn::Join": [
-                            "",
-                            [
-                              "arn:",
-                              {
-                                "Ref": "AWS::Partition"
-                              },
-                              ":s3:::",
-                              {
-                                "Ref": "ServerlessDeploymentBucket"
-                              },
-                              "/*"
-                            ]
-                          ]
-                        },
-                        {
-                          "Fn::Join": [
-                            "",
-                            [
-                              "arn:",
-                              {
-                                "Ref": "AWS::Partition"
-                              },
-                              ":s3:::",
-                              {
-                                "Ref": "ServerlessDeploymentBucket"
-                              }
-                            ]
-                          ]
-                        }
-                      ],
-                      "Condition": {
-                        "Bool": {
-                          "aws:SecureTransport": false
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
+            "KMSKeyArn": null,
+            "TracingConfig": {
+              "Mode": "PassThrough"
             },
-            "CreateUserLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/Backend-dev-createUser"
-              }
+            "MasterArn": null,
+            "RevisionId": "146a5f3b-9f03-4387-8ce4-676fb53db666",
+            "State": "Active",
+            "StateReason": null,
+            "StateReasonCode": null,
+            "LastUpdateStatus": "Successful",
+            "LastUpdateStatusReason": null,
+            "LastUpdateStatusReasonCode": null,
+            "PackageType": "Zip",
+            "SigningProfileVersionArn": null,
+            "SigningJobArn": null,
+            "Architectures": [
+              "x86_64"
+            ],
+            "EphemeralStorage": {
+              "Size": 512
             },
-            "GetAllUsersLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/Backend-dev-getAllUsers"
-              }
+            "SnapStart": {
+              "ApplyOn": "None",
+              "OptimizationStatus": "Off"
             },
-            "UpdateUserLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/Backend-dev-updateUser"
-              }
+            "RuntimeVersionConfig": {
+              "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:672d5a3e06f81d120c089c5414b05186d7b4098504797c766bde2459847f38bc"
             },
-            "DeleteUserLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/Backend-dev-deleteUser"
-              }
+            "LoggingConfig": {
+              "LogFormat": "Text",
+              "ApplicationLogLevel": null,
+              "SystemLogLevel": null,
+              "LogGroup": "/aws/lambda/Backend-dev-updateUser"
             },
-            "GetOrdersLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/Backend-dev-getOrders"
-              }
-            },
-            "GetOrderByIdWorkerLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/Backend-dev-getOrderByIdWorker"
-              }
-            },
-            "CreateOrderLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/Backend-dev-createOrder"
-              }
-            },
-            "IamRoleLambdaExecution": {
-              "Type": "AWS::IAM::Role",
-              "Properties": {
-                "AssumeRolePolicyDocument": {
-                  "Version": "2012-10-17",
-                  "Statement": [
-                    {
-                      "Effect": "Allow",
-                      "Principal": {
-                        "Service": [
-                          "lambda.amazonaws.com"
-                        ]
-                      },
-                      "Action": [
-                        "sts:AssumeRole"
-                      ]
-                    }
-                  ]
-                },
-                "Policies": [
-                  {
-                    "PolicyName": {
-                      "Fn::Join": [
-                        "-",
-                        [
-                          "Backend",
-                          "dev",
-                          "lambda"
-                        ]
-                      ]
-                    },
-                    "PolicyDocument": {
-                      "Version": "2012-10-17",
-                      "Statement": [
-                        {
-                          "Effect": "Allow",
-                          "Action": [
-                            "logs:CreateLogStream",
-                            "logs:CreateLogGroup",
-                            "logs:TagResource"
-                          ],
-                          "Resource": [
-                            {
-                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/Backend-dev*:*"
-                            }
-                          ]
-                        },
-                        {
-                          "Effect": "Allow",
-                          "Action": [
-                            "logs:PutLogEvents"
-                          ],
-                          "Resource": [
-                            {
-                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/Backend-dev*:*:*"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ],
-                "Path": "/",
-                "RoleName": {
-                  "Fn::Join": [
-                    "-",
-                    [
-                      "Backend",
-                      "dev",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      "lambdaRole"
-                    ]
-                  ]
-                },
-                "ManagedPolicyArns": [
-                  {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
-                      ]
-                    ]
-                  }
-                ]
-              }
-            },
-            "CreateUserLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": {
-                    "Ref": "ServerlessDeploymentBucket"
-                  },
-                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-createUser.zip"
-                },
-                "Handler": "modules/users/controller.createUser",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "Backend-dev-createUser",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
-                    "DB_USER": "admin",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_NAME": "POSystemdb",
-                    "DB_PORT": "3306",
-                    "NODE_OPTIONS": "--enable-source-maps"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                },
-                "VpcConfig": {
-                  "SecurityGroupIds": [
-                    "sg-0ed40a5999e1650e0"
-                  ],
-                  "SubnetIds": [
-                    "subnet-0dbe603c213c8c82d",
-                    "subnet-0bff18fbd7188e54b",
-                    "subnet-03484be23648c333e",
-                    "subnet-0c623cae1caa5f231",
-                    "subnet-0197af1832aebc247",
-                    "subnet-07e8ac42dc572ddcc"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "CreateUserLogGroup"
-              ]
-            },
-            "GetAllUsersLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": {
-                    "Ref": "ServerlessDeploymentBucket"
-                  },
-                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-getAllUsers.zip"
-                },
-                "Handler": "modules/users/controller.getAllUsers",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "Backend-dev-getAllUsers",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
-                    "DB_USER": "admin",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_NAME": "POSystemdb",
-                    "DB_PORT": "3306",
-                    "NODE_OPTIONS": "--enable-source-maps"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                },
-                "VpcConfig": {
-                  "SecurityGroupIds": [
-                    "sg-0ed40a5999e1650e0"
-                  ],
-                  "SubnetIds": [
-                    "subnet-0dbe603c213c8c82d",
-                    "subnet-0bff18fbd7188e54b",
-                    "subnet-03484be23648c333e",
-                    "subnet-0c623cae1caa5f231",
-                    "subnet-0197af1832aebc247",
-                    "subnet-07e8ac42dc572ddcc"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "GetAllUsersLogGroup"
-              ]
-            },
-            "UpdateUserLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": {
-                    "Ref": "ServerlessDeploymentBucket"
-                  },
-                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-updateUser.zip"
-                },
-                "Handler": "modules/users/controller.updateUser",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "Backend-dev-updateUser",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
-                    "DB_USER": "admin",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_NAME": "POSystemdb",
-                    "DB_PORT": "3306",
-                    "NODE_OPTIONS": "--enable-source-maps"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                },
-                "VpcConfig": {
-                  "SecurityGroupIds": [
-                    "sg-0ed40a5999e1650e0"
-                  ],
-                  "SubnetIds": [
-                    "subnet-0dbe603c213c8c82d",
-                    "subnet-0bff18fbd7188e54b",
-                    "subnet-03484be23648c333e",
-                    "subnet-0c623cae1caa5f231",
-                    "subnet-0197af1832aebc247",
-                    "subnet-07e8ac42dc572ddcc"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "UpdateUserLogGroup"
-              ]
-            },
-            "DeleteUserLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": {
-                    "Ref": "ServerlessDeploymentBucket"
-                  },
-                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-deleteUser.zip"
-                },
-                "Handler": "modules/users/controller.deleteUser",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "Backend-dev-deleteUser",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
-                    "DB_USER": "admin",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_NAME": "POSystemdb",
-                    "DB_PORT": "3306",
-                    "NODE_OPTIONS": "--enable-source-maps"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                },
-                "VpcConfig": {
-                  "SecurityGroupIds": [
-                    "sg-0ed40a5999e1650e0"
-                  ],
-                  "SubnetIds": [
-                    "subnet-0dbe603c213c8c82d",
-                    "subnet-0bff18fbd7188e54b",
-                    "subnet-03484be23648c333e",
-                    "subnet-0c623cae1caa5f231",
-                    "subnet-0197af1832aebc247",
-                    "subnet-07e8ac42dc572ddcc"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "DeleteUserLogGroup"
-              ]
-            },
-            "GetOrdersLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": {
-                    "Ref": "ServerlessDeploymentBucket"
-                  },
-                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-getOrders.zip"
-                },
-                "Handler": "modules/orders/order.getAllOrdersHandler",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "Backend-dev-getOrders",
-                "MemorySize": 1024,
-                "Timeout": 30,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
-                    "DB_USER": "admin",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_NAME": "POSystemdb",
-                    "DB_PORT": "3306",
-                    "NODE_OPTIONS": "--enable-source-maps"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                },
-                "VpcConfig": {
-                  "SecurityGroupIds": [
-                    "sg-0ed40a5999e1650e0"
-                  ],
-                  "SubnetIds": [
-                    "subnet-0dbe603c213c8c82d",
-                    "subnet-0bff18fbd7188e54b",
-                    "subnet-03484be23648c333e",
-                    "subnet-0c623cae1caa5f231",
-                    "subnet-0197af1832aebc247",
-                    "subnet-07e8ac42dc572ddcc"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "GetOrdersLogGroup"
-              ]
-            },
-            "GetOrderByIdWorkerLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": {
-                    "Ref": "ServerlessDeploymentBucket"
-                  },
-                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-getOrderByIdWorker.zip"
-                },
-                "Handler": "modules/orders/order.getOrderByIdHandler",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "Backend-dev-getOrderByIdWorker",
-                "MemorySize": 1024,
-                "Timeout": 30,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
-                    "DB_USER": "admin",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_NAME": "POSystemdb",
-                    "DB_PORT": "3306",
-                    "NODE_OPTIONS": "--enable-source-maps"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                },
-                "VpcConfig": {
-                  "SecurityGroupIds": [
-                    "sg-0ed40a5999e1650e0"
-                  ],
-                  "SubnetIds": [
-                    "subnet-0dbe603c213c8c82d",
-                    "subnet-0bff18fbd7188e54b",
-                    "subnet-03484be23648c333e",
-                    "subnet-0c623cae1caa5f231",
-                    "subnet-0197af1832aebc247",
-                    "subnet-07e8ac42dc572ddcc"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "GetOrderByIdWorkerLogGroup"
-              ]
-            },
-            "CreateOrderLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": {
-                    "Ref": "ServerlessDeploymentBucket"
-                  },
-                  "S3Key": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z/Backend-createOrder.zip"
-                },
-                "Handler": "modules/orders/order.createOrderHandler",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "Backend-dev-createOrder",
-                "MemorySize": 1024,
-                "Timeout": 30,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com",
-                    "DB_USER": "admin",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_NAME": "POSystemdb",
-                    "DB_PORT": "3306",
-                    "NODE_OPTIONS": "--enable-source-maps"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                },
-                "VpcConfig": {
-                  "SecurityGroupIds": [
-                    "sg-0ed40a5999e1650e0"
-                  ],
-                  "SubnetIds": [
-                    "subnet-0dbe603c213c8c82d",
-                    "subnet-0bff18fbd7188e54b",
-                    "subnet-03484be23648c333e",
-                    "subnet-0c623cae1caa5f231",
-                    "subnet-0197af1832aebc247",
-                    "subnet-07e8ac42dc572ddcc"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "CreateOrderLogGroup"
-              ]
-            },
-            "GetAllUsersLambdaVersion5aIadr4kw2BHoAZB8E5tmHySygE0wtfRJfeq8HQXos": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "GetAllUsersLambdaFunction"
-                },
-                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
-              }
-            },
-            "UpdateUserLambdaVersion03d8bqp91SuiluALdZ854vLoKI4YbiIPs5UrjZOlI": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "UpdateUserLambdaFunction"
-                },
-                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
-              }
-            },
-            "GetOrdersLambdaVersiongfssu9uKXrTqsunjpgpURubmKr9gGkORd1YxRVacI": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "GetOrdersLambdaFunction"
-                },
-                "CodeSha256": "6w1zogarj0Drz6xCFRNjr1+YBTa+GozOKwXM7pdK75A="
-              }
-            },
-            "CreateUserLambdaVersionmIzPOjC7apnT6gP4SGxviEa7jiRppJM1NvpVdMTsQlI": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "CreateUserLambdaFunction"
-                },
-                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
-              }
-            },
-            "GetOrderByIdWorkerLambdaVersionNicEln0mzMD0bgLSLpBCuDmgCHFdkhMcHbrwF8KqS8o": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "GetOrderByIdWorkerLambdaFunction"
-                },
-                "CodeSha256": "6w1zogarj0Drz6xCFRNjr1+YBTa+GozOKwXM7pdK75A="
-              }
-            },
-            "DeleteUserLambdaVersionJcFZ5Qcpk42pY8TCDUpV1xqxe6JBPDi06TNIawcbQg": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "DeleteUserLambdaFunction"
-                },
-                "CodeSha256": "V4L39zFu64qQ7KQfFioBpftAtMzOs1rTIJTE0kuUDEY="
-              }
-            },
-            "CreateOrderLambdaVersionirUYBUK4wNcAHz7PDsZ05t5zVyopYNNBhVeWSsUuvY": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "CreateOrderLambdaFunction"
-                },
-                "CodeSha256": "6w1zogarj0Drz6xCFRNjr1+YBTa+GozOKwXM7pdK75A="
-              }
-            },
-            "ApiGatewayRestApi": {
-              "Type": "AWS::ApiGateway::RestApi",
-              "Properties": {
-                "Name": "dev-Backend",
-                "EndpointConfiguration": {
-                  "Types": [
-                    "EDGE"
-                  ]
-                },
-                "Policy": ""
-              }
-            },
-            "ApiGatewayResourceUser": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Fn::GetAtt": [
-                    "ApiGatewayRestApi",
-                    "RootResourceId"
-                  ]
-                },
-                "PathPart": "user",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayResourceUserIdVar": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Ref": "ApiGatewayResourceUser"
-                },
-                "PathPart": "{id}",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayResourceUsers": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Fn::GetAtt": [
-                    "ApiGatewayRestApi",
-                    "RootResourceId"
-                  ]
-                },
-                "PathPart": "users",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayResourceOrders": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Fn::GetAtt": [
-                    "ApiGatewayRestApi",
-                    "RootResourceId"
-                  ]
-                },
-                "PathPart": "orders",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayResourceOrdersIdVar": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Ref": "ApiGatewayResourceOrders"
-                },
-                "PathPart": "{id}",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayResourceCreateorders": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Fn::GetAtt": [
-                    "ApiGatewayRestApi",
-                    "RootResourceId"
-                  ]
-                },
-                "PathPart": "createorders",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodUserOptions": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "AuthorizationType": "NONE",
-                "HttpMethod": "OPTIONS",
-                "MethodResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": true,
-                      "method.response.header.Access-Control-Allow-Headers": true,
-                      "method.response.header.Access-Control-Allow-Methods": true
-                    },
-                    "ResponseModels": {}
-                  }
-                ],
-                "RequestParameters": {},
-                "Integration": {
-                  "Type": "MOCK",
-                  "RequestTemplates": {
-                    "application/json": "{statusCode:200}"
-                  },
-                  "ContentHandling": "CONVERT_TO_TEXT",
-                  "IntegrationResponses": [
-                    {
-                      "StatusCode": "200",
-                      "ResponseParameters": {
-                        "method.response.header.Access-Control-Allow-Origin": "'*'",
-                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
-                      },
-                      "ResponseTemplates": {
-                        "application/json": ""
-                      }
-                    }
-                  ]
-                },
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceUser"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodUsersOptions": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "AuthorizationType": "NONE",
-                "HttpMethod": "OPTIONS",
-                "MethodResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": true,
-                      "method.response.header.Access-Control-Allow-Headers": true,
-                      "method.response.header.Access-Control-Allow-Methods": true
-                    },
-                    "ResponseModels": {}
-                  }
-                ],
-                "RequestParameters": {},
-                "Integration": {
-                  "Type": "MOCK",
-                  "RequestTemplates": {
-                    "application/json": "{statusCode:200}"
-                  },
-                  "ContentHandling": "CONVERT_TO_TEXT",
-                  "IntegrationResponses": [
-                    {
-                      "StatusCode": "200",
-                      "ResponseParameters": {
-                        "method.response.header.Access-Control-Allow-Origin": "'*'",
-                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
-                      },
-                      "ResponseTemplates": {
-                        "application/json": ""
-                      }
-                    }
-                  ]
-                },
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceUsers"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodUserIdVarOptions": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "AuthorizationType": "NONE",
-                "HttpMethod": "OPTIONS",
-                "MethodResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": true,
-                      "method.response.header.Access-Control-Allow-Headers": true,
-                      "method.response.header.Access-Control-Allow-Methods": true
-                    },
-                    "ResponseModels": {}
-                  }
-                ],
-                "RequestParameters": {},
-                "Integration": {
-                  "Type": "MOCK",
-                  "RequestTemplates": {
-                    "application/json": "{statusCode:200}"
-                  },
-                  "ContentHandling": "CONVERT_TO_TEXT",
-                  "IntegrationResponses": [
-                    {
-                      "StatusCode": "200",
-                      "ResponseParameters": {
-                        "method.response.header.Access-Control-Allow-Origin": "'*'",
-                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'"
-                      },
-                      "ResponseTemplates": {
-                        "application/json": ""
-                      }
-                    }
-                  ]
-                },
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceUserIdVar"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodOrdersOptions": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "AuthorizationType": "NONE",
-                "HttpMethod": "OPTIONS",
-                "MethodResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": true,
-                      "method.response.header.Access-Control-Allow-Headers": true,
-                      "method.response.header.Access-Control-Allow-Methods": true
-                    },
-                    "ResponseModels": {}
-                  }
-                ],
-                "RequestParameters": {},
-                "Integration": {
-                  "Type": "MOCK",
-                  "RequestTemplates": {
-                    "application/json": "{statusCode:200}"
-                  },
-                  "ContentHandling": "CONVERT_TO_TEXT",
-                  "IntegrationResponses": [
-                    {
-                      "StatusCode": "200",
-                      "ResponseParameters": {
-                        "method.response.header.Access-Control-Allow-Origin": "'*'",
-                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
-                      },
-                      "ResponseTemplates": {
-                        "application/json": ""
-                      }
-                    }
-                  ]
-                },
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceOrders"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodOrdersIdVarOptions": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "AuthorizationType": "NONE",
-                "HttpMethod": "OPTIONS",
-                "MethodResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": true,
-                      "method.response.header.Access-Control-Allow-Headers": true,
-                      "method.response.header.Access-Control-Allow-Methods": true
-                    },
-                    "ResponseModels": {}
-                  }
-                ],
-                "RequestParameters": {},
-                "Integration": {
-                  "Type": "MOCK",
-                  "RequestTemplates": {
-                    "application/json": "{statusCode:200}"
-                  },
-                  "ContentHandling": "CONVERT_TO_TEXT",
-                  "IntegrationResponses": [
-                    {
-                      "StatusCode": "200",
-                      "ResponseParameters": {
-                        "method.response.header.Access-Control-Allow-Origin": "'*'",
-                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
-                      },
-                      "ResponseTemplates": {
-                        "application/json": ""
-                      }
-                    }
-                  ]
-                },
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceOrdersIdVar"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodCreateordersOptions": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "AuthorizationType": "NONE",
-                "HttpMethod": "OPTIONS",
-                "MethodResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": true,
-                      "method.response.header.Access-Control-Allow-Headers": true,
-                      "method.response.header.Access-Control-Allow-Methods": true
-                    },
-                    "ResponseModels": {}
-                  }
-                ],
-                "RequestParameters": {},
-                "Integration": {
-                  "Type": "MOCK",
-                  "RequestTemplates": {
-                    "application/json": "{statusCode:200}"
-                  },
-                  "ContentHandling": "CONVERT_TO_TEXT",
-                  "IntegrationResponses": [
-                    {
-                      "StatusCode": "200",
-                      "ResponseParameters": {
-                        "method.response.header.Access-Control-Allow-Origin": "'*'",
-                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
-                      },
-                      "ResponseTemplates": {
-                        "application/json": ""
-                      }
-                    }
-                  ]
-                },
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceCreateorders"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodUserPost": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "POST",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceUser"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "CreateUserLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "CreateUserLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodUsersGet": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "GET",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceUsers"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "GetAllUsersLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "GetAllUsersLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodUserIdVarPut": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "PUT",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceUserIdVar"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "UpdateUserLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "UpdateUserLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodUserIdVarDelete": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "DELETE",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceUserIdVar"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "DeleteUserLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "DeleteUserLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodOrdersGet": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "GET",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceOrders"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "GetOrdersLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "GetOrdersLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodOrdersIdVarGet": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "GET",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceOrdersIdVar"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "GetOrderByIdWorkerLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "GetOrderByIdWorkerLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodCreateordersPost": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "POST",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceCreateorders"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "CreateOrderLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "CreateOrderLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayDeployment1725121681130": {
-              "Type": "AWS::ApiGateway::Deployment",
-              "Properties": {
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "StageName": "dev"
-              },
-              "DependsOn": [
-                "ApiGatewayMethodUserOptions",
-                "ApiGatewayMethodUsersOptions",
-                "ApiGatewayMethodUserIdVarOptions",
-                "ApiGatewayMethodOrdersOptions",
-                "ApiGatewayMethodOrdersIdVarOptions",
-                "ApiGatewayMethodCreateordersOptions",
-                "ApiGatewayMethodUserPost",
-                "ApiGatewayMethodUsersGet",
-                "ApiGatewayMethodUserIdVarPut",
-                "ApiGatewayMethodUserIdVarDelete",
-                "ApiGatewayMethodOrdersGet",
-                "ApiGatewayMethodOrdersIdVarGet",
-                "ApiGatewayMethodCreateordersPost"
-              ]
-            },
-            "CreateUserLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "CreateUserLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "GetAllUsersLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "GetAllUsersLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "UpdateUserLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "UpdateUserLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "DeleteUserLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "DeleteUserLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "GetOrdersLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "GetOrdersLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "GetOrderByIdWorkerLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "GetOrderByIdWorkerLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "CreateOrderLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "CreateOrderLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            }
+            "Layers": []
           },
-          "Outputs": {
-            "ServerlessDeploymentBucketName": {
-              "Value": {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-ServerlessDeploymentBucketName"
-              }
-            },
-            "GetAllUsersLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "GetAllUsersLambdaVersion5aIadr4kw2BHoAZB8E5tmHySygE0wtfRJfeq8HQXos"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
-              }
-            },
-            "UpdateUserLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "UpdateUserLambdaVersion03d8bqp91SuiluALdZ854vLoKI4YbiIPs5UrjZOlI"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
-              }
-            },
-            "GetOrdersLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "GetOrdersLambdaVersiongfssu9uKXrTqsunjpgpURubmKr9gGkORd1YxRVacI"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-GetOrdersLambdaFunctionQualifiedArn"
-              }
-            },
-            "CreateUserLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "CreateUserLambdaVersionmIzPOjC7apnT6gP4SGxviEa7jiRppJM1NvpVdMTsQlI"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
-              }
-            },
-            "GetOrderByIdWorkerLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "GetOrderByIdWorkerLambdaVersionNicEln0mzMD0bgLSLpBCuDmgCHFdkhMcHbrwF8KqS8o"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
-              }
-            },
-            "DeleteUserLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "DeleteUserLambdaVersionJcFZ5Qcpk42pY8TCDUpV1xqxe6JBPDi06TNIawcbQg"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
-              }
-            },
-            "CreateOrderLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "CreateOrderLambdaVersionirUYBUK4wNcAHz7PDsZ05t5zVyopYNNBhVeWSsUuvY"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
-              }
-            },
-            "ServiceEndpoint": {
-              "Description": "URL of the service endpoint",
-              "Value": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "https://",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    ".execute-api.",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ".",
-                    {
-                      "Ref": "AWS::URLSuffix"
-                    },
-                    "/dev"
-                  ]
-                ]
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-ServiceEndpoint"
-              }
-            }
-          }
-        },
-        "coreCloudFormationTemplate": {
-          "AWSTemplateFormatVersion": "2010-09-09",
-          "Description": "The AWS CloudFormation template for this Serverless application",
-          "Resources": {
-            "ServerlessDeploymentBucket": {
-              "Type": "AWS::S3::Bucket",
-              "Properties": {
-                "BucketEncryption": {
-                  "ServerSideEncryptionConfiguration": [
-                    {
-                      "ServerSideEncryptionByDefault": {
-                        "SSEAlgorithm": "AES256"
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "ServerlessDeploymentBucketPolicy": {
-              "Type": "AWS::S3::BucketPolicy",
-              "Properties": {
-                "Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "PolicyDocument": {
-                  "Statement": [
-                    {
-                      "Action": "s3:*",
-                      "Effect": "Deny",
-                      "Principal": "*",
-                      "Resource": [
-                        {
-                          "Fn::Join": [
-                            "",
-                            [
-                              "arn:",
-                              {
-                                "Ref": "AWS::Partition"
-                              },
-                              ":s3:::",
-                              {
-                                "Ref": "ServerlessDeploymentBucket"
-                              },
-                              "/*"
-                            ]
-                          ]
-                        },
-                        {
-                          "Fn::Join": [
-                            "",
-                            [
-                              "arn:",
-                              {
-                                "Ref": "AWS::Partition"
-                              },
-                              ":s3:::",
-                              {
-                                "Ref": "ServerlessDeploymentBucket"
-                              }
-                            ]
-                          ]
-                        }
-                      ],
-                      "Condition": {
-                        "Bool": {
-                          "aws:SecureTransport": false
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
+          "Code": {
+            "RepositoryType": "S3",
+            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-updateUser-4f195357-e4d2-44f3-9db0-66bba071f171?versionId=w8H7b9ESA3POPeYszsOp9mFQakM5kp1T&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHoaCXVzLWVhc3QtMSJGMEQCIH82pRLu5unwwGYhpLWl17IyXb1T3SG%2B519%2F5AKT75S6AiBGzWKeTmcffKfP1g5ZEpI5JymDx%2F%2BBD%2F2udkyBuAp3NSrCBQiS%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAQaDDQ3OTIzMzAyNTM3OSIMAWR1uJRqGNvhx7AyKpYFevydyOWXKR8gf6RcG0O6HJ3DrXyymKM2jkrPaWJVww80JeD3u6dzABV98CvZ7F%2BkTAhH%2FIMNrAb491mZoSnwvcaVlM%2ByB%2FDFhyi2zivqedDWxwKmm5ZU3s5kEmNRw24OT33rZJMNHoJUyAI8wdzkpAUuR1prME2TLNLYI%2Fnm0hzEMG2TEVtAJ60wWBSCEYmaO3GnGMwfpLd0a3zAdUOCGK4f1VsJ9tucpRiVXNN%2FY67QFk2Ql4SZiBlYngY%2FivSriN9B6ujJPi8wgQ4x1stIiXpg42NQCzOg7yxHVAtOtdfrjq%2B%2FeMHg3URGix3aqnnwq8W8oRKW126HG0NJT5fQ6HZLlVGfXF%2BJ%2Bw5hypsEJt7enau%2BdkClE9fYu6p%2Fjvh%2FU%2FHPdJn2oBxKpSkb%2F3Xpu4PFsMat3oHAV01PVdmIq%2B8n8kwdiIcUKtAOlAXOgcgvltnIvTznx3ndlc9S25YwWIHbHFulVbKIlvT4Y8ptX%2FUlni2b%2Fxy7YlDzy7rJu%2FAuMb5qQ7VjGenZ3NhXx154ndyRTeFoLveKyySJb%2FfYCB%2FVua%2FZj4nw473UV0uiVVZDDh9mpdL9gBF9zecpONwZUAGeLmKyTr0%2FO8gQNDsULAJd8ywMjPFI1p96coEuwJ9ax%2FNL11dE8p9ZZrD%2B%2BkNJ4i%2FfER2TGjJN1ujCll1r1mGag6PdO%2Bq2IGwtqYBLc7XVC%2Fz8NNJt7dSeTYKhteHysCCtk0MN1yH34CuHZqToNCo%2FMEOmdET4CIOSKVJrNmMpU79mdCh55gMxrAZ5ZwbvzCtcTMfpGw2htWz%2BfvxOX83nr9qCjQR5RU2nnAQ225bwygCtTp3NTuowjKoO4QASZkI1mQ1Zvu8IxuOIrCAfz6rG5BEkOcsw2b3StgY6sgH4B6kcBzX%2BCXGYjdb5XjWZI7GMPcgi8bKPgpajlnyN47Rk6eGd%2BrnKYPPlZpMuvQWKsG1wfxS6uoInNmoI4QUamNUcxVeoWrvysdvOgoLAjlGVjx3l4r1z69e%2FawSm4JTKH0v%2B2NXPEeXg6YH2GWZfY%2B82ihT4wgOvp482zegYZfspXQonrFg9dSOQgdrMYHJzyz3%2BRcyObIPF2ArIvsTlrJIVBm7x4KQ7fWrAUp0bRpVI&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240901T181538Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVRYGLUDITK%2F20240901%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c8acb8361872e92e4e0dae947d0a876ddc7f37f8cdf685ad3163d2a8a9825457",
+            "ImageUri": null,
+            "ResolvedImageUri": null
           },
-          "Outputs": {
-            "ServerlessDeploymentBucketName": {
-              "Value": {
-                "Ref": "ServerlessDeploymentBucket"
-              }
-            }
+          "Tags": {
+            "aws:cloudformation:stack-name": "Backend-dev",
+            "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
+            "STAGE": "dev",
+            "aws:cloudformation:logical-id": "UpdateUserLambdaFunction"
           }
         }
       },
       "package": {
         "individually": true,
-        "artifactsS3KeyDirname": "serverless/Backend/dev/code-artifacts",
-        "artifactDirectoryName": "serverless/Backend/dev/1725121684611-2024-08-31T16:28:04.611Z"
+        "artifactsS3KeyDirname": "serverless/Backend/dev/code-artifacts"
       },
       "functions": {
         "createUser": {
-          "handler": "modules/users/controller.createUser",
+          "handler": "modules/users/controller.createUserc",
           "events": [
             {
               "http": {
-                "path": "user",
+                "path": "/user",
                 "method": "post",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "POST"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
-          "name": "Backend-dev-createUser",
-          "environment": {
-            "NODE_OPTIONS": "--enable-source-maps"
-          },
-          "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-createUser.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "CreateUserLambdaVersionmIzPOjC7apnT6gP4SGxviEa7jiRppJM1NvpVdMTsQlI"
+          "name": "Backend-dev-createUser"
         },
         "getAllUsers": {
           "handler": "modules/users/controller.getAllUsers",
           "events": [
             {
               "http": {
-                "path": "users",
+                "path": "/users",
                 "method": "get",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "GET"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
-          "name": "Backend-dev-getAllUsers",
-          "environment": {
-            "NODE_OPTIONS": "--enable-source-maps"
-          },
-          "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-getAllUsers.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "GetAllUsersLambdaVersion5aIadr4kw2BHoAZB8E5tmHySygE0wtfRJfeq8HQXos"
+          "name": "Backend-dev-getAllUsers"
         },
         "updateUser": {
           "handler": "modules/users/controller.updateUser",
           "events": [
             {
               "http": {
-                "path": "user/{id}",
+                "path": "/user/{id}",
                 "method": "put",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "PUT"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
@@ -1931,53 +171,20 @@
           },
           "package": {
             "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-updateUser.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "UpdateUserLambdaVersion03d8bqp91SuiluALdZ854vLoKI4YbiIPs5UrjZOlI"
+          }
         },
         "deleteUser": {
           "handler": "modules/users/controller.deleteUser",
           "events": [
             {
               "http": {
-                "path": "user/{id}",
+                "path": "/user/{id}",
                 "method": "delete",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "DELETE"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
-          "name": "Backend-dev-deleteUser",
-          "environment": {
-            "NODE_OPTIONS": "--enable-source-maps"
-          },
-          "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-deleteUser.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "DeleteUserLambdaVersionJcFZ5Qcpk42pY8TCDUpV1xqxe6JBPDi06TNIawcbQg"
+          "name": "Backend-dev-deleteUser"
         },
         "getOrders": {
           "handler": "modules/orders/order.getAllOrdersHandler",
@@ -1985,40 +192,13 @@
           "events": [
             {
               "http": {
-                "path": "orders",
+                "path": "/orders",
                 "method": "get",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "GET"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
-          "name": "Backend-dev-getOrders",
-          "environment": {
-            "NODE_OPTIONS": "--enable-source-maps"
-          },
-          "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-getOrders.zip"
-          },
-          "memory": 1024,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "GetOrdersLambdaVersiongfssu9uKXrTqsunjpgpURubmKr9gGkORd1YxRVacI"
+          "name": "Backend-dev-getOrders"
         },
         "getOrderByIdWorker": {
           "handler": "modules/orders/order.getOrderByIdHandler",
@@ -2026,40 +206,13 @@
           "events": [
             {
               "http": {
-                "path": "orders/{id}",
+                "path": "/orders/{id}",
                 "method": "get",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "GET"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
-          "name": "Backend-dev-getOrderByIdWorker",
-          "environment": {
-            "NODE_OPTIONS": "--enable-source-maps"
-          },
-          "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-getOrderByIdWorker.zip"
-          },
-          "memory": 1024,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "GetOrderByIdWorkerLambdaVersionNicEln0mzMD0bgLSLpBCuDmgCHFdkhMcHbrwF8KqS8o"
+          "name": "Backend-dev-getOrderByIdWorker"
         },
         "createOrder": {
           "handler": "modules/orders/order.createOrderHandler",
@@ -2067,40 +220,13 @@
           "events": [
             {
               "http": {
-                "path": "createorders",
+                "path": "/createorders",
                 "method": "post",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "POST"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
-          "name": "Backend-dev-createOrder",
-          "environment": {
-            "NODE_OPTIONS": "--enable-source-maps"
-          },
-          "package": {
-            "artifact": "C:\\Users\\User\\Desktop\\backend-PO\\.serverless\\build\\Backend-createOrder.zip"
-          },
-          "memory": 1024,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "CreateOrderLambdaVersionirUYBUK4wNcAHz7PDsZ05t5zVyopYNNBhVeWSsUuvY"
+          "name": "Backend-dev-createOrder"
         }
       },
       "plugins": [
@@ -2116,11 +242,14 @@
         }
       }
     },
-    "serviceRawFile": "org: khalil1\r\n\r\napp: Backend\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  vpc:\r\n    securityGroupIds:\r\n      - sg-0ed40a5999e1650e0\r\n    subnetIds:\r\n      - subnet-0dbe603c213c8c82d\r\n      - subnet-0bff18fbd7188e54b\r\n      - subnet-03484be23648c333e\r\n      - subnet-0c623cae1caa5f231\r\n      - subnet-0197af1832aebc247\r\n      - subnet-07e8ac42dc572ddcc\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders\r\n          method: post\r\n          cors: true\r\n\r\nplugins:\r\n  - serverless-offline\r\n  #- serverless-esbuild\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
+    "serviceRawFile": "org: khalil1\r\n\r\napp: backend  # Make sure this is lowercase\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - cognito-idp:AdminCreateUser\r\n        - cognito-idp:AdminAddUserToGroup\r\n        - cognito-idp:AdminGetUser\r\n        - cognito-idp:ListUsers\r\n        - cognito-idp:AdminListUsers\r\n        - cognito-idp:AdminUpdateUserAttributes\r\n        - cognito-idp:AdminDeleteUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUserc\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders\r\n          method: post\r\n          cors: true\r\n\r\nplugins:\r\n  - serverless-offline\r\n  #- serverless-esbuild\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
     "command": [
-      "deploy"
+      "deploy",
+      "function"
     ],
-    "options": {},
+    "options": {
+      "function": "updateUser"
+    },
     "error": null,
     "params": {},
     "machineId": "54333bd248fc1fc5ab27c94cf051af77",
@@ -2137,7 +266,7 @@
         "monitoring": false
       },
       "orgObservabilityIntegrations": null,
-      "serviceAppId": null,
+      "serviceAppId": "kd5K3plRRV5N0Tpqxq",
       "serviceProvider": {
         "accessKeyId": "<REDACTED>",
         "secretAccessKey": "<REDACTED>",
@@ -2156,48 +285,48 @@
     "integrations": {},
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
     "serviceProviderAwsCfStackCreated": "2024-08-31T15:15:57.392Z",
-    "serviceProviderAwsCfStackUpdated": "2024-08-31T16:29:21.269Z",
+    "serviceProviderAwsCfStackUpdated": "2024-09-01T13:18:43.420Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "CreateOrderLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:8",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:13",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "DeleteUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:17",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:22",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrderByIdWorkerLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:7",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:12",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetAllUsersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:22",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:27",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
       },
       {
-        "OutputKey": "UpdateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:16",
-        "Description": "Current Lambda function version",
-        "ExportName": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
-      },
-      {
         "OutputKey": "GetOrdersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:7",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:12",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrdersLambdaFunctionQualifiedArn"
       },
       {
+        "OutputKey": "UpdateUserLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:21",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
+      },
+      {
         "OutputKey": "CreateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:22",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:27",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
       },

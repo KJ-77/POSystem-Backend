@@ -1,35 +1,36 @@
 org: khalil1
 
-app: Backend
+app: backend  # Make sure this is lowercase
 
 service: Backend
 
 provider:
   name: aws
   runtime: nodejs20.x
-  vpc:
-    securityGroupIds:
-      - sg-0ed40a5999e1650e0
-    subnetIds:
-      - subnet-0dbe603c213c8c82d
-      - subnet-0bff18fbd7188e54b
-      - subnet-03484be23648c333e
-      - subnet-0c623cae1caa5f231
-      - subnet-0197af1832aebc247
-      - subnet-07e8ac42dc572ddcc
   environment:
     DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com
     DB_USER: admin
     DB_PASSWORD: posystem01
     DB_NAME: POSystemdb
     DB_PORT: 3306
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cognito-idp:AdminCreateUser
+        - cognito-idp:AdminAddUserToGroup
+        - cognito-idp:AdminGetUser
+        - cognito-idp:ListUsers
+        - cognito-idp:AdminListUsers
+        - cognito-idp:AdminUpdateUserAttributes
+        - cognito-idp:AdminDeleteUser
+      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB
 
 package:
   individually: true
 
 functions:
   createUser:
-    handler: modules/users/controller.createUser
+    handler: modules/users/controller.createUserc
     events:
       - http:
           path: /user

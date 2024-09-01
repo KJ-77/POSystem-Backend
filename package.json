@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@middy/core": "^5.4.6",
-    "aws-sdk": "^2.1685.0",
+    "aws-sdk": "^2.1687.0",
     "mysql2": "^3.11.0",
     "serverless-esbuild": "^1.52.1",
     "yup": "^1.4.0"
