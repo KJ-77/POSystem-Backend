@@ -1,5 +1,3 @@
-org: khalil1
-
 app: backend  # Make sure this is lowercase
 
 service: Backend
@@ -85,12 +83,13 @@ functions:
     events:
       - http:
           path: /createorders/{id}
+          path: /orders
           method: post
           cors: true
 
 plugins:
   - serverless-offline
-  #- serverless-esbuild
+  - serverless-esbuild
 
 custom:
   serverless-offline:

@@ -6,7 +6,8 @@ import {
 } from "./order.services";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import middy from "@middy/core";
-import { validateOrder, ensureIdMiddleware } from "./middleware";
+import validationMiddleware from "../middleware/validation";
+import orderSchema from "./order.schema";
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -37,10 +38,8 @@ export const getAllOrdersHandler = async (
 export const getOrderByIdHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  const headers = { "Content-Type": "application/json" };
   try {
-    const orderId = parseInt(event.pathParameters?.id || "", 10);
-
+    const orderId = event.pathParameters?.id || "";
     const order = await getOrderById(orderId);
     if (!order) {
       return {
@@ -85,15 +84,15 @@ export const createOrderHandler = async (
       orderData.order_desc
     );*/
 
-        AIProcessing(
-          userId,
-          orderData.link,
-          orderData.unit_price,
-          orderData.order_desc
-        ).catch(error => {
-          console.error("Error in AIProcessing:", error.message);
-        });
-        
+    AIProcessing(
+      userId,
+      orderData.link,
+      orderData.unit_price,
+      orderData.order_desc
+    ).catch((error) => {
+      console.error("Error in AIProcessing:", error.message);
+    });
+
     return {
       statusCode: 201,
       headers,
@@ -108,5 +107,10 @@ export const createOrderHandler = async (
     };
   }
 };
-//export const createOrderHandlerWithMiddleware = middy(createOrderHandler).use(validateOrder());
-//export const getOrderByIdHandlerWithMiddleware= middy(getOrderById).use(ensureIdMiddleware());
+
+export const handler = middy()
+  .use(validationMiddleware(orderSchema))
+  .handler(createOrderHandler);
+
+// export const createOrderHandlerWithMiddleware = middy(createOrderHandler).use(validateOrder());
+// export const getOrderByIdHandlerWithMiddleware= middy(getOrderById).use(ensureIdMiddleware());
