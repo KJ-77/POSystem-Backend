@@ -7,7 +7,7 @@ export interface Order extends RowDataPacket {
     link: string;
     price_diff: boolean;
     order_status: string;
-    worker_id: number;
+    worker_id: string;
     order_date: string;
     quantity: number;
     unit_price: string;

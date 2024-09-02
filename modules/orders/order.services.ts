@@ -28,35 +28,16 @@ export const getAllOrders = async () => {
   }
 };
 
-export const getOrderById = async (orderId: number) => {
-  try {
-    const connection = await createConnection();
-    const [orderResults]: [Order[], FieldPacket[]] = await connection.query(
-      `
-      SELECT * FROM POSystemdb.orders WHERE ID = ?
-    `,
-      [orderId]
-    );
+export const getOrderById = async (workerId: string) => {
+  const connection = await createConnection();
+  const [orders]: any = await connection.execute(
+    "SELECT * FROM orders WHERE worker_id = ?",
+    [workerId]
+  );
 
-    if (orderResults.length === 0) {
-      throw new Error("Order not found");
-    }
-    const order = orderResults[0];
-    const [userResult]: [User[], FieldPacket[]] = await connection.query(
-      `
-      SELECT FULLNAME FROM POSystemdb.users WHERE id = ?
-    `,
-      [order.worker_id]
-    );
-    return {
-      ...order,
-      user_fullname: userResult[0]?.FULLNAME || "Unknown User", //adding the new property full name
-    };
-  } catch (error) {
-    console.error("Error retrieving order by ID:", error);
-    throw new Error("Error retrieving order by ID");
-  }
+  return orders.length > 0 ? orders : [];
 };
+
 
 export const createOrder = async (
   order_name: string,

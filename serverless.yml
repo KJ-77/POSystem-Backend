@@ -1,5 +1,3 @@
-org: khalil1
-
 app: backend  # Make sure this is lowercase
 
 service: Backend

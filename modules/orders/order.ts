@@ -30,8 +30,7 @@ export const getAllOrdersHandler  = async (event: APIGatewayProxyEvent): Promise
 export const getOrderByIdHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const headers = { 'Content-Type': 'application/json' };
   try {
-    const orderId = parseInt(event.pathParameters?.id || '', 10);
-
+    const orderId = event.pathParameters?.id || '';
     const order = await getOrderById(orderId);
     if (!order) {
       return {
@@ -84,5 +83,5 @@ export const createOrderHandler = async (event: APIGatewayProxyEvent): Promise<A
     };
   }
 };
-export const createOrderHandlerWithMiddleware = middy(createOrderHandler).use(validateOrder());
-export const getOrderByIdHandlerWithMiddleware= middy(getOrderById).use(ensureIdMiddleware());
+// export const createOrderHandlerWithMiddleware = middy(createOrderHandler).use(validateOrder());
+// export const getOrderByIdHandlerWithMiddleware= middy(getOrderById).use(ensureIdMiddleware());
