@@ -1,49 +1,58 @@
-import { getAllOrders, getOrderById, createOrder} from './order.services';
+import {
+  getAllOrders,
+  getOrderById,
+  createOrder,
+  AIProcessing,
+} from "./order.services";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import middy from '@middy/core';
-import {validateOrder,ensureIdMiddleware} from './middleware';
+import middy from "@middy/core";
+import { validateOrder, ensureIdMiddleware } from "./middleware";
 
-const headers ={
+const headers = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Credentials": true,
-  'Content-Type': 'application/json'
-}
+  "Content-Type": "application/json",
+};
 
-export const getAllOrdersHandler  = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+export const getAllOrdersHandler = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
   try {
     const orders = await getAllOrders();
     return {
       statusCode: 200,
       body: JSON.stringify(orders),
-      headers
+      headers,
     };
   } catch (error) {
     console.error("Error handling get orders request:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Error retrieving orders" }),
-      headers
+      headers,
     };
   }
 };
 
-export const getOrderByIdHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  const headers = { 'Content-Type': 'application/json' };
+export const getOrderByIdHandler = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  const headers = { "Content-Type": "application/json" };
   try {
-    const orderId = parseInt(event.pathParameters?.id || '', 10);
+    const orderId = parseInt(event.pathParameters?.id || "", 10);
 
     const order = await getOrderById(orderId);
     if (!order) {
       return {
         statusCode: 404,
         body: JSON.stringify({ error: "Order not found" }),
-        headers
+        headers,
       };
     }
     return {
       statusCode: 200,
       body: JSON.stringify(order),
-      headers
+      headers,
     };
   } catch (error) {
     console.error("Error handling get order by ID request:", error);
@@ -54,35 +63,50 @@ export const getOrderByIdHandler = async (event: APIGatewayProxyEvent): Promise<
   }
 };
 
-export const createOrderHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-
+export const createOrderHandler = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
   try {
-    const orderData = JSON.parse(event.body || '{}'); //extract the details from the incoming request body to pass to the createOrder function.
-    const newOrder = await createOrder( //need this to provide feedback to the client about the newly created order.
-      orderData.order_name, 
+    const userId = event.pathParameters?.id!;
+    const orderData = JSON.parse(event.body || "{}");
+    const newOrder = await createOrder(
+      userId,
+      orderData.order_name,
       orderData.order_desc,
       orderData.link,
-      orderData.price_diff,
-      orderData.order_status,
-      orderData.worker_id,
-      orderData.order_date,
       orderData.quantity,
       orderData.unit_price
     );
+
+    /*await AIProcessing(
+      userId,
+      orderData.link,
+      orderData.unit_price,
+      orderData.order_desc
+    );*/
+
+        AIProcessing(
+          userId,
+          orderData.link,
+          orderData.unit_price,
+          orderData.order_desc
+        ).catch(error => {
+          console.error("Error in AIProcessing:", error.message);
+        });
+        
     return {
       statusCode: 201,
       headers,
       body: JSON.stringify(newOrder),
-      
     };
   } catch (error) {
     console.error("Error handling create order request:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Error creating order" }),
-      headers
+      headers,
     };
   }
 };
-export const createOrderHandlerWithMiddleware = middy(createOrderHandler).use(validateOrder());
-export const getOrderByIdHandlerWithMiddleware= middy(getOrderById).use(ensureIdMiddleware());
+//export const createOrderHandlerWithMiddleware = middy(createOrderHandler).use(validateOrder());
+//export const getOrderByIdHandlerWithMiddleware= middy(getOrderById).use(ensureIdMiddleware());

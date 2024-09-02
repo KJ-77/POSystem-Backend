@@ -17,7 +17,7 @@ export const createUserc = async (
   try {
     const body: CreateUserDTO = JSON.parse(event.body || "{}");
     const id =  await createCognitoUser(body);
-    await createUserservice(body , id);
+     createUserservice(body , id);
     return {
       statusCode: 200,
       headers ,
@@ -63,8 +63,8 @@ export const deleteUser = async (
         body: JSON.stringify({ error: "User not found" }),
       };
     }
-    await deleteUserservice(userId);
     await deleteCognitoUser(userId);
+    await deleteUserservice(userId);
     return {
       statusCode: 200,
       headers,
@@ -118,4 +118,4 @@ export const updateUser = async (
 
 //exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
-//export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
+export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));

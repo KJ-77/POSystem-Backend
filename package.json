@@ -12,6 +12,7 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.145",
     "@types/node": "^22.5.1",
+    "esbuild": "^0.20.2",
     "serverless-offline": "^14.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
@@ -19,8 +20,9 @@
   "dependencies": {
     "@middy/core": "^5.4.6",
     "aws-sdk": "^2.1687.0",
-    "mysql2": "^3.11.0",
+    "axios": "^1.7.7",
     "serverless-esbuild": "^1.52.1",
+    "mysql2": "^3.11.0",
     "yup": "^1.4.0"
   }
 }

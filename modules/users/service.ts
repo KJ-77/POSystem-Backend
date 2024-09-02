@@ -127,24 +127,22 @@ export const deleteCognitoUser = async (id: string) => {
   const client = new CognitoIdentityProviderClient({ region: "us-east-1" });
 
 try{
-  const listUsersCommand = new ListUsersCommand({
+  /*const listUsersCommand = new ListUsersCommand({
     UserPoolId: "us-east-1_7np4XcTfB",
     Filter: `sub = "${id}"`,
   });
 
   const listUsersResponse = await client.send(listUsersCommand);
   if (listUsersResponse.Users && listUsersResponse.Users.length > 0) {
-    const username = listUsersResponse.Users[0].Username;
+    const username = listUsersResponse.Users[0].Username;*/
 
     const deleteUserCommand = new AdminDeleteUserCommand({
       UserPoolId: "us-east-1_7np4XcTfB",
-      Username: username,
+      Username: id,
     });
     await client.send(deleteUserCommand);
     console.log(`User with sub ${id} deleted successfully.`);
-}else {
-  console.error(`No user found with sub ${id}.`);
-}
+
 }
 catch (error) {
   throw error;
@@ -161,7 +159,7 @@ export const deleteUserservice = async (userId: string): Promise<void> => {
       [userId]
     );
     if (result.affectedRows === 0) {
-      throw new Error("error adding....");
+      throw new Error("error deleting....");
     }
   } catch (error) {
     console.error("Error deleting user:", error);

@@ -1,7 +1,7 @@
 import { createConnection } from "../../config/db";
 import { FieldPacket } from "mysql2";
 import { Order, User } from "./types/order.interface";
-
+import axios from 'axios';
 export const getAllOrders = async () => {
   try {
     const connection = await createConnection();
@@ -59,42 +59,30 @@ export const getOrderById = async (orderId: number) => {
 };
 
 export const createOrder = async (
+  worker_id: string,
   order_name: string,
   order_desc: string,
   link: string,
-  price_diff: boolean,
-  order_status: string,
-  worker_id: number,
-  order_date: string,
   quantity: number,
   unit_price: string
 ) => {
+  const connection = await createConnection();
   try {
+       const connection = await createConnection();
     console.log("Received order creation request with the details ");
     const unitPriceNumber = parseFloat(unit_price);
     if (isNaN(unitPriceNumber)) {
       throw new Error("Invalid unit_price format");
     }
     console.log(`Converted unit_price to number: ${unitPriceNumber}`);
-    const connection = await createConnection();
+ 
     const []: [any, FieldPacket[]] = await connection.query(
       `
-      INSERT INTO POSystemdb.orders (
-        order_name, order_desc, link, price_diff, order_status,
-        worker_id, order_date, quantity, unit_price
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO POSystemdb.orders (worker_id,
+        order_name, order_desc, link, quantity, unit_price
+      ) VALUES (?, ?, ?, ?, ?, ?)
     `,
-      [
-        order_name,
-        order_desc,
-        link,
-        price_diff,
-        order_status,
-        worker_id,
-        order_date,
-        quantity,
-        unit_price,
-      ]
+      [worker_id, order_name, order_desc, link, quantity, unit_price]
     );
     return {
       message: "order added sucessfully",
@@ -107,4 +95,65 @@ export const createOrder = async (
     }
     throw new Error("Error creating order");
   }
+  finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
 };
+
+export const AIProcessing = async (
+  id: string,
+  url: string,
+  price: number,
+  description: string
+) => {
+  try {
+    const apiUrl =
+      "http://last-1199026659.us-west-2.elb.amazonaws.com/product/cv";
+
+    const response = await axios.post(apiUrl, {
+      url,
+      description,
+      price,
+    }).catch((error) => {
+      console.error("Error in Axios request:", error.message);
+      throw new Error("Failed to get a response from AI API");
+    });
+
+    if (!response.data.result) {
+      throw new Error("no result from AI API");
+    }
+
+    const connection = await createConnection().catch((error) => {
+      console.error("Error creating database connection:", error.message);
+      throw new Error("Failed to connect to the database");
+    });
+
+    try {
+      const query = `
+        UPDATE orders
+        SET score = ?, analysis = ?
+        WHERE worker_id = ?`;
+
+      await connection.execute(query, [
+        response.data.result.score,
+        response.data.result.analysis,
+        id,
+      ]);
+    } catch (error :any) {
+      console.error("Error executing query:", error.message);
+      throw new Error("Failed to update the order");
+    } finally {
+      if (connection) {
+        await connection.end();
+      }
+    }
+
+  } catch (error : any) {
+    console.error("Error in AIProcessing:", error.message);
+    throw new Error(error.message);
+  }
+};
+
+

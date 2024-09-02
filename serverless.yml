@@ -30,7 +30,7 @@ package:
 
 functions:
   createUser:
-    handler: modules/users/controller.createUserc
+    handler: modules/users/controller.createUser
     events:
       - http:
           path: /user
@@ -84,7 +84,7 @@ functions:
     timeout: 30
     events:
       - http:
-          path: /createorders
+          path: /createorders/{id}
           method: post
           cors: true
 
