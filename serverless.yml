@@ -82,13 +82,13 @@ functions:
     timeout: 30
     events:
       - http:
-          path: /createorders
+          path: /orders
           method: post
           cors: true
 
 plugins:
   - serverless-offline
-  #- serverless-esbuild
+  - serverless-esbuild
 
 custom:
   serverless-offline:

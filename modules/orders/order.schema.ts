@@ -1,6 +1,5 @@
 import * as yup from 'yup';
-
-export const orderSchema = yup.object({
+ const orderSchema = yup.object({
   order_name: yup.string().required('Order name is required').max(255),
   order_desc: yup.string().nullable(),
   link: yup.string().nullable(),
@@ -12,3 +11,4 @@ export const orderSchema = yup.object({
   unit_price: yup.number().positive().required('Unit price is required'),
   total_price: yup.number().positive().required('Total price is required'),
 });
+export default orderSchema;

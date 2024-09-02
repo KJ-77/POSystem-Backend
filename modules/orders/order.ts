@@ -1,7 +1,8 @@
 import { getAllOrders, getOrderById, createOrder} from './order.services';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import middy from '@middy/core';
-import {validateOrder,ensureIdMiddleware} from './middleware';
+import validationMiddleware from '../middleware/validation';
+import orderSchema from './order.schema';
 
 const headers ={
   "Access-Control-Allow-Origin": "*",
@@ -28,7 +29,6 @@ export const getAllOrdersHandler  = async (event: APIGatewayProxyEvent): Promise
 };
 
 export const getOrderByIdHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  const headers = { 'Content-Type': 'application/json' };
   try {
     const orderId = event.pathParameters?.id || '';
     const order = await getOrderById(orderId);
@@ -83,5 +83,9 @@ export const createOrderHandler = async (event: APIGatewayProxyEvent): Promise<A
     };
   }
 };
+
+export const handler = middy().use(validationMiddleware(orderSchema)).handler(createOrderHandler);
+
+
 // export const createOrderHandlerWithMiddleware = middy(createOrderHandler).use(validateOrder());
 // export const getOrderByIdHandlerWithMiddleware= middy(getOrderById).use(ensureIdMiddleware());
