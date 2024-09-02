@@ -118,4 +118,6 @@ export const updateUser = async (
 
 //exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
-export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
+//export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
+
+export const createUser = middy().use(validationMiddleware(createUserValidate)).handler(createUserc);

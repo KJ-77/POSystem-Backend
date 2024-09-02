@@ -12,7 +12,6 @@
     "servicePath": "C:\\Users\\User\\Desktop\\backend-PO",
     "serviceConfigFileName": "serverless.yml",
     "service": {
-      "org": "khalil1",
       "app": "backend",
       "service": "Backend",
       "provider": {
@@ -150,7 +149,7 @@
         }
       }
     },
-    "serviceRawFile": "org: khalil1\r\n\r\napp: backend  # Make sure this is lowercase\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - cognito-idp:AdminCreateUser\r\n        - cognito-idp:AdminAddUserToGroup\r\n        - cognito-idp:AdminGetUser\r\n        - cognito-idp:ListUsers\r\n        - cognito-idp:AdminListUsers\r\n        - cognito-idp:AdminUpdateUserAttributes\r\n        - cognito-idp:AdminDeleteUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders/{id}\r\n          method: post\r\n          cors: true\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-esbuild\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
+    "serviceRawFile": "app: backend  # Make sure this is lowercase\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - cognito-idp:AdminCreateUser\r\n        - cognito-idp:AdminAddUserToGroup\r\n        - cognito-idp:AdminGetUser\r\n        - cognito-idp:ListUsers\r\n        - cognito-idp:AdminListUsers\r\n        - cognito-idp:AdminUpdateUserAttributes\r\n        - cognito-idp:AdminDeleteUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders/{id}\r\n          method: post\r\n          cors: true\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-esbuild\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
     "command": [
       "offline"
     ],
@@ -168,26 +167,17 @@
     "orgName": "khalil1",
     "userId": "nRFvp2PLz45llTTF0j",
     "dashboard": {
-      "isEnabledForService": true,
+      "isEnabledForService": false,
       "requiredAuthentication": false,
-      "orgFeaturesInUse": {
-        "providers": true,
-        "monitoring": false
-      },
+      "orgFeaturesInUse": null,
       "orgObservabilityIntegrations": null,
-      "serviceAppId": "kd5K3plRRV5N0Tpqxq",
-      "serviceProvider": {
-        "accessKeyId": "<REDACTED>",
-        "secretAccessKey": "<REDACTED>",
-        "sessionToken": "<REDACTED>"
-      },
+      "serviceAppId": null,
+      "serviceProvider": null,
       "instanceParameters": null
     },
     "userName": "khalil1",
     "subscription": null,
     "userEmail": "khoulioelset2000@gmail.com",
-    "serviceProviderAwsCredentials": "<REDACTED>",
-    "serviceProviderAwsAccountId": "891377200709",
     "projectType": "framework",
     "versionSf": "4.2.4",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/ECS-Console-V2-Service-workdude-test-cluster-77025c37/6b33fc90-691a-11ef-b787-12f95bd19e79",

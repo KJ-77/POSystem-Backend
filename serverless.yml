@@ -83,7 +83,6 @@ functions:
     events:
       - http:
           path: /createorders/{id}
-          path: /orders
           method: post
           cors: true
 
@@ -91,9 +90,13 @@ plugins:
   - serverless-offline
   - serverless-esbuild
 
+build:
+  esbuild: false
+
 custom:
   serverless-offline:
     noPrependStageInUrl: true
   esbuild:
     bundle: true
     minify: true
+
