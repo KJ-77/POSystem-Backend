@@ -6,7 +6,9 @@ export const getAllOrders = async () => {
   try {
     const connection = await createConnection();
     const [orders]: [Order[], FieldPacket[]] = await connection.query(`
-      SELECT * FROM POSystemdb.orders
+      SELECT * 
+      FROM POSystemdb.orders 
+      WHERE order_status != 'inprogress';
     `);
     const orderPromises = orders.map(async (order: Order) => {
       const [userResult]: [User[], FieldPacket[]] = await connection.query(
