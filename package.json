@@ -13,13 +13,14 @@
     "@types/aws-lambda": "^8.10.145",
     "@types/node": "^22.5.1",
     "@types/uuid": "^10.0.0",
-    "esbuild": "^0.23.1",
+    "esbuild": "^0.20.2",
     "serverless-offline": "^14.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.637.0",
+    "@aws-sdk/client-s3": "^3.637.0",
     "@middy/core": "^5.4.6",
     "aws-sdk": "^2.1687.0",
     "axios": "^1.7.7",
