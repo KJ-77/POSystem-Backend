@@ -40,6 +40,7 @@ export const getOrderById = async (workerId: string) => {
 
 
 export const createOrder = async (
+  orderId: string,
   worker_id: string,
   order_name: string,
   order_desc: string,
@@ -59,12 +60,13 @@ export const createOrder = async (
  
     const []: [any, FieldPacket[]] = await connection.query(
       `
-      INSERT INTO POSystemdb.orders (worker_id,
+      INSERT INTO POSystemdb.orders (ID,worker_id,
         order_name, order_desc, link, quantity, unit_price
-      ) VALUES (?, ?, ?, ?, ?, ?)
+      ) VALUES (?,?, ?, ?, ?, ?, ?)
     `,
-      [worker_id, order_name, order_desc, link, quantity, unit_price]
+      [orderId,worker_id, order_name, order_desc, link, quantity, unit_price]
     );
+    
     return {
       message: "order added sucessfully",
     };
@@ -110,12 +112,12 @@ export const AIProcessing = async (
       console.error("Error creating database connection:", error.message);
       throw new Error("Failed to connect to the database");
     });
-
+console.log("balash tabe3 3al dab")
     try {
       const query = `
         UPDATE orders
         SET score = ?, analysis = ?
-        WHERE worker_id = ?`;
+        WHERE ID = ?`;
 
       await connection.execute(query, [
         response.data.result.score,

@@ -8,6 +8,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import middy from "@middy/core";
 import validationMiddleware from "../middleware/validation";
 import orderSchema from "./order.schema";
+import { v4 as uuidv4 } from "uuid";
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -66,9 +67,11 @@ export const createOrderHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
+    const orderId = uuidv4();
     const userId = event.pathParameters?.id!;
     const orderData = JSON.parse(event.body || "{}");
     const newOrder = await createOrder(
+      orderId,
       userId,
       orderData.order_name,
       orderData.order_desc,
@@ -85,7 +88,7 @@ export const createOrderHandler = async (
     );*/
 
     AIProcessing(
-      userId,
+      orderId,
       orderData.link,
       orderData.unit_price,
       orderData.order_desc

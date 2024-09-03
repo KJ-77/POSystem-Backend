@@ -49,7 +49,10 @@ export const createCognitoUser = async (userDetails: CreateUserDTO) => {
     TemporaryPassword: password,
   };
 try{
-  await cognito.adminCreateUser(createUserParams).promise();
+const result = await cognito.adminCreateUser(createUserParams).promise();
+const username = result.User?.Username;
+
+console.log(`Created user with username: ${username}`);
 
   const addUserToGroupParams = {
     UserPoolId: 'us-east-1_7np4XcTfB',
@@ -62,12 +65,8 @@ try{
     UserPoolId: 'us-east-1_7np4XcTfB',
     Username: userDetails.email,
   }).promise();
-  const subAttribute = user.UserAttributes?.find(attr => attr.Name === 'sub');
-  if (subAttribute) {
-    return subAttribute.Value!;
-  } else {
-    throw new Error('User ID not found.');
-  }
+  
+  return username;
 }
  catch (error: any) {
   console.error('Error creating or managing user:', error);
@@ -177,7 +176,7 @@ export const updateEmailAndUsernameBySubService = async (  sub: string,newUserna
   const client = new CognitoIdentityProviderClient({ region: "us-east-1" });
 
   try {
-    const listUsersCommand = new ListUsersCommand({
+   /* const listUsersCommand = new ListUsersCommand({
       UserPoolId: "us-east-1_7np4XcTfB",
       Filter: `sub = "${sub}"`,
     });
@@ -187,7 +186,7 @@ export const updateEmailAndUsernameBySubService = async (  sub: string,newUserna
       throw new Error(`User with sub ${sub} not found.`);
     }
 
-    const currentUsername = listUsersResponse.Users[0].Username;
+    const currentUsername = listUsersResponse.Users[0].Username;*/
 
     const userAttributes = [];
     if (newEmail) {
@@ -199,7 +198,7 @@ export const updateEmailAndUsernameBySubService = async (  sub: string,newUserna
     }
     const updateAttributesCommand = new AdminUpdateUserAttributesCommand({
       UserPoolId: "us-east-1_7np4XcTfB",
-      Username: currentUsername,
+      Username: sub,
       UserAttributes: userAttributes,
     });
 

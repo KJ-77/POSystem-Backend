@@ -17,7 +17,7 @@ export const createUserc = async (
   try {
     const body: CreateUserDTO = JSON.parse(event.body || "{}");
     const id =  await createCognitoUser(body);
-     createUserservice(body , id);
+     createUserservice(body , id! );
     return {
       statusCode: 200,
       headers ,
@@ -118,6 +118,6 @@ export const updateUser = async (
 
 //exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
-//export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
+export const createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
-export const createUser = middy().use(validationMiddleware(createUserValidate)).handler(createUserc);
+//export const createUser = middy().use(validationMiddleware(createUserValidate)).handler(createUserc);
