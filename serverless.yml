@@ -105,7 +105,7 @@ functions:
           cors: true
   
   sendemail:
-    handler: modules/email/sendemail.hello
+    handler: modules/orders/order.sendemail
     events:
       - http:
           path: /sendEmail

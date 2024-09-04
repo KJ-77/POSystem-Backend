@@ -4,12 +4,20 @@ import {
   getOrderById,
   createOrder,
   AIProcessing,
+  generateRandomOrderNumber,
 } from "./order.services";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import middy from "@middy/core";
 import validationMiddleware from "../middleware/validation";
 import orderSchema from "./order.schema";
 import { v4 as uuidv4 } from "uuid";
+//import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { sendEmail } from './order.services';
+import axios from 'axios';
+import AWS from 'aws-sdk';
+import { getUserByIdservice } from "../users/service";
+
+const ses = new AWS.SESV2();
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -146,6 +154,108 @@ export const createOrderHandler = async (
       body: JSON.stringify({ error: "Error creating order" }),
       headers,
     };
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const sendemail = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  const orderId = event.queryStringParameters?.orderId;
+
+  if (!orderId) {
+      return {
+          statusCode: 400,
+          body: JSON.stringify({ message: 'orderId is required' }),
+      };
+  }
+
+  try {
+      // Fetch the order data from your API
+      const responseA = await getOrderById(orderId);
+      const orderData = responseA[0];
+      console.log(orderData)
+      //axios.get(`http://localhost:3000/getorderbyId/${orderId}`);
+      const userData = await getUserByIdservice(orderData.worker_id);
+     //const response2 = await axios.get(`http://localhost:3000/getUserid/${workerid}`);
+      console.log(userData)
+      
+      if (orderData.length === 0) {
+          return {
+              statusCode: 404,
+              body: JSON.stringify({ message: 'Order not found' }),
+          };
+      }
+
+      // Prepare the data to inject into the email template
+      const testData = {
+          StreetAddress: '1234 Elm Street',
+          City: 'Springfield',
+          State: 'IL',
+          ZIP: '62701',
+          PhoneNumber: '555-123-4567',
+          ContactEmail: 'contact@zeroandone.com',
+          Date: new Date().toISOString().split('T')[0], // Generate the current date in YYYY-MM-DD format
+          OrderNumber: generateRandomOrderNumber(), // Generate a random order number
+          ID: orderData.ID,
+          order_desc: orderData.order_desc,
+          quantity: orderData.quantity,
+          unit_price: orderData.unit_price,
+          Total: orderData.total_price,
+          TotalPrice: orderData.total_price,//
+          reason: orderData.reason,
+          order_name:orderData.order_name
+      };
+      console.log(testData.OrderNumber)
+      console.log(testData.Date)
+
+      console.log(orderData.reason)
+
+      // Determine the template based on order status
+      const templateName = orderData.order_status === 'Accepted'
+          ? 'AcceptanceOrderTemplateFinal2'
+          : 'RejectedOrderTemplateFinal';
+
+      const params = {
+          FromEmailAddress: 'zaynab-wehbe@hotmail.com',
+          Destination: {
+              ToAddresses: [userData.email],
+          },
+          Content: {
+              Template: {
+                  TemplateName: templateName,
+                  TemplateData: JSON.stringify(testData),
+              },
+          },
+          ReplyToAddresses: ['zaynab-wehbe@hotmail.com'],
+      };
+
+      await sendEmail(params);
+      return {
+          statusCode: 200,
+          body: JSON.stringify('Email sent successfully!'),
+      };
+  } catch (error) {
+      console.error("Error sending email:", error);
+      return {
+          statusCode: 500,
+          body: JSON.stringify('Failed to send email.'),
+      };
   }
 };
 

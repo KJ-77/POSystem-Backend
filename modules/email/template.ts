@@ -1,3 +1,4 @@
+//No worries about added info, not missed. 
 import AWS from 'aws-sdk';
 import { error } from 'console';
 const ses = new AWS.SESV2();
@@ -69,8 +70,6 @@ const htmlTemplate = `
         <div class="company-info">
             <div>  
                 <h2><strong>Zero&One</strong></h2>
-                <p><span class="span">Address: </span>{{StreetAddress}}</p>
-                <p><span class="span">Phone:</span> {{PhoneNumber}}</p>
                 <p><span class="span">Email: </span>{{ContactEmail}}</p>
             </div>  
             <div>
@@ -81,7 +80,7 @@ const htmlTemplate = `
         <table>
             <thead>
                 <tr>
-                    <th>ITEM #</th>
+                    <th>ITEM NAME</th>
                     <th>DESCRIPTION</th>
                     <th>QTY</th>
                     <th>UNIT PRICE</th>
@@ -90,7 +89,7 @@ const htmlTemplate = `
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ID}}</td>
+                    <td>{{order_name}}</td>
                     <td>{{order_desc}}</td>
                     <td>{{quantity}}</td>
                     <td>{{unit_price}}</td>
@@ -165,7 +164,7 @@ const htmlTemplate2 =`
         </div>
         <div class="content">
             <p>Dear Customer,</p>
-            <p>We regret to inform you that your recent order <strong>Order ID: {{ID}}</strong> has been rejected.</p>
+            <p>We regret to inform you that your recent order <strong>Order: {{order_name}}</strong> has been rejected.</p>
             <p>The reason for rejection is as follows:</p>
             <p class="reason">{{reason}}</p>
             <p>If you have any questions or need further assistance, please feel free to contact our support team.</p>
@@ -173,7 +172,7 @@ const htmlTemplate2 =`
         </div>
         <div class="footer">
             <p>Best regards,</p>
-            <p>Your Company Name</p>
+            <p>Zero&One</p>
         </div>
     </div>
 </body>
@@ -182,7 +181,7 @@ const htmlTemplate2 =`
 `;
 
 export const handler = async (event: any) => {
-    const templateName = 'AcceptanceOrderTemplate2';
+    const templateName = 'AcceptanceOrderTemplateFinal2';
 
     /// Define parameters for creating the template
     const createParams: AWS.SESV2.CreateEmailTemplateRequest = {

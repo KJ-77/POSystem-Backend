@@ -1,4 +1,4 @@
-"use strict";var p=Object.create;var s=Object.defineProperty;var i=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var c=Object.getPrototypeOf,h=Object.prototype.hasOwnProperty;var m=(e,t)=>{for(var a in t)s(e,a,{get:t[a],enumerable:!0})},n=(e,t,a,r)=>{if(t&&typeof t=="object"||typeof t=="function")for(let o of l(t))!h.call(e,o)&&o!==a&&s(e,o,{get:()=>t[o],enumerable:!(r=i(t,o))||r.enumerable});return e};var u=(e,t,a)=>(a=e!=null?p(c(e)):{},n(t||!e||!e.__esModule?s(a,"default",{value:e,enumerable:!0}):a,e)),g=e=>n(s({},"__esModule",{value:!0}),e);var x={};m(x,{handler:()=>y});module.exports=g(x);var d=u(require("aws-sdk")),f=new d.default.SESV2,b=`
+"use strict";var i=Object.create;var s=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var c=Object.getPrototypeOf,h=Object.prototype.hasOwnProperty;var m=(e,t)=>{for(var a in t)s(e,a,{get:t[a],enumerable:!0})},n=(e,t,a,r)=>{if(t&&typeof t=="object"||typeof t=="function")for(let o of l(t))!h.call(e,o)&&o!==a&&s(e,o,{get:()=>t[o],enumerable:!(r=p(t,o))||r.enumerable});return e};var g=(e,t,a)=>(a=e!=null?i(c(e)):{},n(t||!e||!e.__esModule?s(a,"default",{value:e,enumerable:!0}):a,e)),u=e=>n(s({},"__esModule",{value:!0}),e);var x={};m(x,{handler:()=>y});module.exports=u(x);var d=g(require("aws-sdk")),f=new d.default.SESV2,b=`
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,8 +65,6 @@
         <div class="company-info">
             <div>  
                 <h2><strong>Zero&One</strong></h2>
-                <p><span class="span">Address: </span>{{StreetAddress}}</p>
-                <p><span class="span">Phone:</span> {{PhoneNumber}}</p>
                 <p><span class="span">Email: </span>{{ContactEmail}}</p>
             </div>  
             <div>
@@ -77,7 +75,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>ITEM #</th>
+                    <th>ITEM NAME</th>
                     <th>DESCRIPTION</th>
                     <th>QTY</th>
                     <th>UNIT PRICE</th>
@@ -86,7 +84,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ID}}</td>
+                    <td>{{order_name}}</td>
                     <td>{{order_desc}}</td>
                     <td>{{quantity}}</td>
                     <td>{{unit_price}}</td>
@@ -101,4 +99,4 @@
         <p><strong>if you have any questions about this purchase order, please contact us.</strong> </p>
     </div>
 </body>
-`;var y=async e=>{let a={TemplateName:"AcceptanceOrderTemplate2",TemplateContent:{Html:b,Subject:"Your Purchase Order",Text:""}};try{let r=await f.createEmailTemplate(a).promise();return console.log("Template Created",r),{statusCode:200,body:JSON.stringify({message:"Template created successfully",data:r})}}catch(r){return console.error("Error creating template:",r),{statusCode:500,body:JSON.stringify({message:"Failed to create template"})}}};0&&(module.exports={handler});
+`;var y=async e=>{let a={TemplateName:"AcceptanceOrderTemplateFinal2",TemplateContent:{Html:b,Subject:"Your Purchase Order",Text:""}};try{let r=await f.createEmailTemplate(a).promise();return console.log("Template Created",r),{statusCode:200,body:JSON.stringify({message:"Template created successfully",data:r})}}catch(r){return console.error("Error creating template:",r),{statusCode:500,body:JSON.stringify({message:"Failed to create template"})}}};0&&(module.exports={handler});
