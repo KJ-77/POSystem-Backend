@@ -1,5 +1,5 @@
 {
-  "C:\\Users\\User\\Desktop\\backend-PO": {
+  "C:\\Users\\Zayna\\OneDrive\\Desktop\\zero&one\\POSystem-Backend": {
     "versionSfCore": null,
     "versionFramework": "4.2.4",
     "isWithinCompose": false,
@@ -9,7 +9,7 @@
       "default-aws-credential-resolver": "<REDACTED>"
     },
     "composeServiceName": null,
-    "servicePath": "C:\\Users\\User\\Desktop\\backend-PO",
+    "servicePath": "C:\\Users\\Zayna\\OneDrive\\Desktop\\zero&one\\POSystem-Backend",
     "serviceConfigFileName": "serverless.yml",
     "service": {
       "app": "backend",
@@ -41,6 +41,7 @@
         ],
         "stage": "dev",
         "region": "us-east-1",
+<<<<<<< HEAD
         "versionFunctions": true,
         "compiledCloudFormationTemplate": {
           "AWSTemplateFormatVersion": "2010-09-09",
@@ -1723,6 +1724,9 @@
           }
         },
         "vpc": {}
+=======
+        "versionFunctions": true
+>>>>>>> d05618a454fb757e925509f36ad9e8e7d659a8d6
       },
       "package": {
         "individually": true,
@@ -1734,152 +1738,71 @@
           "events": [
             {
               "http": {
-                "path": "user",
+                "path": "/user",
                 "method": "post",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "POST"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
           "name": "Backend-dev-createUser",
-          "package": {
-            "artifact": ".serverless\\createUser.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs16.x",
-          "vpc": {},
-          "versionLogicalId": "CreateUserLambdaVersionfjaCTv2SHCCREz2t4qpQD7MmEbzA20pihSwPyDCc"
+          "package": {}
         },
         "getAllUsers": {
           "handler": "modules/users/controller.getAllUsers",
           "events": [
             {
               "http": {
-                "path": "users",
+                "path": "/users",
                 "method": "get",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "GET"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
           "name": "Backend-dev-getAllUsers",
-          "package": {
-            "artifact": ".serverless\\getAllUsers.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs16.x",
-          "vpc": {},
-          "versionLogicalId": "GetAllUsersLambdaVersionNb14mXmMLFPtJgwzKqjoW7McHkfubW2LTM6KNlqx8dk"
+          "package": {}
+        },
+        "getUserById": {
+          "handler": "modules/users/controller.getUserByIdHandler",
+          "timeout": 30,
+          "events": [
+            {
+              "http": {
+                "path": "/ordersid/{id}",
+                "method": "get",
+                "cors": true
+              }
+            }
+          ],
+          "name": "Backend-dev-getUserById",
+          "package": {}
         },
         "updateUser": {
           "handler": "modules/users/controller.updateUser",
           "events": [
             {
               "http": {
-                "path": "user/{id}",
-                "method": "put",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "PUT"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "path": "/userId/{id}",
+                "method": "get",
+                "cors": true
               }
             }
           ],
           "name": "Backend-dev-updateUser",
-          "package": {
-            "artifact": ".serverless\\updateUser.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs16.x",
-          "vpc": {},
-          "versionLogicalId": "UpdateUserLambdaVersionww2tl6HWLbZaNYF8GrGZnA0DmH26WKFwg8dLtmpxZqE"
+          "package": {}
         },
         "deleteUser": {
           "handler": "modules/users/controller.deleteUser",
           "events": [
             {
               "http": {
-                "path": "user/{id}",
+                "path": "/user/{id}",
                 "method": "delete",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "DELETE"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
           "name": "Backend-dev-deleteUser",
-          "package": {
-            "artifact": ".serverless\\deleteUser.zip"
-          },
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs16.x",
-          "vpc": {},
-          "versionLogicalId": "DeleteUserLambdaVersionz8sYW1yP4Vvs9WzizHKjkDlH0E1o3OHwIcnL5ki5o"
+          "package": {}
         },
         "getOrders": {
           "handler": "modules/orders/order.getAllOrdersHandler",
@@ -1887,75 +1810,44 @@
           "events": [
             {
               "http": {
-                "path": "orders",
+                "path": "/orders",
                 "method": "get",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "GET"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
           "name": "Backend-dev-getOrders",
-          "package": {
-            "artifact": ".serverless\\getOrders.zip"
-          },
-          "memory": 1024,
-          "runtime": "nodejs16.x",
-          "vpc": {},
-          "versionLogicalId": "GetOrdersLambdaVersion2RZHyrnJmFI54mGAO7Ik6ObDbHigXQdJCx3POkrZuI"
+          "package": {}
         },
         "getOrderByIdWorker": {
+          "handler": "modules/orders/order.getOrderByWorkerIdHandler",
+          "timeout": 30,
+          "events": [
+            {
+              "http": {
+                "path": "/orders/{id}",
+                "method": "get",
+                "cors": true
+              }
+            }
+          ],
+          "name": "Backend-dev-getOrderByIdWorker",
+          "package": {}
+        },
+        "getOrderById": {
           "handler": "modules/orders/order.getOrderByIdHandler",
           "timeout": 30,
           "events": [
             {
               "http": {
-                "path": "orders/{id}",
+                "path": "/ordersid/{id}",
                 "method": "get",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "GET"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
-          "name": "Backend-dev-getOrderByIdWorker",
-          "package": {
-            "artifact": ".serverless\\getOrderByIdWorker.zip"
-          },
-          "memory": 1024,
-          "runtime": "nodejs16.x",
-          "vpc": {},
-          "versionLogicalId": "GetOrderByIdWorkerLambdaVersion9RAdNU4SkvwB1im01Cqbx01zGrpiiZ7mzgyVJ14qw"
+          "name": "Backend-dev-getOrderById",
+          "package": {}
         },
         "createOrder": {
           "handler": "modules/orders/order.createOrderHandler",
@@ -1963,37 +1855,40 @@
           "events": [
             {
               "http": {
-                "path": "createorders/{id}",
+                "path": "/createorders/{id}",
                 "method": "post",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "POST"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "integration": "AWS_PROXY"
+                "cors": true
               }
             }
           ],
           "name": "Backend-dev-createOrder",
-          "package": {
-            "artifact": ".serverless\\createOrder.zip"
-          },
-          "memory": 1024,
-          "runtime": "nodejs16.x",
-          "vpc": {},
-          "versionLogicalId": "CreateOrderLambdaVersionniUlKesA4sUgyTM2EbbBgvk0LJm9YlI0EAfhy4WHs"
+          "package": {}
+        },
+        "sendemail": {
+          "handler": "modules/email/sendemail.hello",
+          "events": [
+            {
+              "http": {
+                "path": "/sendEmail",
+                "method": "get"
+              }
+            }
+          ],
+          "name": "Backend-dev-sendemail",
+          "package": {}
+        },
+        "emailtemplate": {
+          "handler": "modules/email/template.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/create-template",
+                "method": "get"
+              }
+            }
+          ],
+          "name": "Backend-dev-emailtemplate",
+          "package": {}
         }
       },
       "plugins": [
@@ -2013,19 +1908,22 @@
         }
       }
     },
-    "serviceRawFile": "app: backend # Make sure this is lowercase\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs16.x\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - cognito-idp:AdminCreateUser\r\n        - cognito-idp:AdminAddUserToGroup\r\n        - cognito-idp:AdminGetUser\r\n        - cognito-idp:ListUsers\r\n        - cognito-idp:AdminListUsers\r\n        - cognito-idp:AdminUpdateUserAttributes\r\n        - cognito-idp:AdminDeleteUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders/{id}\r\n          method: post\r\n          cors: true\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-esbuild\r\n\r\nbuild:\r\n  esbuild: false\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
+    "serviceRawFile": "app: backend # Make sure this is lowercase\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs16.x\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - cognito-idp:AdminCreateUser\r\n        - cognito-idp:AdminAddUserToGroup\r\n        - cognito-idp:AdminGetUser\r\n        - cognito-idp:ListUsers\r\n        - cognito-idp:AdminListUsers\r\n        - cognito-idp:AdminUpdateUserAttributes\r\n        - cognito-idp:AdminDeleteUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB\r\n\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n  getUserById:\r\n    handler: modules/users/controller.getUserByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /ordersid/{id}\r\n          method: get\r\n          cors: true      \r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /userId/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByWorkerIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderById:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /ordersid/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  \r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders/{id}\r\n          method: post\r\n          cors: true\r\n  \r\n  sendemail:\r\n    handler: modules/email/sendemail.hello\r\n    events:\r\n      - http:\r\n          path: /sendEmail\r\n          method: get\r\n\r\n  emailtemplate:\r\n    handler: modules/email/template.handler\r\n    events:\r\n      - http:\r\n          path: /create-template\r\n          method: get\r\n\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-esbuild\r\n\r\nbuild:\r\n  esbuild: false\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
     "command": [
-      "deploy"
+      "offline"
     ],
     "options": {},
-    "error": null,
+    "error": {
+      "message": "New route /ordersid/{id} conflicts with existing /ordersid/{id}",
+      "stack": "AssertError: New route /ordersid/{id} conflicts with existing /ordersid/{id}\n    at internals.Segment.add (C:\\Users\\Zayna\\OneDrive\\Desktop\\zero&one\\POSystem-Backend\\node_modules\\@hapi\\call\\lib\\segment.js:98:18)\n    at internals.Segment.add (C:\\Users\\Zayna\\OneDrive\\Desktop\\zero&one\\POSystem-Backend\\node_modules\\@hapi\\call\\lib\\segment.js:60:44)\n    at internals.Router.add (C:\\Users\\Zayna\\OneDrive\\Desktop\\zero&one\\POSystem-Backend\\node_modules\\@hapi\\call\\lib\\index.js:65:16)\n    at internals.Server._addRoute (C:\\Users\\Zayna\\OneDrive\\Desktop\\zero&one\\POSystem-Backend\\node_modules\\@hapi\\hapi\\lib\\server.js:529:46)\n    at internals.Server.route (C:\\Users\\Zayna\\OneDrive\\Desktop\\zero&one\\POSystem-Backend\\node_modules\\@hapi\\hapi\\lib\\server.js:518:22)\n    at HttpServer.createRoutes (file:///C:/Users/Zayna/OneDrive/Desktop/zero&one/POSystem-Backend/node_modules/serverless-offline/src/events/http/HttpServer.js:1121:18)\n    at #createEvent (file:///C:/Users/Zayna/OneDrive/Desktop/zero&one/POSystem-Backend/node_modules/serverless-offline/src/events/http/Http.js:41:22)\n    at file:///C:/Users/Zayna/OneDrive/Desktop/zero&one/POSystem-Backend/node_modules/serverless-offline/src/events/http/Http.js:46:24\n    at Array.forEach (<anonymous>)\n    at Http.create (file:///C:/Users/Zayna/OneDrive/Desktop/zero&one/POSystem-Backend/node_modules/serverless-offline/src/events/http/Http.js:45:12)"
+    },
     "params": {},
-    "machineId": "54333bd248fc1fc5ab27c94cf051af77",
+    "machineId": "839d2ad312945f1b845dcdc286912a74",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",
-    "orgId": "5ac2ad84-54ae-4e7c-aac0-5897b7439329",
-    "orgName": "khalil1",
-    "userId": "nRFvp2PLz45llTTF0j",
+    "orgId": "ff78214d-0491-4834-9c76-2df4b6be09fc",
+    "orgName": "zeroandone01",
+    "userId": "7kffnm848zSFyHfkns",
     "dashboard": {
       "isEnabledForService": false,
       "requiredAuthentication": false,
@@ -2035,15 +1933,14 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "userName": "khalil1",
+    "userName": "zeroandone01",
     "subscription": null,
-    "userEmail": "khoulioelset2000@gmail.com",
+    "userEmail": "zaynab-wehbe@hotmail.com",
     "serviceProviderAwsCredentials": "<REDACTED>",
     "serviceProviderAwsAccountId": "891377200709",
     "projectType": "framework",
     "versionSf": "4.2.4",
     "serviceProviderAwsCfStackName": "Backend-dev",
-    "integrations": {},
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
     "serviceProviderAwsCfStackCreated": "2024-08-31T15:15:57.392Z",
     "serviceProviderAwsCfStackUpdated": "2024-09-04T06:52:48.652Z",

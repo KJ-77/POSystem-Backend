@@ -2,6 +2,24 @@ import { createConnection } from "../../config/db";
 import { FieldPacket } from "mysql2";
 import { Order, User } from "./types/order.interface";
 import axios from "axios";
+import { SESV2 } from 'aws-sdk';
+
+const ses = new SESV2();
+
+interface SendEmailParams {
+    FromEmailAddress: string;
+    Destination: {
+        ToAddresses: string[];
+    };
+    Content: {
+        Template: {
+            TemplateName: string;
+            TemplateData: string;
+        };
+    };
+    ReplyToAddresses: string[];
+}
+
 export const getAllOrders = async () => {
   const connection = await createConnection();
   try {
@@ -34,11 +52,20 @@ export const getAllOrders = async () => {
   }
 };
 
-export const getOrderById = async (workerId: string) => {
+export const getOrderByWorkerId = async (workerId: string) => {
   const connection = await createConnection();
   const [orders]: any = await connection.execute(
     "SELECT * FROM orders WHERE worker_id = ?",
     [workerId]
+  );
+
+  return orders.length > 0 ? orders : [];
+};
+export const getOrderById = async (Id: string) => {
+  const connection = await createConnection();
+  const [orders]: any = await connection.execute(
+    "SELECT * FROM orders WHERE ID = ?",
+    [Id]
   );
 
   return orders.length > 0 ? orders : [];
@@ -144,3 +171,21 @@ export const AIProcessing = async (
   }
   
 };
+
+export const generateRandomOrderNumber = () => {
+  const randomNumber = Math.floor(100000 + Math.random() * 900000); // Generates a 6-digit random number
+  return `PO${randomNumber}`;
+};
+
+export const sendEmail = async (params: SendEmailParams): Promise<SESV2.SendEmailResponse> => {
+  try {
+      const result = await ses.sendEmail(params).promise();
+      console.log('Email sent successfully:', result);
+      return result;
+  } catch (error) {
+      console.error('Error sending email:', error);
+      throw new Error('Failed to send email.');
+  }
+};
+
+

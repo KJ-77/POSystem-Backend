@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService} from "./service";
+import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice,deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService} from "./service";
 import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
 import { createUserValidate } from './validationSchema';
 import middy from "@middy/core"
@@ -50,6 +50,7 @@ export const getAllUsers = async (): Promise<APIGatewayProxyResult> => {
     };
   }
 };
+
 
 export const deleteUser = async (
   event: APIGatewayProxyEvent
@@ -116,6 +117,31 @@ export const updateUser = async (
     };
   }
 };
+
+export const getUserByIdHandler = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  try {
+    const userId = event.pathParameters?.id || "";
+    console.log(userId)
+    const user = await getUserByIdservice(userId);
+    console.log(user)
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(user),
+      headers,
+    };
+  } catch (error) {
+    console.error("Error handling get order by ID request:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Error retrieving order by ID" }),
+      headers,
+    };
+  }
+};
+
 
 //exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
