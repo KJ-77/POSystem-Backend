@@ -2,6 +2,7 @@ import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
 import { createConnection } from "../../config/db";
 import { CognitoIdentityServiceProvider } from 'aws-sdk';
 import { CognitoIdentityProviderClient, ListUsersCommand, AdminDeleteUserCommand,AdminGetUserCommand,AdminUpdateUserAttributesCommand} from "@aws-sdk/client-cognito-identity-provider";
+import { int } from "aws-sdk/clients/datapipeline";
 
 const cognito = new CognitoIdentityServiceProvider();
 
@@ -108,6 +109,7 @@ export const getAllUsersservice = async () => {
   }
 };
 
+
 export const getUserByIdservice = async (id: string) => {
   const connection = await createConnection();
   const [user]: any = await connection.execute(
@@ -117,8 +119,6 @@ export const getUserByIdservice = async (id: string) => {
 
   return user.length > 0 ? user[0] : null;
 };
-
-
 
 
 

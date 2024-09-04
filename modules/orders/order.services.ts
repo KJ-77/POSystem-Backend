@@ -34,11 +34,20 @@ export const getAllOrders = async () => {
   }
 };
 
-export const getOrderById = async (workerId: string) => {
+export const getOrderByWorkerId = async (workerId: string) => {
   const connection = await createConnection();
   const [orders]: any = await connection.execute(
     "SELECT * FROM orders WHERE worker_id = ?",
     [workerId]
+  );
+
+  return orders.length > 0 ? orders : [];
+};
+export const getOrderById = async (Id: string) => {
+  const connection = await createConnection();
+  const [orders]: any = await connection.execute(
+    "SELECT * FROM orders WHERE ID = ?",
+    [Id]
   );
 
   return orders.length > 0 ? orders : [];

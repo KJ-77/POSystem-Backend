@@ -1,5 +1,6 @@
 import {
   getAllOrders,
+  getOrderByWorkerId,
   getOrderById,
   createOrder,
   AIProcessing,
@@ -36,12 +37,12 @@ export const getAllOrdersHandler = async (
   }
 };
 
-export const getOrderByIdHandler = async (
+export const getOrderByWorkerIdHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
     const orderId = event.pathParameters?.id || "";
-    const order = await getOrderById(orderId);
+    const order = await getOrderByWorkerId(orderId);
     if (!order) {
       return {
         statusCode: 404,
@@ -59,6 +60,43 @@ export const getOrderByIdHandler = async (
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Error retrieving order by ID" }),
+    };
+  }
+};
+export const getOrderByIdHandler = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  try {
+    const orderId = event.pathParameters?.id || "";
+
+    if (!orderId) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Order ID is required" }),
+        headers,
+      };
+    }
+
+    const order = await getOrderById(orderId);
+    if (order.length === 0) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: "Order not found" }),
+        headers,
+      };
+    }
+    const orderData = order[0]; // Adjust if `getOrderById` returns a different structure
+    return {
+      statusCode: 200,
+      body: JSON.stringify(orderData),
+      headers,
+    };
+  } catch (error) {
+    console.error("Error handling get order by ID request:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Error retrieving order by ID" }),
+      headers,
     };
   }
 };

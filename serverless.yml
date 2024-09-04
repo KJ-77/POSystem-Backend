@@ -43,12 +43,21 @@ functions:
           method: get
           cors: true
 
+  getUserById:
+    handler: modules/users/controller.getUserByIdHandler
+    timeout: 30
+    events:
+      - http:
+          path: /getUserid/{id}
+          method: get
+          cors: true      
+
   updateUser:
     handler: modules/users/controller.updateUser
     events:
       - http:
-          path: /user/{id}
-          method: put
+          path: /userId/{id}
+          method: get
           cors: true
 
   deleteUser:
@@ -69,11 +78,20 @@ functions:
           cors: true
 
   getOrderByIdWorker:
-    handler: modules/orders/order.getOrderByIdHandler
+    handler: modules/orders/order.getOrderByWorkerIdHandler
     timeout: 30
     events:
       - http:
           path: /orders/{id}
+          method: get
+          cors: true
+
+  getOrderById:
+    handler: modules/orders/order.getOrderByIdHandler
+    timeout: 30
+    events:
+      - http:
+          path: /getorderbyId/{id}
           method: get
           cors: true
 
@@ -85,6 +103,21 @@ functions:
           path: /createorders/{id}
           method: post
           cors: true
+  
+  sendemail:
+    handler: modules/email/sendemail.hello
+    events:
+      - http:
+          path: /sendEmail
+          method: get
+
+  emailtemplate:
+    handler: modules/email/template.handler
+    events:
+      - http:
+          path: /create-template
+          method: get
+
 
 plugins:
   - serverless-offline
