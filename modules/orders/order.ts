@@ -5,6 +5,7 @@ import {
   createOrder,
   AIProcessing,
   generateRandomOrderNumber,
+  updateorderservice
 } from "./order.services";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import middy from "@middy/core";
@@ -156,7 +157,46 @@ export const createOrderHandler = async (
     };
   }
 };
+/////////////////////////////////////////////////////////////////////////////////
 
+export const updateOrderHandler = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  try {
+    const orderID = event.pathParameters?.id!;
+    const orderData = JSON.parse(event.body || "{}")
+    await updateorderservice(orderID);
+
+    /*await AIProcessing(
+      userId,
+      orderData.link,
+      orderData.unit_price,
+      orderData.order_desc
+    );*/
+
+    AIProcessing(
+      orderId,
+      orderData.link,
+      orderData.unit_price,
+      orderData.order_desc
+    ).catch((error) => {
+      console.error("Error in AIProcessing:", error.message);
+    });
+
+    return {
+      statusCode: 201,
+      headers,
+      body: JSON.stringify(newOrder),
+    };
+  } catch (error) {
+    console.error("Error handling create order request:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Error creating order" }),
+      headers,
+    };
+  }
+};
 
 
 

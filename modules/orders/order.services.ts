@@ -2,22 +2,22 @@ import { createConnection } from "../../config/db";
 import { FieldPacket } from "mysql2";
 import { Order, User } from "./types/order.interface";
 import axios from "axios";
-import { SESV2 } from 'aws-sdk';
+import { SESV2 } from "aws-sdk";
 
 const ses = new SESV2();
 
 interface SendEmailParams {
-    FromEmailAddress: string;
-    Destination: {
-        ToAddresses: string[];
+  FromEmailAddress: string;
+  Destination: {
+    ToAddresses: string[];
+  };
+  Content: {
+    Template: {
+      TemplateName: string;
+      TemplateData: string;
     };
-    Content: {
-        Template: {
-            TemplateName: string;
-            TemplateData: string;
-        };
-    };
-    ReplyToAddresses: string[];
+  };
+  ReplyToAddresses: string[];
 }
 
 export const getAllOrders = async () => {
@@ -45,7 +45,7 @@ export const getAllOrders = async () => {
   } catch (error) {
     console.error("Error retrieving orders:", error);
     throw new Error("Error retrieving orders");
-  }finally {
+  } finally {
     if (connection) {
       await connection.end();
     }
@@ -82,7 +82,7 @@ export const createOrder = async (
 ) => {
   const connection = await createConnection();
   try {
-    const connection = await createConnection();
+    // const connection = await createConnection();
     console.log("Received order creation request with the details ");
     const unitPriceNumber = parseFloat(unit_price);
     if (isNaN(unitPriceNumber)) {
@@ -169,23 +169,55 @@ export const AIProcessing = async (
     console.error("Error in AIProcessing:", error.message);
     throw new Error(error.message);
   }
-  
 };
 
+//////////////////////////////////////////////////////////////////////////////
+
+export const updateorderservice = async (orderID: string) => {
+  const connection = await createConnection();
+  try {
+    await connection.query(
+      `
+      UPDATE POSystemdb.orders
+SET order_status = ''
+WHERE id = ?;
+
+    `,
+      [orderID]
+    );
+
+    return {
+      message: "order added sucessfully",
+    };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error creating order:", error.message);
+    } else {
+      console.error("Unknown error occurred");
+    }
+    throw new Error("Error creating order");
+  } finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
+};
+
+///////////////////////////////////////////////////////////////////
 export const generateRandomOrderNumber = () => {
   const randomNumber = Math.floor(100000 + Math.random() * 900000); // Generates a 6-digit random number
   return `PO${randomNumber}`;
 };
 
-export const sendEmail = async (params: SendEmailParams): Promise<SESV2.SendEmailResponse> => {
+export const sendEmail = async (
+  params: SendEmailParams
+): Promise<SESV2.SendEmailResponse> => {
   try {
-      const result = await ses.sendEmail(params).promise();
-      console.log('Email sent successfully:', result);
-      return result;
+    const result = await ses.sendEmail(params).promise();
+    console.log("Email sent successfully:", result);
+    return result;
   } catch (error) {
-      console.error('Error sending email:', error);
-      throw new Error('Failed to send email.');
+    console.error("Error sending email:", error);
+    throw new Error("Failed to send email.");
   }
 };
-
-
