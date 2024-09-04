@@ -61,10 +61,10 @@ console.log(`Created user with username: ${username}`);
   };
 
   await cognito.adminAddUserToGroup(addUserToGroupParams).promise();
-  const user = await cognito.adminGetUser({
+  /*const user = await cognito.adminGetUser({
     UserPoolId: 'us-east-1_7np4XcTfB',
     Username: userDetails.email,
-  }).promise();
+  }).promise();*/
   
   return username;
 }

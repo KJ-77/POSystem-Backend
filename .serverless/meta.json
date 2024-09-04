@@ -255,7 +255,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725351625544-2024-09-03T08:20:25.544Z/createUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725432753089-2024-09-04T06:52:33.089Z/createUser.zip"
                 },
                 "Handler": "modules/users/controller.createUser",
                 "Runtime": "nodejs16.x",
@@ -289,7 +289,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725351625544-2024-09-03T08:20:25.544Z/getAllUsers.zip"
+                  "S3Key": "serverless/Backend/dev/1725432753089-2024-09-04T06:52:33.089Z/getAllUsers.zip"
                 },
                 "Handler": "modules/users/controller.getAllUsers",
                 "Runtime": "nodejs16.x",
@@ -323,7 +323,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725351625544-2024-09-03T08:20:25.544Z/updateUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725432753089-2024-09-04T06:52:33.089Z/updateUser.zip"
                 },
                 "Handler": "modules/users/controller.updateUser",
                 "Runtime": "nodejs16.x",
@@ -357,7 +357,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725351625544-2024-09-03T08:20:25.544Z/deleteUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725432753089-2024-09-04T06:52:33.089Z/deleteUser.zip"
                 },
                 "Handler": "modules/users/controller.deleteUser",
                 "Runtime": "nodejs16.x",
@@ -391,7 +391,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725351625544-2024-09-03T08:20:25.544Z/getOrders.zip"
+                  "S3Key": "serverless/Backend/dev/1725432753089-2024-09-04T06:52:33.089Z/getOrders.zip"
                 },
                 "Handler": "modules/orders/order.getAllOrdersHandler",
                 "Runtime": "nodejs16.x",
@@ -425,7 +425,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725351625544-2024-09-03T08:20:25.544Z/getOrderByIdWorker.zip"
+                  "S3Key": "serverless/Backend/dev/1725432753089-2024-09-04T06:52:33.089Z/getOrderByIdWorker.zip"
                 },
                 "Handler": "modules/orders/order.getOrderByIdHandler",
                 "Runtime": "nodejs16.x",
@@ -459,7 +459,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725351625544-2024-09-03T08:20:25.544Z/createOrder.zip"
+                  "S3Key": "serverless/Backend/dev/1725432753089-2024-09-04T06:52:33.089Z/createOrder.zip"
                 },
                 "Handler": "modules/orders/order.createOrderHandler",
                 "Runtime": "nodejs16.x",
@@ -506,16 +506,6 @@
                 "CodeSha256": "vyWxy763YKjkMA6XKIPK9J64bJuN1gHHgnDiEm/R8Hk="
               }
             },
-            "CreateOrderLambdaVersionniUlKesA4sUgyTM2EbbBgvk0LJm9YlI0EAfhy4WHs": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "CreateOrderLambdaFunction"
-                },
-                "CodeSha256": "vyWxy763YKjkMA6XKIPK9J64bJuN1gHHgnDiEm/R8Hk="
-              }
-            },
             "CreateUserLambdaVersionfjaCTv2SHCCREz2t4qpQD7MmEbzA20pihSwPyDCc": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
@@ -524,6 +514,16 @@
                   "Ref": "CreateUserLambdaFunction"
                 },
                 "CodeSha256": "cWgDwqYWWx7SJm62aFdrf9unCN5at4x+YywzL8yOF84="
+              }
+            },
+            "CreateOrderLambdaVersionniUlKesA4sUgyTM2EbbBgvk0LJm9YlI0EAfhy4WHs": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "CreateOrderLambdaFunction"
+                },
+                "CodeSha256": "vyWxy763YKjkMA6XKIPK9J64bJuN1gHHgnDiEm/R8Hk="
               }
             },
             "GetAllUsersLambdaVersionNb14mXmMLFPtJgwzKqjoW7McHkfubW2LTM6KNlqx8dk": {
@@ -1256,7 +1256,7 @@
                 "CreateOrderLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1725351623794": {
+            "ApiGatewayDeployment1725432747410": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -1567,15 +1567,6 @@
                 "Name": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
               }
             },
-            "CreateOrderLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "CreateOrderLambdaVersionniUlKesA4sUgyTM2EbbBgvk0LJm9YlI0EAfhy4WHs"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
-              }
-            },
             "CreateUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
@@ -1583,6 +1574,15 @@
               },
               "Export": {
                 "Name": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
+              }
+            },
+            "CreateOrderLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "CreateOrderLambdaVersionniUlKesA4sUgyTM2EbbBgvk0LJm9YlI0EAfhy4WHs"
+              },
+              "Export": {
+                "Name": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
               }
             },
             "GetAllUsersLambdaFunctionQualifiedArn": {
@@ -2046,48 +2046,48 @@
     "integrations": {},
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
     "serviceProviderAwsCfStackCreated": "2024-08-31T15:15:57.392Z",
-    "serviceProviderAwsCfStackUpdated": "2024-09-03T08:20:42.286Z",
+    "serviceProviderAwsCfStackUpdated": "2024-09-04T06:52:48.652Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "CreateOrderLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:18",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:21",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "DeleteUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:26",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:29",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrderByIdWorkerLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:17",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:20",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetAllUsersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:31",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:34",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrdersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:17",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:20",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrdersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "UpdateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:25",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:28",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CreateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:31",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:34",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
       },

@@ -28,6 +28,7 @@ export const createUserc = async (
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
+      headers,
     };
   }
 };
