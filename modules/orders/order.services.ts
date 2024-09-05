@@ -2,7 +2,7 @@ import { createConnection } from "../../config/db";
 import { FieldPacket } from "mysql2";
 import { Order, User } from "./types/order.interface";
 import axios from "axios";
-import { SESV2 } from 'aws-sdk';
+import { SESV2 } from "aws-sdk";
 import { getUserByIdservice } from "../users/service";
 
 const ses = new SESV2();
@@ -22,8 +22,9 @@ interface SendEmailParams {
 }
 
 export const getAllOrders = async () => {
-  const connection = await createConnection();
+  let connection : any;
   try {
+    connection = await createConnection();
     const [orders]: [Order[], FieldPacket[]] = await connection.query(`
       SELECT * 
       FROM POSystemdb.orders 
@@ -172,31 +173,49 @@ export const AIProcessing = async (
   }
 };
 
-//////////////////////////////////////////////////////////////////////////////
+/*
 
-export const updateorderservice = async (orderID: string) => {
+order_status
+
+reason
+*/
+
+export const updateorderservice = async (
+  orderID: string,
+  status: string,
+  reason: string
+) => {
+  console.log(status);
   const connection = await createConnection();
   try {
-    await connection.query(
+    if (status === "Accepted") {
+      await connection.query(
+        `
+    UPDATE POSystemdb.orders
+SET order_status = '${status}'
+WHERE id = '${orderID}';
       `
-      UPDATE POSystemdb.orders
-SET order_status = ''
-WHERE id = ?;
-
-    `,
-      [orderID]
-    );
+      );
+    } else if (status === "Rejected") {
+      await connection.query(
+        `
+    UPDATE POSystemdb.orders
+SET order_status = '${status}', reason = '${reason}'
+WHERE id = '${orderID}';
+      `
+      );
+    }
 
     return {
-      message: "order added sucessfully",
+      message: "order updated sucessfully",
     };
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error("Error creating order:", error.message);
+      console.error("Error update order:", error.message);
     } else {
       console.error("Unknown error occurred");
     }
-    throw new Error("Error creating order");
+    throw new Error("Error updating order");
   } finally {
     if (connection) {
       await connection.end();
@@ -204,7 +223,6 @@ WHERE id = ?;
   }
 };
 
-///////////////////////////////////////////////////////////////////
 export const generateRandomOrderNumber = () => {
   const randomNumber = Math.floor(100000 + Math.random() * 900000); // Generates a 6-digit random number
   return `PO${randomNumber}`;
@@ -223,87 +241,84 @@ export const sendEmail = async (
   }
 };
 
-
-
 export const sendemail = async (orderId: string) => {
-
   if (!orderId) {
-      return {
-          statusCode: 400,
-          body: JSON.stringify({ message: 'orderId is required' }),
-      };
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "orderId is required" }),
+    };
   }
 
   try {
-      // Fetch the order data from your API
-      const responseA = await getOrderById(orderId);
-      const orderData = responseA[0];
-      console.log(orderData)
-      //axios.get(`http://localhost:3000/getorderbyId/${orderId}`);
-      const userData = await getUserByIdservice(orderData.worker_id);
-     //const response2 = await axios.get(`http://localhost:3000/getUserid/${workerid}`);
-      console.log(userData)
-      
-      if (orderData.length === 0) {
-          return {
-              statusCode: 404,
-              body: JSON.stringify({ message: 'Order not found' }),
-          };
-      }
+    // Fetch the order data from your API
+    const responseA = await getOrderById(orderId);
+    const orderData = responseA[0];
+    console.log(orderData);
+    //axios.get(`http://localhost:3000/getorderbyId/${orderId}`);
+    const userData = await getUserByIdservice(orderData.worker_id);
+    //const response2 = await axios.get(`http://localhost:3000/getUserid/${workerid}`);
+    console.log(userData);
 
-      // Prepare the data to inject into the email template
-      const testData = {
-          StreetAddress: '1234 Elm Street',
-          City: 'Springfield',
-          State: 'IL',
-          ZIP: '62701',
-          PhoneNumber: '555-123-4567',
-          ContactEmail: 'contact@zeroandone.com',
-          Date: new Date().toISOString().split('T')[0], // Generate the current date in YYYY-MM-DD format
-          OrderNumber: generateRandomOrderNumber(), // Generate a random order number
-          ID: orderData.ID,
-          order_desc: orderData.order_desc,
-          quantity: orderData.quantity,
-          unit_price: orderData.unit_price,
-          Total: orderData.total_price,
-          TotalPrice: orderData.total_price,//
-          reason: orderData.reason,
-          order_name:orderData.order_name
-      };
-      //console.log(testData.OrderNumber)
-      //console.log(testData.Date)
-      //console.log(orderData.reason)
-      // Determine the template based on order status
-      
-      const templateName = orderData.order_status === 'Accepted'
-          ? 'AcceptanceOrderTemplateFinal2'
-          : 'RejectedOrderTemplateFinal';
-
-      const params = {
-          FromEmailAddress: 'zaynab-wehbe@hotmail.com',
-          Destination: {
-              ToAddresses: [userData.email],
-          },
-          Content: {
-              Template: {
-                  TemplateName: templateName,
-                  TemplateData: JSON.stringify(testData),
-              },
-          },
-          ReplyToAddresses: ['zaynab-wehbe@hotmail.com'],
-      };
-
-      await sendEmail(params);
+    if (orderData.length === 0) {
       return {
-          statusCode: 200,
-          body: JSON.stringify('Email sent successfully!'),
+        statusCode: 404,
+        body: JSON.stringify({ message: "Order not found" }),
       };
+    }
+
+    // Prepare the data to inject into the email template
+    const testData = {
+      StreetAddress: "1234 Elm Street",
+      City: "Springfield",
+      State: "IL",
+      ZIP: "62701",
+      PhoneNumber: "555-123-4567",
+      ContactEmail: "contact@zeroandone.com",
+      Date: new Date().toISOString().split("T")[0], // Generate the current date in YYYY-MM-DD format
+      OrderNumber: generateRandomOrderNumber(), // Generate a random order number
+      ID: orderData.ID,
+      order_desc: orderData.order_desc,
+      quantity: orderData.quantity,
+      unit_price: orderData.unit_price,
+      Total: orderData.total_price,
+      TotalPrice: orderData.total_price, //
+      reason: orderData.reason,
+      order_name: orderData.order_name,
+    };
+    //console.log(testData.OrderNumber)
+    //console.log(testData.Date)
+    //console.log(orderData.reason)
+    // Determine the template based on order status
+
+    const templateName =
+      orderData.order_status === "Accepted"
+        ? "AcceptanceOrderTemplateFinal2"
+        : "RejectedOrderTemplateFinal";
+
+    const params = {
+      FromEmailAddress: "zaynab-wehbe@hotmail.com",
+      Destination: {
+        ToAddresses: [userData.email],
+      },
+      Content: {
+        Template: {
+          TemplateName: templateName,
+          TemplateData: JSON.stringify(testData),
+        },
+      },
+      ReplyToAddresses: ["zaynab-wehbe@hotmail.com"],
+    };
+
+    await sendEmail(params);
+    return {
+      statusCode: 200,
+      body: JSON.stringify("Email sent successfully!"),
+    };
   } catch (error) {
-      console.error("Error sending email:", error);
-      return {
-          statusCode: 500,
-          body: JSON.stringify('Failed to send email.'),
-      };
+    console.error("Error sending email:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify("Failed to send email."),
+    };
   }
 };
-

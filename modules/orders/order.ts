@@ -14,10 +14,12 @@ import validationMiddleware from "../middleware/validation";
 import orderSchema from "./order.schema";
 import { v4 as uuidv4 } from "uuid";
 //import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { sendEmail } from './order.services';
-import axios from 'axios';
-import AWS from 'aws-sdk';
+import { sendEmail } from "./order.services";
+import axios from "axios";
+import AWS from "aws-sdk";
 import { getUserByIdservice } from "../users/service";
+import jwt from "jsonwebtoken";
+import checkAuthToken from '../middleware/authtoken';
 
 const ses = new AWS.SESV2();
 
@@ -47,24 +49,24 @@ export const getAllOrdersHandler = async (
   }
 };
 
-export const getOrderByWorkerIdHandler = async (
-  event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
-  try {
-    const orderId = event.pathParameters?.id || "";
-    const order = await getOrderByWorkerId(orderId);
-    if (!order) {
+export const getOrderByWorkerIdHandler = middy(async (
+  event: any
+): Promise<APIGatewayProxyResult> =>  {
+    try {
+      const decodedToken = event.decodedToken; 
+      const order = await getOrderByWorkerId(decodedToken.sub);
+  
+      if (!order) {
+        return {
+          statusCode: 404,
+          body: JSON.stringify({ error: "Order not found" }),
+        };
+      }
+  
       return {
-        statusCode: 404,
-        body: JSON.stringify({ error: "Order not found" }),
-        headers,
+        statusCode: 200,
+        body: JSON.stringify(order),
       };
-    }
-    return {
-      statusCode: 200,
-      body: JSON.stringify(order),
-      headers,
-    };
   } catch (error) {
     console.error("Error handling get order by ID request:", error);
     return {
@@ -72,13 +74,16 @@ export const getOrderByWorkerIdHandler = async (
       body: JSON.stringify({ error: "Error retrieving order by ID" }),
     };
   }
-};
+});
+getOrderByWorkerIdHandler.use(checkAuthToken);
+
+
 export const getOrderByIdHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
     const orderId = event.pathParameters?.id || "";
-
+    
     if (!orderId) {
       return {
         statusCode: 400,
@@ -95,7 +100,7 @@ export const getOrderByIdHandler = async (
         headers,
       };
     }
-    const orderData = order[0]; // Adjust if `getOrderById` returns a different structure
+    const orderData = order[0]; 
     return {
       statusCode: 200,
       body: JSON.stringify(orderData),
@@ -111,12 +116,17 @@ export const getOrderByIdHandler = async (
   }
 };
 
-export const createOrderHandler = async (
-  event: APIGatewayProxyEvent
+export const createOrderHandler = middy(async (
+  event: any
 ): Promise<APIGatewayProxyResult> => {
   try {
+    const decodedToken = event.decodedToken; 
     const orderId = uuidv4();
-    const userId = event.pathParameters?.id!;
+    const userId = decodedToken.sub;
+    /*
+    console.log("//////////////////////////////////////////")
+    console.log(userId)
+    console.log("//////////////////////////////////////////")*/
     const orderData = JSON.parse(event.body || "{}");
     const newOrder = await createOrder(
       orderId,
@@ -157,65 +167,37 @@ export const createOrderHandler = async (
       headers,
     };
   }
-};
-/////////////////////////////////////////////////////////////////////////////////
+});
+createOrderHandler.use(checkAuthToken);
+
 
 export const updateOrderHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
     const orderID = event.pathParameters?.id!;
-    const orderData = JSON.parse(event.body || "{}")
-    await updateorderservice(orderID);
-
-    /*await AIProcessing(
-      userId,
-      orderData.link,
-      orderData.unit_price,
-      orderData.order_desc
-    );*/
-
-    AIProcessing(
-      orderId,
-      orderData.link,
-      orderData.unit_price,
-      orderData.order_desc
-    ).catch((error) => {
-      console.error("Error in AIProcessing:", error.message);
+    const orderData = JSON.parse(event.body || "{}");
+    await updateorderservice(orderID, orderData.status, orderData.reason);
+    await sendemail(orderID).catch((error) => {
+      console.error("Error in sending email:", error.message);
     });
 
     return {
       statusCode: 201,
       headers,
-      body: JSON.stringify(newOrder),
+      body: JSON.stringify(orderID),
     };
   } catch (error) {
     console.error("Error handling create order request:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Error creating order" }),
+      body: JSON.stringify({ error: "Error updating order" }),
       headers,
     };
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 export const sendemailcontroller = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const orderId = event.queryStringParameters?.orderId;
 
@@ -239,7 +221,7 @@ export const sendemailcontroller = async (event: APIGatewayProxyEvent): Promise<
           body: JSON.stringify('Failed to send email.'),
       };
   }
-};
+};*/
 
 export const handler = middy()
   .use(validationMiddleware(orderSchema))

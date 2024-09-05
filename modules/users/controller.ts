@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice,deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService} from "./service";
+import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService} from "./service";
 import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
 import { createUserValidate } from './validationSchema';
 import middy from "@middy/core"
@@ -16,8 +16,11 @@ export const createUserc = async (
 ): Promise<APIGatewayProxyResult> => {
   try {
     const body: CreateUserDTO = JSON.parse(event.body || "{}");
+
     const id =  await createCognitoUser(body);
-     createUserservice(body , id! );
+
+     await createUserservice(body , id! );
+     
     return {
       statusCode: 200,
       headers ,
@@ -25,6 +28,13 @@ export const createUserc = async (
     };
   } catch (error: any) {
     console.error("Error creating user:", error);
+    if (error.code === "UsernameExistsException") {
+      return {
+        statusCode: 409,
+        body: JSON.stringify({ error: "User already exists" }),
+        headers,
+      };
+    }
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
@@ -50,7 +60,6 @@ export const getAllUsers = async (): Promise<APIGatewayProxyResult> => {
     };
   }
 };
-
 
 export const deleteUser = async (
   event: APIGatewayProxyEvent
@@ -117,31 +126,6 @@ export const updateUser = async (
     };
   }
 };
-
-export const getUserByIdHandler = async (
-  event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
-  try {
-    const userId = event.pathParameters?.id || "";
-    console.log(userId)
-    const user = await getUserByIdservice(userId);
-    console.log(user)
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify(user),
-      headers,
-    };
-  } catch (error) {
-    console.error("Error handling get order by ID request:", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Error retrieving order by ID" }),
-      headers,
-    };
-  }
-};
-
 
 //exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 

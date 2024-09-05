@@ -43,21 +43,13 @@ functions:
           method: get
           cors: true
 
-  getUserById:
-    handler: modules/users/controller.getUserByIdHandler
-    timeout: 30
-    events:
-      - http:
-          path: /getUserid/{id}
-          method: get
-          cors: true      
 
   updateUser:
     handler: modules/users/controller.updateUser
     events:
       - http:
-          path: /userId/{id}
-          method: get
+          path: /updateuserId/{id}
+          method: put
           cors: true
 
   deleteUser:
@@ -82,7 +74,7 @@ functions:
     timeout: 30
     events:
       - http:
-          path: /orders/{id}
+          path: /ordersbyworker
           method: get
           cors: true
 
@@ -100,23 +92,17 @@ functions:
     timeout: 30
     events:
       - http:
-          path: /createorders/{id}
+          path: /createorders
           method: post
           cors: true
-  
-  sendemail:
-    handler: modules/orders/order.sendemailcontroller
-    events:
-      - http:
-          path: /sendEmail
-          method: get
 
-  emailtemplate:
-    handler: modules/email/template.handler
+  updateOrderHandler:
+    handler: modules/orders/order.updateOrderHandler
     events:
       - http:
-          path: /create-template
-          method: get
+          path: /orderId/{id}
+          method: put
+          cors: true
 
 
 plugins:
