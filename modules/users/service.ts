@@ -123,6 +123,26 @@ export const createUserservice = async (
     }
   }
 };
+
+export const confirmUserService = async (id: string) => {
+  let connection;
+  try {
+    connection = await createConnection();
+
+    await connection.query("UPDATE users SET status = 'working' where id = ?", [
+      id,
+    ]);
+  } catch (error: any) {
+    console.error("Error updating user in database:", error);
+    throw new Error(`Database error: ${error.message}`);
+  } finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
+};
+
+
 export const getAllUsersservice = async () => {
   try {
     const connection = await createConnection();

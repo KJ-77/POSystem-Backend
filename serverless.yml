@@ -60,6 +60,14 @@ functions:
           method: delete
           cors: true
 
+  confirmUser:
+    handler: modules/users/controller.confirmUser
+    events:
+      - http:
+          path: /confirmUserId
+          method: put
+          cors: true
+
   getOrders:
     handler: modules/orders/order.getAllOrdersHandler
     timeout: 30

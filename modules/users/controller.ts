@@ -1,9 +1,10 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService} from "./service";
+import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService, confirmUserService} from "./service";
 import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
 import { createUserValidate } from './validationSchema';
 import middy from "@middy/core"
 import validationMiddleware from '../lib/validationMiddleware';
+import checkAuthToken from "../middleware/authtoken";
 
 const headers ={
   "Access-Control-Allow-Origin": "*",
@@ -42,6 +43,34 @@ export const createUserc = async (
     };
   }
 };
+
+export const confirmUser = middy(
+  async (event: any): Promise<APIGatewayProxyResult> => {
+    try {
+      const decodedToken = event.decodedToken;
+      const user = await confirmUserService(decodedToken.sub);
+      //@ts-ignore
+      if (!user) {
+        return {
+          statusCode: 404,
+          body: JSON.stringify({ error: "User not found" }),
+        };
+      }
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify(user),
+      };
+    } catch (error) {
+      console.error("Error handling confirm user request:", error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Error confirming user by ID" }),
+      };
+    }
+  }
+);
+confirmUser.use(checkAuthToken);
 
 export const getAllUsers = async (): Promise<APIGatewayProxyResult> => {
   try {
