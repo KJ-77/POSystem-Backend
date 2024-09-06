@@ -49,23 +49,20 @@ export const confirmUser = middy(
     try {
       const decodedToken = event.decodedToken;
       const user = await confirmUserService(decodedToken.sub);
-      //@ts-ignore
-      if (!user) {
-        return {
-          statusCode: 404,
-          body: JSON.stringify({ error: "User not found" }),
-        };
-      }
 
       return {
         statusCode: 200,
-        body: JSON.stringify(user),
+        headers,
+        body: JSON.stringify("user confirmed successfully"),
+        
       };
     } catch (error) {
       console.error("Error handling confirm user request:", error);
       return {
         statusCode: 500,
+        headers,
         body: JSON.stringify({ error: "Error confirming user by ID" }),
+        
       };
     }
   }
