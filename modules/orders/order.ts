@@ -120,6 +120,11 @@ export const getOrderByIdHandler = async (
 
 export const createOrderHandler = middy(
   async (event: any): Promise<APIGatewayProxyResult> => {
+    const headers = {
+      "Access-Control-Allow-Origin": "*", 
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+    };
     try {
       const decodedToken = event.decodedToken;
       const orderId = uuidv4();

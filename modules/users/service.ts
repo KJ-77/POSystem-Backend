@@ -268,9 +268,10 @@ export const updateUserservice = async (
     if (setClause.length === 0) {
       throw new Error("No updates provided");
     }
-    const query = `UPDATE users SET ${setClause}, status = 'Not Verified' WHERE ID = ?`;
+    const query = userData.email
+      ? `UPDATE users SET ${setClause}, status = 'Not Verified' WHERE ID = ?`
+      : `UPDATE users SET ${setClause} WHERE ID = ?`;
     const values = [...Object.values(userData), userId];
-    await connection.query(query, values);
 
     const [result]: any = await connection.query(query, values);
 

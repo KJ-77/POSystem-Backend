@@ -6,7 +6,11 @@ import { SESV2 } from "aws-sdk";
 import { getUserByIdservice } from "../users/service";
 
 const ses = new SESV2();
-
+const headers = {
+  "Access-Control-Allow-Origin": "*", 
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+};
 interface SendEmailParams {
   FromEmailAddress: string;
   Destination: {
@@ -103,6 +107,7 @@ export const createOrder = async (
 
     return {
       message: "order added sucessfully",
+      headers
     };
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -209,12 +214,7 @@ WHERE id = '${orderID}';
     return {
       message: "order updated sucessfully",
     };
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("Error update order:", error.message);
-    } else {
-      console.error("Unknown error occurred");
-    }
+  } catch (error: any) {
     throw new Error("Error updating order");
   } finally {
     if (connection) {
