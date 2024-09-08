@@ -273,7 +273,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/createUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/createUser.zip"
                 },
                 "Handler": "modules/users/controller.createUser",
                 "Runtime": "nodejs16.x",
@@ -307,7 +307,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/getAllUsers.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/getAllUsers.zip"
                 },
                 "Handler": "modules/users/controller.getAllUsers",
                 "Runtime": "nodejs16.x",
@@ -341,7 +341,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/updateUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/updateUser.zip"
                 },
                 "Handler": "modules/users/controller.updateUser",
                 "Runtime": "nodejs16.x",
@@ -375,7 +375,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/deleteUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/deleteUser.zip"
                 },
                 "Handler": "modules/users/controller.deleteUser",
                 "Runtime": "nodejs16.x",
@@ -409,7 +409,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/confirmUser.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/confirmUser.zip"
                 },
                 "Handler": "modules/users/controller.confirmUser",
                 "Runtime": "nodejs16.x",
@@ -443,7 +443,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/getOrders.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/getOrders.zip"
                 },
                 "Handler": "modules/orders/order.getAllOrdersHandler",
                 "Runtime": "nodejs16.x",
@@ -477,7 +477,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/getOrderByIdWorker.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/getOrderByIdWorker.zip"
                 },
                 "Handler": "modules/orders/order.getOrderByWorkerIdHandler",
                 "Runtime": "nodejs16.x",
@@ -511,7 +511,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/getOrderById.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/getOrderById.zip"
                 },
                 "Handler": "modules/orders/order.getOrderByIdHandler",
                 "Runtime": "nodejs16.x",
@@ -545,7 +545,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/createOrder.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/createOrder.zip"
                 },
                 "Handler": "modules/orders/order.createOrderHandler",
                 "Runtime": "nodejs16.x",
@@ -579,7 +579,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/Backend/dev/1725631313163-2024-09-06T14:01:53.163Z/updateOrderHandler.zip"
+                  "S3Key": "serverless/Backend/dev/1725792968017-2024-09-08T10:56:08.017Z/updateOrderHandler.zip"
                 },
                 "Handler": "modules/orders/order.updateOrderHandler",
                 "Runtime": "nodejs16.x",
@@ -606,104 +606,104 @@
                 "UpdateOrderHandlerLogGroup"
               ]
             },
-            "GetOrdersLambdaVersionX6xl0XCrpKV4tD20MmtmIwG72tSOprMd8ryk9sqJQ": {
+            "GetOrdersLambdaVersionM5T5n8aznEGejql33to5XLeUxwkbEL7cYNA0RriwCM": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetOrdersLambdaFunction"
                 },
-                "CodeSha256": "0hTLo5UtMmLOq19CV3/sqyRShTrJgBT7dEUeQ9MIdPA="
+                "CodeSha256": "BndEqqShHyrsTPHEdr6k2qGcdx+cmkmV7ZpI0jq/xoM="
               }
             },
-            "GetOrderByIdWorkerLambdaVersionUFXFLcygzPLDisAuKlLHeliF5eKscuBVsyw7ABoc9ho": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "GetOrderByIdWorkerLambdaFunction"
-                },
-                "CodeSha256": "0hTLo5UtMmLOq19CV3/sqyRShTrJgBT7dEUeQ9MIdPA="
-              }
-            },
-            "CreateOrderLambdaVersion20ZZeLbd51JakJZtjLAENfBH7R0PK891f0o01WR6oVg": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "CreateOrderLambdaFunction"
-                },
-                "CodeSha256": "0hTLo5UtMmLOq19CV3/sqyRShTrJgBT7dEUeQ9MIdPA="
-              }
-            },
-            "GetOrderByIdLambdaVersion5JFGqzpIMLiWVwjNiHqHbEfzDdZEeKPgvZRUqcHjoIE": {
+            "GetOrderByIdLambdaVersionyu6iEP0CxL7tLNoPz9GwywyuHY0jGwmCbfGAuepKk": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetOrderByIdLambdaFunction"
                 },
-                "CodeSha256": "0hTLo5UtMmLOq19CV3/sqyRShTrJgBT7dEUeQ9MIdPA="
+                "CodeSha256": "BndEqqShHyrsTPHEdr6k2qGcdx+cmkmV7ZpI0jq/xoM="
               }
             },
-            "UpdateOrderHandlerLambdaVersionpLLK3Q1PrwJCqHFZsEa6njfChrNKh3GxQRbIEAIy2U": {
+            "GetOrderByIdWorkerLambdaVersionWjvQSfTwSMXSAEWElCmHN0VHMrTbpCPSen7vuQfupE0": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "GetOrderByIdWorkerLambdaFunction"
+                },
+                "CodeSha256": "BndEqqShHyrsTPHEdr6k2qGcdx+cmkmV7ZpI0jq/xoM="
+              }
+            },
+            "CreateOrderLambdaVersion68S4Lg0DzGUpoNqvsAm5mLTsJzjRjYtP8Nuhq3YbI": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "CreateOrderLambdaFunction"
+                },
+                "CodeSha256": "BndEqqShHyrsTPHEdr6k2qGcdx+cmkmV7ZpI0jq/xoM="
+              }
+            },
+            "UpdateOrderHandlerLambdaVersionVbQPqXfJfTJAlzVRabmC78r65oOEo74ymw7WpcY": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "UpdateOrderHandlerLambdaFunction"
                 },
-                "CodeSha256": "0hTLo5UtMmLOq19CV3/sqyRShTrJgBT7dEUeQ9MIdPA="
+                "CodeSha256": "BndEqqShHyrsTPHEdr6k2qGcdx+cmkmV7ZpI0jq/xoM="
               }
             },
-            "CreateUserLambdaVersionSINItzpEvN1DfyBfyldASKCMgMjT3OIv4zt94iCcR8": {
+            "CreateUserLambdaVersion9hRrsyObmyhKgt9vKdEbf3vxjyDHtdvR0osb716G34": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "CreateUserLambdaFunction"
                 },
-                "CodeSha256": "J+kATehosBJRmOi8g6VP8UfW09wPda0BxW6pEq4T1xA="
+                "CodeSha256": "k7BUcuYfvuyubYgIaBgKjoRKFXTR4DRsB8U5vM1AIe8="
               }
             },
-            "GetAllUsersLambdaVersionH0PZ0Ek4ZwTlcbEk54tqJXrXPa5lrGABDDZ98LTVw": {
+            "GetAllUsersLambdaVersionWcCkkdloRuaKESLo14kI6GvJ5cc85Wnl28MDPr7WE": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetAllUsersLambdaFunction"
                 },
-                "CodeSha256": "J+kATehosBJRmOi8g6VP8UfW09wPda0BxW6pEq4T1xA="
+                "CodeSha256": "k7BUcuYfvuyubYgIaBgKjoRKFXTR4DRsB8U5vM1AIe8="
               }
             },
-            "DeleteUserLambdaVersion5Rr4dnp96nXrZf4vRUOb7mLxlec0Sp9QIgwQZxA39c": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "DeleteUserLambdaFunction"
-                },
-                "CodeSha256": "J+kATehosBJRmOi8g6VP8UfW09wPda0BxW6pEq4T1xA="
-              }
-            },
-            "UpdateUserLambdaVersionGbC1CUJLrlYUgaa8hYtWNnuRWJGuSXAffq1oinHwxo": {
+            "UpdateUserLambdaVersion6PJvotyB5iJXbmOLBzv0073fShYNmN31tmbUrjGCkI": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "UpdateUserLambdaFunction"
                 },
-                "CodeSha256": "J+kATehosBJRmOi8g6VP8UfW09wPda0BxW6pEq4T1xA="
+                "CodeSha256": "k7BUcuYfvuyubYgIaBgKjoRKFXTR4DRsB8U5vM1AIe8="
               }
             },
-            "ConfirmUserLambdaVersionNlMx7u7dj3GZvBnumnB6udmTVRu5KNJEouw4fLqqSA": {
+            "ConfirmUserLambdaVersionLHhfTfFfjz1zYP76Jq7KDCnKSPa1IZBg69W2ngBkw": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ConfirmUserLambdaFunction"
                 },
-                "CodeSha256": "J+kATehosBJRmOi8g6VP8UfW09wPda0BxW6pEq4T1xA="
+                "CodeSha256": "k7BUcuYfvuyubYgIaBgKjoRKFXTR4DRsB8U5vM1AIe8="
+              }
+            },
+            "DeleteUserLambdaVersion8wSQuwOSs4VuMp3FnXr4gKJ8npydYYLJpXrfMIgk": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "DeleteUserLambdaFunction"
+                },
+                "CodeSha256": "k7BUcuYfvuyubYgIaBgKjoRKFXTR4DRsB8U5vM1AIe8="
               }
             },
             "ApiGatewayRestApi": {
@@ -1811,7 +1811,7 @@
                 "UpdateOrderHandlerLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1725631311008": {
+            "ApiGatewayDeployment1725792966078": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -2225,16 +2225,25 @@
             "GetOrdersLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetOrdersLambdaVersionX6xl0XCrpKV4tD20MmtmIwG72tSOprMd8ryk9sqJQ"
+                "Ref": "GetOrdersLambdaVersionM5T5n8aznEGejql33to5XLeUxwkbEL7cYNA0RriwCM"
               },
               "Export": {
                 "Name": "sls-Backend-dev-GetOrdersLambdaFunctionQualifiedArn"
               }
             },
+            "GetOrderByIdLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "GetOrderByIdLambdaVersionyu6iEP0CxL7tLNoPz9GwywyuHY0jGwmCbfGAuepKk"
+              },
+              "Export": {
+                "Name": "sls-Backend-dev-GetOrderByIdLambdaFunctionQualifiedArn"
+              }
+            },
             "GetOrderByIdWorkerLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetOrderByIdWorkerLambdaVersionUFXFLcygzPLDisAuKlLHeliF5eKscuBVsyw7ABoc9ho"
+                "Ref": "GetOrderByIdWorkerLambdaVersionWjvQSfTwSMXSAEWElCmHN0VHMrTbpCPSen7vuQfupE0"
               },
               "Export": {
                 "Name": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
@@ -2243,25 +2252,16 @@
             "CreateOrderLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "CreateOrderLambdaVersion20ZZeLbd51JakJZtjLAENfBH7R0PK891f0o01WR6oVg"
+                "Ref": "CreateOrderLambdaVersion68S4Lg0DzGUpoNqvsAm5mLTsJzjRjYtP8Nuhq3YbI"
               },
               "Export": {
                 "Name": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
               }
             },
-            "GetOrderByIdLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "GetOrderByIdLambdaVersion5JFGqzpIMLiWVwjNiHqHbEfzDdZEeKPgvZRUqcHjoIE"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-GetOrderByIdLambdaFunctionQualifiedArn"
-              }
-            },
             "UpdateOrderHandlerLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "UpdateOrderHandlerLambdaVersionpLLK3Q1PrwJCqHFZsEa6njfChrNKh3GxQRbIEAIy2U"
+                "Ref": "UpdateOrderHandlerLambdaVersionVbQPqXfJfTJAlzVRabmC78r65oOEo74ymw7WpcY"
               },
               "Export": {
                 "Name": "sls-Backend-dev-UpdateOrderHandlerLambdaFunctionQualifiedArn"
@@ -2270,7 +2270,7 @@
             "CreateUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "CreateUserLambdaVersionSINItzpEvN1DfyBfyldASKCMgMjT3OIv4zt94iCcR8"
+                "Ref": "CreateUserLambdaVersion9hRrsyObmyhKgt9vKdEbf3vxjyDHtdvR0osb716G34"
               },
               "Export": {
                 "Name": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
@@ -2279,25 +2279,16 @@
             "GetAllUsersLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetAllUsersLambdaVersionH0PZ0Ek4ZwTlcbEk54tqJXrXPa5lrGABDDZ98LTVw"
+                "Ref": "GetAllUsersLambdaVersionWcCkkdloRuaKESLo14kI6GvJ5cc85Wnl28MDPr7WE"
               },
               "Export": {
                 "Name": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
               }
             },
-            "DeleteUserLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "DeleteUserLambdaVersion5Rr4dnp96nXrZf4vRUOb7mLxlec0Sp9QIgwQZxA39c"
-              },
-              "Export": {
-                "Name": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
-              }
-            },
             "UpdateUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "UpdateUserLambdaVersionGbC1CUJLrlYUgaa8hYtWNnuRWJGuSXAffq1oinHwxo"
+                "Ref": "UpdateUserLambdaVersion6PJvotyB5iJXbmOLBzv0073fShYNmN31tmbUrjGCkI"
               },
               "Export": {
                 "Name": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
@@ -2306,10 +2297,19 @@
             "ConfirmUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ConfirmUserLambdaVersionNlMx7u7dj3GZvBnumnB6udmTVRu5KNJEouw4fLqqSA"
+                "Ref": "ConfirmUserLambdaVersionLHhfTfFfjz1zYP76Jq7KDCnKSPa1IZBg69W2ngBkw"
               },
               "Export": {
                 "Name": "sls-Backend-dev-ConfirmUserLambdaFunctionQualifiedArn"
+              }
+            },
+            "DeleteUserLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "DeleteUserLambdaVersion8wSQuwOSs4VuMp3FnXr4gKJ8npydYYLJpXrfMIgk"
+              },
+              "Export": {
+                "Name": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
               }
             },
             "ServiceEndpoint": {
@@ -2465,7 +2465,7 @@
           "timeout": 6,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "CreateUserLambdaVersionSINItzpEvN1DfyBfyldASKCMgMjT3OIv4zt94iCcR8"
+          "versionLogicalId": "CreateUserLambdaVersion9hRrsyObmyhKgt9vKdEbf3vxjyDHtdvR0osb716G34"
         },
         "getAllUsers": {
           "handler": "modules/users/controller.getAllUsers",
@@ -2503,7 +2503,7 @@
           "timeout": 6,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "GetAllUsersLambdaVersionH0PZ0Ek4ZwTlcbEk54tqJXrXPa5lrGABDDZ98LTVw"
+          "versionLogicalId": "GetAllUsersLambdaVersionWcCkkdloRuaKESLo14kI6GvJ5cc85Wnl28MDPr7WE"
         },
         "updateUser": {
           "handler": "modules/users/controller.updateUser",
@@ -2541,7 +2541,7 @@
           "timeout": 6,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "UpdateUserLambdaVersionGbC1CUJLrlYUgaa8hYtWNnuRWJGuSXAffq1oinHwxo"
+          "versionLogicalId": "UpdateUserLambdaVersion6PJvotyB5iJXbmOLBzv0073fShYNmN31tmbUrjGCkI"
         },
         "deleteUser": {
           "handler": "modules/users/controller.deleteUser",
@@ -2579,7 +2579,7 @@
           "timeout": 6,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "DeleteUserLambdaVersion5Rr4dnp96nXrZf4vRUOb7mLxlec0Sp9QIgwQZxA39c"
+          "versionLogicalId": "DeleteUserLambdaVersion8wSQuwOSs4VuMp3FnXr4gKJ8npydYYLJpXrfMIgk"
         },
         "confirmUser": {
           "handler": "modules/users/controller.confirmUser",
@@ -2617,7 +2617,7 @@
           "timeout": 6,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "ConfirmUserLambdaVersionNlMx7u7dj3GZvBnumnB6udmTVRu5KNJEouw4fLqqSA"
+          "versionLogicalId": "ConfirmUserLambdaVersionLHhfTfFfjz1zYP76Jq7KDCnKSPa1IZBg69W2ngBkw"
         },
         "getOrders": {
           "handler": "modules/orders/order.getAllOrdersHandler",
@@ -2655,7 +2655,7 @@
           "memory": 1024,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "GetOrdersLambdaVersionX6xl0XCrpKV4tD20MmtmIwG72tSOprMd8ryk9sqJQ"
+          "versionLogicalId": "GetOrdersLambdaVersionM5T5n8aznEGejql33to5XLeUxwkbEL7cYNA0RriwCM"
         },
         "getOrderByIdWorker": {
           "handler": "modules/orders/order.getOrderByWorkerIdHandler",
@@ -2693,7 +2693,7 @@
           "memory": 1024,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "GetOrderByIdWorkerLambdaVersionUFXFLcygzPLDisAuKlLHeliF5eKscuBVsyw7ABoc9ho"
+          "versionLogicalId": "GetOrderByIdWorkerLambdaVersionWjvQSfTwSMXSAEWElCmHN0VHMrTbpCPSen7vuQfupE0"
         },
         "getOrderById": {
           "handler": "modules/orders/order.getOrderByIdHandler",
@@ -2731,7 +2731,7 @@
           "memory": 1024,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "GetOrderByIdLambdaVersion5JFGqzpIMLiWVwjNiHqHbEfzDdZEeKPgvZRUqcHjoIE"
+          "versionLogicalId": "GetOrderByIdLambdaVersionyu6iEP0CxL7tLNoPz9GwywyuHY0jGwmCbfGAuepKk"
         },
         "createOrder": {
           "handler": "modules/orders/order.createOrderHandler",
@@ -2769,7 +2769,7 @@
           "memory": 1024,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "CreateOrderLambdaVersion20ZZeLbd51JakJZtjLAENfBH7R0PK891f0o01WR6oVg"
+          "versionLogicalId": "CreateOrderLambdaVersion68S4Lg0DzGUpoNqvsAm5mLTsJzjRjYtP8Nuhq3YbI"
         },
         "updateOrderHandler": {
           "handler": "modules/orders/order.updateOrderHandler",
@@ -2807,7 +2807,7 @@
           "timeout": 6,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "UpdateOrderHandlerLambdaVersionpLLK3Q1PrwJCqHFZsEa6njfChrNKh3GxQRbIEAIy2U"
+          "versionLogicalId": "UpdateOrderHandlerLambdaVersionVbQPqXfJfTJAlzVRabmC78r65oOEo74ymw7WpcY"
         }
       },
       "plugins": [
@@ -2860,66 +2860,66 @@
     "integrations": {},
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
     "serviceProviderAwsCfStackCreated": "2024-08-31T15:15:57.392Z",
-    "serviceProviderAwsCfStackUpdated": "2024-09-06T13:44:31.984Z",
+    "serviceProviderAwsCfStackUpdated": "2024-09-08T10:58:08.619Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "CreateOrderLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:28",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder:34",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateOrderLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "DeleteUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:38",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:43",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrderByIdLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderById:8",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderById:14",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrderByIdLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrderByIdWorkerLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:27",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrderByIdWorker:33",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrderByIdWorkerLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetAllUsersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:43",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:48",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetOrdersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:27",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getOrders:33",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetOrdersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "UpdateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:37",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:42",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CreateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:43",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:48",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ConfirmUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-confirmUser:5",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-confirmUser:10",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-ConfirmUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "UpdateOrderHandlerLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateOrderHandler:7",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateOrderHandler:13",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-UpdateOrderHandlerLambdaFunctionQualifiedArn"
       },

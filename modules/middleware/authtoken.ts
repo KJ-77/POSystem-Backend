@@ -5,15 +5,20 @@ const checkAuthToken: MiddlewareObj<any, any> = {
   before: async (handler) => {
     const token = handler.event.headers?.Authorization || "";
     if (!token) {
-      throw new Error('Unauthorized');
+      return {
+        statusCode: 401,
+        body: JSON.stringify({ error: 'Unauthorized' }),
+      };
     }
 
     try {
       const decodedToken = jwt.decode(token);
-      handler.event.decodedToken = decodedToken; 
+      handler.event.decodedToken = decodedToken;
     } catch (error) {
-      console.error("Failed to decode token:", error);
-      throw new Error('Invalid token');
+      return {
+        statusCode: 401,
+        body: JSON.stringify({ error: 'Invalid token' }),
+      };
     }
   }
 };

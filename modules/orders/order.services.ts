@@ -126,7 +126,7 @@ export const AIProcessing = async (
 ) => {
   try {
     const apiUrl =
-      "http://last-1199026659.us-west-2.elb.amazonaws.com/product/cv";
+      "http://scraper-elb-1471634376.us-east-1.elb.amazonaws.com/product/cv";
 
     const response = await axios
       .post(apiUrl, {
