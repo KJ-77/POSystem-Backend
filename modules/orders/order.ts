@@ -3,7 +3,6 @@ import {
   getOrderByWorkerId,
   getOrderById,
   createOrder,
-  AIProcessing,
   generateRandomOrderNumber,
   updateorderservice,
   sendemail,
@@ -21,8 +20,8 @@ import { getUserByIdservice } from "../users/service";
 import jwt from "jsonwebtoken";
 import checkAuthToken from "../middleware/authtoken";
 
-const ses = new AWS.SESV2();
-
+//const ses = new AWS.SESV2();
+const lambda = new AWS.Lambda();
 const headers = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Credentials": true,
@@ -148,15 +147,29 @@ export const createOrderHandler = middy(
       orderData.order_desc
     );*/
 
-      AIProcessing(
+      /*AIProcessing(
         orderId,
         orderData.link,
         orderData.unit_price,
         orderData.order_desc
       ).catch((error) => {
         console.error("Error in AIProcessing:", error.message);
-      });
+      });*/
+     
+      const params ={
+        FunctionName: "AIProcessing",
+        InvocationType: "Event",
+        Payload: JSON.stringify({
+          id:orderId,
+          url: orderData.link,
+          price: orderData.unit_price,
+          description: orderData.order_desc,
+        }),
+      }
 
+      lambda.invoke(params).promise().catch((error) => {
+        console.error("Error invoking AIProcessing:", error.message);
+      });
       return {
         statusCode: 201,
         headers,

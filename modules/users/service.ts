@@ -7,6 +7,7 @@ import {
   AdminDeleteUserCommand,
   AdminGetUserCommand,
   AdminUpdateUserAttributesCommand,
+  AdminCreateUserCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { int } from "aws-sdk/clients/datapipeline";
 
@@ -142,7 +143,6 @@ export const confirmUserService = async (id: string) => {
   }
 };
 
-
 export const getAllUsersservice = async () => {
   try {
     const connection = await createConnection();
@@ -233,7 +233,6 @@ export const updateEmailAndUsernameBySubService = async (
     const userAttributes = [];
     if (newEmail) {
       userAttributes.push({ Name: "email", Value: newEmail });
-      userAttributes.push({ Name: "email_verified", Value: "false" });
     }
     if (newUsername) {
       userAttributes.push({ Name: "name", Value: newUsername });
@@ -245,11 +244,14 @@ export const updateEmailAndUsernameBySubService = async (
     });
 
     await client.send(updateAttributesCommand);
-
-    console.log(`User updated successfully.`);
-  } catch (error) {
-    console.error("Error updating email and username by sub:", error);
-    throw error;
+  } catch (error: any) {
+    if (error.name === "UsernameExistsException") {
+      throw new Error(
+        "Email already in use. Please provide a different email."
+      );
+    } else {
+      throw error;
+    }
   }
 };
 
@@ -268,9 +270,7 @@ export const updateUserservice = async (
     if (setClause.length === 0) {
       throw new Error("No updates provided");
     }
-    const query = userData.email
-      ? `UPDATE users SET ${setClause}, status = 'Not Verified' WHERE ID = ?`
-      : `UPDATE users SET ${setClause} WHERE ID = ?`;
+    const query = `UPDATE users SET ${setClause} WHERE ID = ?`;
     const values = [...Object.values(userData), userId];
 
     const [result]: any = await connection.query(query, values);

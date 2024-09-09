@@ -1,16 +1,26 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { createUserservice,getAllUsersservice,getUserByIdservice, deleteUserservice, deleteCognitoUser,updateUserservice,createCognitoUser,updateEmailAndUsernameBySubService, confirmUserService} from "./service";
+import {
+  createUserservice,
+  getAllUsersservice,
+  getUserByIdservice,
+  deleteUserservice,
+  deleteCognitoUser,
+  updateUserservice,
+  createCognitoUser,
+  updateEmailAndUsernameBySubService,
+  confirmUserService,
+} from "./service";
 import { CreateUserDTO, UpdateUserDTO } from "./dtos/dto";
-import { createUserValidate } from './validationSchema';
-import middy from "@middy/core"
-import validationMiddleware from '../lib/validationMiddleware';
+import { createUserValidate } from "./validationSchema";
+import middy from "@middy/core";
+import validationMiddleware from "../lib/validationMiddleware";
 import checkAuthToken from "../middleware/authtoken";
 
-const headers ={
+const headers = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Credentials": true,
-  'Content-Type': 'application/json'
-}
+  "Content-Type": "application/json",
+};
 
 export const createUserc = async (
   event: APIGatewayProxyEvent
@@ -18,14 +28,14 @@ export const createUserc = async (
   try {
     const body: CreateUserDTO = JSON.parse(event.body || "{}");
 
-    const id =  await createCognitoUser(body);
+    const id = await createCognitoUser(body);
 
-     await createUserservice(body , id! );
-     
+    await createUserservice(body, id!);
+
     return {
       statusCode: 200,
-      headers ,
-      body: JSON.stringify({message: "User created successfully"}),
+      headers,
+      body: JSON.stringify({ message: "User created successfully" }),
     };
   } catch (error: any) {
     console.error("Error creating user:", error);
@@ -54,7 +64,6 @@ export const confirmUser = middy(
         statusCode: 200,
         headers,
         body: JSON.stringify("user confirmed successfully"),
-        
       };
     } catch (error) {
       console.error("Error handling confirm user request:", error);
@@ -62,7 +71,6 @@ export const confirmUser = middy(
         statusCode: 500,
         headers,
         body: JSON.stringify({ error: "Error confirming user by ID" }),
-        
       };
     }
   }
@@ -74,7 +82,7 @@ export const getAllUsers = async (): Promise<APIGatewayProxyResult> => {
     const users = await getAllUsersservice();
     return {
       statusCode: 200,
-      headers ,
+      headers,
       body: JSON.stringify(users),
     };
   } catch (error: any) {
@@ -92,7 +100,7 @@ export const deleteUser = async (
 ): Promise<APIGatewayProxyResult> => {
   try {
     const userId = event.pathParameters?.id!;
-     const user = await getUserByIdservice(userId);
+    const user = await getUserByIdservice(userId);
     if (!user) {
       return {
         statusCode: 404,
@@ -105,7 +113,7 @@ export const deleteUser = async (
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({message: "User deleted successfully!!!"}),
+      body: JSON.stringify({ message: "User deleted successfully!!!" }),
     };
   } catch (error: any) {
     console.error("Error deleting user:", error);
@@ -122,29 +130,49 @@ export const updateUser = async (
 ): Promise<APIGatewayProxyResult> => {
   try {
     const userId = event.pathParameters?.id!;
-    const userData: UpdateUserDTO = JSON.parse(event.body || '{}');
+    const userData: UpdateUserDTO = JSON.parse(event.body || "{}");
     const user = await getUserByIdservice(userId);
     if (!user) {
       return {
         statusCode: 404,
         headers,
         body: JSON.stringify({ error: "User not found" }),
-      };}
-      if (!userData.FULLNAME && !userData.email) {
+      };
+    }
+    if (!userData.FULLNAME && !userData.email) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          message: "At least one of newEmail or newUsername is required",
+        }),
+      };
+    }
+    try {
+      await updateEmailAndUsernameBySubService(
+        userId,
+        userData.FULLNAME,
+        userData.email
+      );
+    } catch (error: any) {
+      if (error.message.includes("Email already in use")) {
         return {
-          statusCode: 400,
-          body: JSON.stringify({ message: "At least one of newEmail or newUsername is required" }),
+          statusCode: 409,
+          headers,
+          body: JSON.stringify({
+            error: "Email already in use. Please choose a different email.",
+          }),
         };
       }
-    await updateEmailAndUsernameBySubService(userId,userData.FULLNAME,userData.email)
+      throw error;
+    }
     await updateUserservice(userId, userData);
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ message: 'User updated successfully' }),
+      body: JSON.stringify({ message: "User updated successfully" }),
     };
   } catch (error: any) {
-    console.error('Error updating user:', error);
+    console.error("Error updating user:", error);
     return {
       statusCode: 500,
       headers,
@@ -155,9 +183,8 @@ export const updateUser = async (
 
 //exports.createUser = middy(createUserc).use(validationMiddleware(createUserValidate));
 
-export const createUser = middy(createUserc).use(checkAuthToken).use(validationMiddleware(createUserValidate));
-
-
-
+export const createUser = middy(createUserc)
+  .use(checkAuthToken)
+  .use(validationMiddleware(createUserValidate));
 
 //export const createUser = middy().use(validationMiddleware(createUserValidate)).handler(createUserc);

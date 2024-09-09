@@ -112,6 +112,11 @@ functions:
           method: put
           cors: true
 
+  AIProcessing:
+    handler: modules/trigger/AIProcessing.handler
+    timeout: 60
+    memorySize: 512
+
 
 plugins:
   - serverless-offline

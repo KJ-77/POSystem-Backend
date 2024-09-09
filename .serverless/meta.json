@@ -44,17 +44,17 @@
         "versionFunctions": true,
         "remoteFunctionData": {
           "Configuration": {
-            "FunctionName": "Backend-dev-updateUser",
-            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser",
+            "FunctionName": "Backend-dev-createOrder",
+            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder",
             "Runtime": "nodejs16.x",
             "Role": "arn:aws:iam::891377200709:role/Backend-dev-us-east-1-lambdaRole",
-            "Handler": "modules/users/controller.updateUser",
-            "CodeSize": 1083201,
+            "Handler": "modules/orders/order.createOrderHandler",
+            "CodeSize": 1083229,
             "Description": "",
-            "Timeout": 6,
+            "Timeout": 30,
             "MemorySize": 1024,
-            "LastModified": "2024-09-08T18:34:36.000+0000",
-            "CodeSha256": "AcsAiI3KuvEO1sxzXrzsGOTijTK4nHztHA1lSLIDTTE=",
+            "LastModified": "2024-09-09T13:14:36.000+0000",
+            "CodeSha256": "ykcTa8Bzg9TqIInPaaaGq3GzdgXlget8BHil4X7CN+8=",
             "Version": "$LATEST",
             "VpcConfig": {
               "SubnetIds": [],
@@ -76,7 +76,7 @@
               "Mode": "PassThrough"
             },
             "MasterArn": null,
-            "RevisionId": "31c7f3ef-e09e-4195-9b07-1e1d48fd39e0",
+            "RevisionId": "13083707-e80b-4116-a831-9eff70fcab08",
             "State": "Active",
             "StateReason": null,
             "StateReasonCode": null,
@@ -103,13 +103,13 @@
               "LogFormat": "Text",
               "ApplicationLogLevel": null,
               "SystemLogLevel": null,
-              "LogGroup": "/aws/lambda/Backend-dev-updateUser"
+              "LogGroup": "/aws/lambda/Backend-dev-createOrder"
             },
             "Layers": []
           },
           "Code": {
             "RepositoryType": "S3",
-            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-updateUser-7c99b03d-4eb1-470b-993a-808276386ecf?versionId=.Y8citMMFwI3uh._.w.2iq8.fHTw1mzk&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECMaCXVzLWVhc3QtMSJGMEQCICwmaAAU2dFBDug3VBfmw3iPtvZ0qtwnSYhh%2F1i5BlsHAiAj0KJwtjJgnaBIDkpuvJ%2BSKShYZa2Z33h4GwIkspNIsSq6BQhMEAQaDDQ3OTIzMzAyNTM3OSIMQjrj%2F7O22OkXtJLJKpcFamLiWq%2B9nV%2FqahR34sbvNEA2Cg5lp9fnjZumZPIs2mEroR%2F8Q03jjxoAIlHeKRECR1MSFOMpcXIOn7FTYpJmkPWsJGlt9Kkz8ThdnfgpR%2FQsW7J9bZDcBP8W5zq%2FFj9UB1TRXOOtolIOyDicTy5iJukB9G0GtNLiesWmdydjK4YHO2V6bU6%2F%2FHW96yTG6YGczDEPKgG2Pf%2BHOrBZCBQzefbzdZHJPq%2FFKpIM5ySYoJQCoq3RSLXdGPiaiHucJHjbOvk3VgxUPkHp5qHy%2FP3i4Uo7mN5shWEql4PCqKoBvhfmIn7Nq5e8l5bAzbAbRpjUwHO8uRB2D90yptfQZ9IprViBSiWodpr6edGxZWyYudVqPUOP3qttLw%2BnCsNInGuwbd%2Fs0%2BERCYbuCMNVw4Q%2BL%2BsVVZFj9qWm2jCXzVr%2FmBYwRGHx47g6DidobZJI3FFQeJjJNI0N8pMqLAbB7kTSDap2d5yJlDFXLXBkMUIj9goI3A8fvcEkspgEB4j8YxXw3zytf1sY6kZuV76Wm0B%2B24Fca%2BHfUkDamwAFl%2F%2FCNjJuemzQ4IkV90AHUIBON%2F8pcUexTN%2B%2FOrVYXfhZix3%2FZlWo0SIBj04KRs8zwp%2B7krWgqloP0tJxm7D0kqGEdzJ2ktL%2BMQ1Ow7MFwtyh6PC6c7PK%2FmJGsD%2BXoBmMS7ZQqrDkF%2Bck%2BsiuOVIsGlXVcQPcCd7LXECHj9sqhKnqZW1ZzD%2FXplWblxtYggeQffb0kRKaUdbG%2BQtyf77FI%2FnWBalJOt3nvBAzScp66rTYCj4pje2GbHcWUTyzoiFMd5x73L0GNZOs%2F2mJUI4eXRqff6%2FbIk%2FsEvRwMMQQZ0JV8dkxsfZo0gEH1fTwPgoKI2MEVFDreq%2BLVb7XMIPZ97YGOrIBtX9z%2FRgXRnt1XqRFRJf3uID45C9oBJlGFMeh6L%2B25gvta3soDaOlbEyFT5xZAUV2gy4Gmd8CC5xEC46K54lUPchsAr1C7vjE12%2FmUmLb7YH3GgA3YQXpCZ7BdzC%2BUN51hRn%2B7%2BapuGtNQkTwi%2BH%2FP%2Btf6spllIX3L9BvdRDMRYSx1V9eiTEB%2FwaOp043OsYMKmRbswg1oRX05cnIVswwknSBCWU24iAyizNKbIJOMHZnjg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240908T184152Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVRW7PFT6UA%2F20240908%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=8702fc32faf31f0be8585a53970c7e64a99013c21c86e48957270e250a38fb50",
+            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-createOrder-0d390d1e-7b07-4c6a-bc7b-e056f0b665d1?versionId=Dakm7ha_pm7uLiOjLfefCa5IOxWMbArS&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEDUaCXVzLWVhc3QtMSJHMEUCIBukbgwv6%2BTXUQNkOiJ8Ooj0B2DqRMQ%2BQ4PfKnotoyaWAiEAs6l6C0mBRXhnjT05blBhpLLqVbQ6m4%2BZNLa2Szt0aDcqugUIXRAEGgw0NzkyMzMwMjUzNzkiDOlZhWs48X63OMhizCqXBSbd5T%2BSu8PKJ0rqe2r1w286yfKbl0bDYZxAiR8PeCvfjbMrHORDdkTYC0LorQ10rrb5fKI9s%2F249Zg76CVMd2lAgnA8nfvn6pk0IGWmceSkSyr7Pghl0hs6PIeUk%2BgUVIC69SJ1ZclnMhroYA3xaGGB%2B0j7HpP7wF%2FcIpApa91vQa%2BMH4QPyNVLOm10IP8hXejwLjsj9xjKWT70J%2FZXCbuEmyLYXiKZGngt9JRmGBEPUIr%2F3XUuSV5brG5srv6%2Fg8J9ONceRgDnZxKtEKSxSc3VZ%2FwyVYWupH3bi0S8F5H9urEtsYKeaYO%2BAe%2BQn85pzZBagpSOEkJ9ilUU7WMzaHeLzh4htEujiTTwr1SDVvPQcANiJPHugOKlQA%2BlAwIX5vz6IIeV7YLytXFOljTUW9WDYk9ikVr4SnvX3lSHc9B0v1sUBewEPk8vzMmplfZXWSk0NPs4mNgpOstiv%2Bh%2BIRnis4AS1Agq3spF7E10VKYVgiL2ZEXefYivCxpdpqAq2ZcJ0LBiUBu5deVIb55uJUbTcSUkEPolS2cm3Hl5ANFItQuNsn8w5bv8SwoewrFuP488kbc2UtdjgoItxY%2BDOlSVFTRLQdcFkJhCq0ZCc3w6HZ7ttIjLj%2BIdtLr%2FhmKBpc%2FuUlISMf%2F0lFfQLasz8W9OPl37BfSZ1DTb3C6E18D6RtAXVdCI8lX9MNVBMDJUJIKe4YCziidJqf06SxfejEi3yAIgq583vKPdwViPSw8TiOgRhqJSxmBZcd%2B7OOg1ztrxaMqM4S0DwePHBO1z8hvOGbezzDWFSdD9W7QlUoDYR9apuQiYdwAlK6T%2FSjuN6ujJfebO2E8O7xjwAYXvhhsghGvK9lsEpgXZFIHRIammMzPjc6tnJTCdzPu2BjqxAdHtaCnVfCI3364IDSqoFWkdBDYr%2BiK4nrscm35u1G8tn%2BGP9CIW1wo3F43mHwYnC2iRM72Dt1WPwYGDCliYEohOp5tXLfMfsiCBww9D3%2FM12c3AvPZdDTXoO%2BdXQlXy82Cy5xioDUGjHSJoOiV%2BaYkLtWGTc1qnIbxLWzQ2HXXXKqodRhhbQasa%2B4fHTJ16JI%2BNTfygopHoq3ixSyYQH%2Fz1tnAr43hxAoYPRVswyWOzaA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240909T131511Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVR2ZRG3CAB%2F20240909%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=fcd1f2fd23e255b9b3d90acacfb7d51290074afe74f9b0a129bd222effa2cd15",
             "ImageUri": null,
             "ResolvedImageUri": null
           },
@@ -117,7 +117,7 @@
             "aws:cloudformation:stack-name": "Backend-dev",
             "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
             "STAGE": "dev",
-            "aws:cloudformation:logical-id": "UpdateUserLambdaFunction"
+            "aws:cloudformation:logical-id": "CreateOrderLambdaFunction"
           }
         }
       },
@@ -163,10 +163,7 @@
               }
             }
           ],
-          "name": "Backend-dev-updateUser",
-          "package": {
-            "artifact": ".serverless\\updateUser.zip"
-          }
+          "name": "Backend-dev-updateUser"
         },
         "deleteUser": {
           "handler": "modules/users/controller.deleteUser",
@@ -248,7 +245,10 @@
               }
             }
           ],
-          "name": "Backend-dev-createOrder"
+          "name": "Backend-dev-createOrder",
+          "package": {
+            "artifact": ".serverless\\createOrder.zip"
+          }
         },
         "updateOrderHandler": {
           "handler": "modules/orders/order.updateOrderHandler",
@@ -287,7 +287,7 @@
       "function"
     ],
     "options": {
-      "function": "updateUser"
+      "function": "createOrder"
     },
     "error": null,
     "params": {},
@@ -317,7 +317,7 @@
     "integrations": {},
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
     "serviceProviderAwsCfStackCreated": "2024-08-31T15:15:57.392Z",
-    "serviceProviderAwsCfStackUpdated": "2024-09-08T18:13:12.873Z",
+    "serviceProviderAwsCfStackUpdated": "2024-09-09T11:08:03.972Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
@@ -328,7 +328,7 @@
       },
       {
         "OutputKey": "DeleteUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:45",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser:50",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-DeleteUserLambdaFunctionQualifiedArn"
       },
@@ -346,7 +346,7 @@
       },
       {
         "OutputKey": "GetAllUsersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:50",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers:55",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-GetAllUsersLambdaFunctionQualifiedArn"
       },
@@ -358,19 +358,19 @@
       },
       {
         "OutputKey": "UpdateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:44",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateUser:49",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-UpdateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CreateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:50",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createUser:55",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-CreateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ConfirmUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-confirmUser:12",
+        "OutputValue": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-confirmUser:17",
         "Description": "Current Lambda function version",
         "ExportName": "sls-Backend-dev-ConfirmUserLambdaFunctionQualifiedArn"
       },

@@ -122,7 +122,7 @@ export const createOrder = async (
     }
   }
 };
-
+/*
 export const AIProcessing = async (
   id: string,
   url: string,
@@ -176,14 +176,8 @@ export const AIProcessing = async (
     console.error("Error in AIProcessing:", error.message);
     throw new Error(error.message);
   }
-};
+};*/
 
-/*
-
-order_status
-
-reason
-*/
 
 export const updateorderservice = async (
   orderID: string,
