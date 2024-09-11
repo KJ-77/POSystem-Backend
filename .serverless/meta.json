@@ -59,24 +59,18 @@
         "versionFunctions": true,
         "remoteFunctionData": {
           "Configuration": {
-            "FunctionName": "Backend-dev-createOrder",
-            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder",
+            "FunctionName": "Backend-dev-updateOrderHandler",
+            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateOrderHandler",
             "Runtime": "nodejs16.x",
             "Role": "arn:aws:iam::891377200709:role/Backend-dev-us-east-1-lambdaRole",
-            "Handler": "modules/orders/order.createOrderHandler",
-            "CodeSize": 450640,
+            "Handler": "modules/orders/order.updateOrderHandler",
+            "CodeSize": 450639,
             "Description": "",
-            "Timeout": 30,
+            "Timeout": 6,
             "MemorySize": 1024,
-            "LastModified": "2024-09-11T07:37:17.000+0000",
-            "CodeSha256": "Io6Gw287vgIW3VjOgGybhxs6w7b9ApkMc/W/mBlICPM=",
+            "LastModified": "2024-09-10T08:45:34.000+0000",
+            "CodeSha256": "hqriBqytKvy64sTQyN/KEBgyHtd5SDVTrVzEp++2lXU=",
             "Version": "$LATEST",
-            "VpcConfig": {
-              "SubnetIds": [],
-              "SecurityGroupIds": [],
-              "VpcId": "",
-              "Ipv6AllowedForDualStack": false
-            },
             "Environment": {
               "Variables": {
                 "DB_PORT": "3306",
@@ -91,7 +85,7 @@
               "Mode": "PassThrough"
             },
             "MasterArn": null,
-            "RevisionId": "ca271bcd-daa2-462a-83fc-1ec36b5fdca9",
+            "RevisionId": "66966ec4-19a8-47df-a3d6-f15373bd159e",
             "State": "Active",
             "StateReason": null,
             "StateReasonCode": null,
@@ -118,13 +112,13 @@
               "LogFormat": "Text",
               "ApplicationLogLevel": null,
               "SystemLogLevel": null,
-              "LogGroup": "/aws/lambda/Backend-dev-createOrder"
+              "LogGroup": "/aws/lambda/Backend-dev-updateOrderHandler"
             },
             "Layers": []
           },
           "Code": {
             "RepositoryType": "S3",
-            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-createOrder-bd3f1403-4ff9-47cb-9b4c-923e94ac71b4?versionId=nQN67xy4mUxMqnEVlLx2paazIET1nA3P&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEF8aCXVzLWVhc3QtMSJHMEUCIQDCc0f5BMAIsrUYGUcRxGEoUJGGTJTEhx0NL39w6l8uWgIgV3iFIwdN3N7R%2BwgbLwqT2ms8hrX0%2FkxyU1Ebu47PBZIqwgUIiP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgw0NzkyMzMwMjUzNzkiDFSD4Sji7vc2vtFmhSqWBWi1hPGucrIan5KZbqSr%2FuB9ETEc2A4G6yik3XKdWzMbncVZUyeJiNNYfHgzI9vrmcHeBa4y64CVkC333x7PjViHZm9C%2B929Cc3Uood1VBl6%2BvDRFin7ed2Tbp3lwmkvreKNsG1IInWzyyuP4lA2Fv2fGJxeR4UTNJZixZ1U%2FVM3XqlZFByHVndBZykkU3o6lXieDHH3DfsOkkmCyy4D10DLsmOEiyw2aPOJOz0YvVxeO5B%2BdAbZ0Kb5YGNXTAn1lL4QT5pBLHPa58Le4utegZ2iGMUSQndq7xOooxOyoiZ9z6boL0LwqiTNfTrjnzMY%2F7reADxyDTBtIC9mJu2iUpQLuZlxClKLMJAZBygTkG%2F%2FD8b9kdzV%2FyPgbktwZKweKehlePKdhW54C1dkOAtVDFCb7jlLBKJt%2Bxs%2FicF0DT1OS8%2F1wfB9B6IFAAxZTHQ0hoFlVIicvSP7zgEX3zxaJk37RmT7g9Y%2B5Tzte6hrRMSwpyqISdeMaVeMhc0qNXD90D5%2BlyQfaFZ%2BKUBqcPKsJBxwFGba75h2JQOsYCfitr5kedfy3gFfZhFhQBqGFoJGYb67wzs8BhMYPLqiyIAGVyg7nd7DZogcxOb25mqOLX0%2FZmBvXYq%2FMMBAjPOEFEyktHHIoXcKB4KrQypT1%2ByCDrYD8d4QsCOykPjbjPvsRHrULleXr24wIN8DDwl8pAo5cwwOLd6h2m7JF0TXdnw2%2Fd1uMTT1xg3er12vIB1T2o2ci7KgXkx3xrIruhMGHWFw1RQkAZ2CTYIZUJNL6yfMwRmwZTO4JasgfnQzT7PFDc2aBP6arYScGyV2YxAR7s0%2FBSX%2BeR6XGFC%2Bl1nydfMd0wqVgse2DUas4CYwetBejmqYP5PCkaMiMPfwhLcGOrEB2HgxGlz8M3CCpOgf6x05916ExEx%2FL0FU%2FTdkcDHlfsv%2BJyMdLs3HBGDWJzAKS7HAAlxonrWSSo8ZQo%2BycyjB6U8WiTtsIl4oRevtqEizC%2FxaomQHnX0fGjPOuyjtE5tqDf2glvfwy2nI2VnLQacpEAuH14L5eXLtdZuGzvz4zvKE%2FbHyRUFGx%2BOKaHdCVF2lx2B%2Bmh6Gsp87U5d71Dht%2F8AxQBQjajQM0x7JpnnXHxnT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240911T073903Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVRROGO2OVJ%2F20240911%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4993a42d4e04306c91a23ef222cd70b823522d29ab859e6607f479ffd58cc364",
+            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-updateOrderHandler-88081158-1ef9-48a6-b3b9-b5629ed6b935?versionId=CJkbLXRDXNCaqpBky5LTaSKuR09mWpo8&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEF8aCXVzLWVhc3QtMSJFMEMCH2Y945%2FKbLWFfsQGnfQ5r3Te%2FVeyOgUavnkKJIry3xgCIHftw9w0eEjQrA1OCfUqsbRgvHXiMZNpQ9E6MCrB1PDBKsMFCIj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQBBoMNDc5MjMzMDI1Mzc5Igxlsdihuv%2B8G5b8HZoqlwXEwYpMVx8hAnPZBWcqGX08P2cwS%2F2ucqWYWlTFQAimBOOWSXq6luV6IMgbJiUrlIcL%2BTRNUqMvQ%2FgUNE9hgskLDI6WhH5wyJanzZ1av9FIRU%2BoQvTLc%2FQrefmWf58QfhGGKtuG7Gq9J%2F7dEXP5VMwrfBRNOeWNRgwTcVDr%2B2LSX%2FwmEE8osC3JB0Hpc21DppttNc5TLx6bOChQGm0guzmxb7egQXFxDfPpGsv%2BBywsiittdwkVS6uQMmtiqzNHMQ6EwuOcfk74TjQ3RIfbU2EdCTMaFMhZniMTVrrercINFNs65L3FSWURlGex%2BcjtbzxiTRXmfjn7wgJ89OePBoP2cRl5LH2UVStDrDOgSZ%2FiShtu%2B7v1z8LDqNp0fLpZpaRrQk%2BRM0%2FO0yRy8NiSs9vNojW2tNLYoKOP67nfeSLyHWZYBtW39vtqZ%2BZGjPIWOOLOX%2BQYlDyIIGeblyDxdUrYhtpy5CVRxa0%2Bl2Bzqavcg1SarNkXN0Kh%2BAVmOGr3leHX9%2B0kleYdMx0XqNlyOaVKp8Scm%2FMTdW8wByHRmsqKoxc8W1ranolq6GXRZ5LgNboe5le2K3KUKSXK5PNcHXXfxpvSOK6w7kq2TZjTUkqZF%2B45vQQ6xvNeDeApG%2BFKhrXVR8q%2BkQvTLPtqYqBj4aGDhfUIDi1Gua%2FONa6PaAGzgyA3moyVxowaJ3hFSBiYYRu8S3%2FK9UH6Gd1u9SINooMOOirFUC2PQYcwl7RX8IxNaZy%2BOtgCjrIN%2FM7Ej3Jrdpvq53z34TDXhIvTfNzsWeuVL04ZwqvHSx2p4CSgogssDdz%2FM6fyHfqB%2BlMBjYv43NHaVROL6w9xOpfNjxtwWZemnR5zDhqjf1%2F%2FCV1dB9ZNvDC5Adf5iUUwjYCFtwY6swEJwB%2FwVPb0U3iQarSSK4UUpXLAlbqI8w%2FpRdABrWDAfE6EVwApnNhGnPS0IMOzax%2B7jM2GxjLrib08IdDhGOxbLY%2BteIBy2bUzYTWryFhbUZ5crx5BrBuK1d6WmPICaUbWRLXAgADXVGfKURshSTbfBHweeh5JWZ3DDOV0iO4o%2FZG%2Bqs3iTq57ORbG0%2Brsbem646zm%2Fl%2Fip83dMY3%2FqmNtvEvcw9We3IeQJnwZ3PK6LlE2zg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240911T080556Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVRVY47XKNM%2F20240911%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=acfae4be934611c62e9876bd8b751fbcfb013c2bd787d9fd2433437f81d98d53",
             "ImageUri": null,
             "ResolvedImageUri": null
           },
@@ -132,7 +126,7 @@
             "aws:cloudformation:stack-name": "Backend-dev",
             "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
             "STAGE": "dev",
-            "aws:cloudformation:logical-id": "CreateOrderLambdaFunction"
+            "aws:cloudformation:logical-id": "UpdateOrderHandlerLambdaFunction"
           }
         }
       },
@@ -260,10 +254,7 @@
               }
             }
           ],
-          "name": "Backend-dev-createOrder",
-          "package": {
-            "artifact": ".serverless\\createOrder.zip"
-          }
+          "name": "Backend-dev-createOrder"
         },
         "updateOrderHandler": {
           "handler": "modules/orders/order.updateOrderHandler",
@@ -276,7 +267,10 @@
               }
             }
           ],
-          "name": "Backend-dev-updateOrderHandler"
+          "name": "Backend-dev-updateOrderHandler",
+          "package": {
+            "artifact": ".serverless\\updateOrderHandler.zip"
+          }
         },
         "AIProcessing": {
           "handler": "modules/trigger/AIProcessing.handler",
@@ -309,7 +303,7 @@
       "function"
     ],
     "options": {
-      "function": "createOrder"
+      "function": "updateOrderHandler"
     },
     "error": null,
     "params": {},

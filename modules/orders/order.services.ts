@@ -299,11 +299,11 @@ export const sendemail = async (orderId: string) => {
 
     const templateName =
       orderData.order_status === "Accepted"
-        ? "AcceptanceOrderTemplateFinal2"
-        : "RejectedOrderTemplateFinal";
+        ? "AcceptanceOrderTemplate"
+        : "RejectedOrderTemplate";
 
     const params = {
-      FromEmailAddress: "zaynab-wehbe@hotmail.com",
+      FromEmailAddress: "pro-order@hotmail.com",
       Destination: {
         ToAddresses: [userData.email],
       },
@@ -313,7 +313,7 @@ export const sendemail = async (orderId: string) => {
           TemplateData: JSON.stringify(testData),
         },
       },
-      ReplyToAddresses: ["zaynab-wehbe@hotmail.com"],
+      ReplyToAddresses: ["pro-order@hotmail.com"],
     };
 
     await sendEmail(params);
