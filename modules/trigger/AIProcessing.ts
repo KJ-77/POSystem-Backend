@@ -5,21 +5,25 @@ export const handler = async (event: any) => {
   const { id, url, price, description } = event;
 
   try {
-    const apiUrl = "http://scraper-elb-1471634376.us-east-1.elb.amazonaws.com/product/cv";
+    console.log("before api")
+    const apiUrl =
+      "http://scraper-elb-1471634376.us-east-1.elb.amazonaws.com/product/cv";
 
-    const response = await axios.post(apiUrl, {
-      url,
-      description,
-      price,
-    }).catch((error) => {
-      console.error("Error in Axios request:", error.message);
-      throw new Error("Failed to get a response from AI API");
-    });
+    const response = await axios
+      .post(apiUrl, {
+        url,
+        description,
+        price,
+      })
+      .catch((error) => {
+        console.error("Error in Axios request:", error.message);
+        throw new Error("Failed to get a response from AI API");
+      });
 
     if (!response.data.result) {
       throw new Error("No result from AI API");
     }
-
+    console.log("before DB")
     // Establish a database connection
     const connection = await createConnection().catch((error) => {
       console.error("Error creating database connection:", error.message);
@@ -37,12 +41,14 @@ export const handler = async (event: any) => {
         response.data.result.analysis,
         id,
       ]);
+      console.log("done")
     } catch (error: any) {
       console.error("Error executing query:", error.message);
       throw new Error("Failed to update the order");
     } finally {
       if (connection) {
         await connection.end();
+        console.error("Connection Close");
       }
     }
 

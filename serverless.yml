@@ -14,6 +14,11 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
+      - lambda:InvokeFunction
+      Resource:
+      - arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-AIProcessing
+    - Effect: Allow
+      Action:
         - cognito-idp:AdminCreateUser
         - cognito-idp:AdminAddUserToGroup
         - cognito-idp:AdminGetUser
@@ -23,6 +28,12 @@ provider:
         - cognito-idp:AdminDeleteUser
       Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB
 
+    - Effect: Allow
+      Action:
+        - ses:SendEmail
+        - ses:SendTemplatedEmail
+      Resource:
+        - arn:aws:ses:us-east-1:891377200709:identity/zaynab-wehbe@hotmail.com
 package:
   individually: true
 

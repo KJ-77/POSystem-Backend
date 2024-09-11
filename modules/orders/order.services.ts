@@ -32,7 +32,7 @@ export const getAllOrders = async () => {
     const [orders]: [Order[], FieldPacket[]] = await connection.query(`
       SELECT * 
       FROM POSystemdb.orders 
-      WHERE order_status != 'inprogress';
+      WHERE order_status != 'In Progress';
     `);
     const orderPromises = orders.map(async (order: Order) => {
       const [userResult]: [User[], FieldPacket[]] = await connection.query(
@@ -59,14 +59,27 @@ export const getAllOrders = async () => {
 };
 
 export const getOrderByWorkerId = async (workerId: string) => {
-  const connection = await createConnection();
-  const [orders]: any = await connection.execute(
-    "SELECT * FROM orders WHERE worker_id = ?",
-    [workerId]
-  );
+  let connection;
+  try {
+    connection = await createConnection();
+    const [orders]: any = await connection.execute(
+      "SELECT * FROM orders WHERE worker_id = ?",
+      [workerId]
+    );
 
-  return orders.length > 0 ? orders : [];
+    return orders.length > 0 ? orders : [];
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    throw new Error("Failed to fetch orders.");
+  } finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
 };
+
+
+
 export const getOrderById = async (Id: string) => {
   const connection = await createConnection();
   const [orders]: any = await connection.execute(
@@ -100,7 +113,7 @@ export const createOrder = async (
       `
       INSERT INTO POSystemdb.orders (ID,worker_id,
         order_name, order_desc, link, quantity, unit_price,order_status
-      ) VALUES (?,?, ?, ?, ?, ?, ? ,"inprogress")
+      ) VALUES (?,?, ?, ?, ?, ?, ? ,"In Progress")
     `,
       [orderId, worker_id, order_name, order_desc, link, quantity, unit_price]
     );
@@ -176,8 +189,8 @@ export const AIProcessing = async (
     console.error("Error in AIProcessing:", error.message);
     throw new Error(error.message);
   }
-};*/
-
+};
+*/
 
 export const updateorderservice = async (
   orderID: string,

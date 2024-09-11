@@ -120,7 +120,7 @@ export const getOrderByIdHandler = async (
 export const createOrderHandler = middy(
   async (event: any): Promise<APIGatewayProxyResult> => {
     const headers = {
-      "Access-Control-Allow-Origin": "*", 
+      "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
       "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
     };
@@ -130,6 +130,10 @@ export const createOrderHandler = middy(
       const userId = decodedToken.sub;
 
       const orderData = JSON.parse(event.body || "{}");
+
+      console.log(orderData);
+
+      //console.log("Trying to add an order...");
       const newOrder = await createOrder(
         orderId,
         userId,
@@ -140,6 +144,8 @@ export const createOrderHandler = middy(
         orderData.unit_price
       );
 
+    //  console.log("Order Created Successfully: ", newOrder);
+
       /*await AIProcessing(
       userId,
       orderData.link,
@@ -147,7 +153,7 @@ export const createOrderHandler = middy(
       orderData.order_desc
     );*/
 
-      /*AIProcessing(
+      /* await AIProcessing(
         orderId,
         orderData.link,
         orderData.unit_price,
@@ -155,21 +161,20 @@ export const createOrderHandler = middy(
       ).catch((error) => {
         console.error("Error in AIProcessing:", error.message);
       });*/
-     
-      const params ={
-        FunctionName: "AIProcessing",
+
+      const params = {
+        FunctionName: "Backend-dev-AIProcessing",
         InvocationType: "Event",
         Payload: JSON.stringify({
-          id:orderId,
+          id: orderId,
           url: orderData.link,
           price: orderData.unit_price,
           description: orderData.order_desc,
         }),
-      }
+      };
 
-      lambda.invoke(params).promise().catch((error) => {
-        console.error("Error invoking AIProcessing:", error.message);
-      });
+      await lambda.invoke(params).promise();
+
       return {
         statusCode: 201,
         headers,
@@ -179,7 +184,6 @@ export const createOrderHandler = middy(
       console.error("Error handling create order request:", error);
       return {
         statusCode: 500,
-        headers,
         body: JSON.stringify({ error: "Error creating order" }),
       };
     }

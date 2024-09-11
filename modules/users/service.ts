@@ -144,14 +144,19 @@ export const confirmUserService = async (id: string) => {
 };
 
 export const getAllUsersservice = async () => {
+  let connection
   try {
-    const connection = await createConnection();
+     connection = await createConnection();
     const [users] = await connection.execute(
-      'SELECT * FROM users WHERE status="working"'
+      "SELECT * FROM users WHERE status IN ('working', 'Not verified')"
     );
     return users;
   } catch (error) {
     throw new Error("Error executing query");
+  }finally {
+    if (connection) {
+      await connection.end();
+    }
   }
 };
 
