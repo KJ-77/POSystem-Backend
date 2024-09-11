@@ -1,7 +1,7 @@
 {
   "C:\\Users\\User\\Desktop\\backend-PO": {
     "versionSfCore": null,
-    "versionFramework": "4.2.5",
+    "versionFramework": "4.3.2",
     "isWithinCompose": false,
     "isCompose": false,
     "composeOrgName": null,
@@ -30,7 +30,7 @@
             "Action": [
               "lambda:InvokeFunction"
             ],
-            "Resource": "arn:aws:lambda:us-east-1:891377200709:function:<function-name>"
+            "Resource": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-AIProcessing"
           },
           {
             "Effect": "Allow",
@@ -59,17 +59,17 @@
         "versionFunctions": true,
         "remoteFunctionData": {
           "Configuration": {
-            "FunctionName": "Backend-dev-getAllUsers",
-            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-getAllUsers",
+            "FunctionName": "Backend-dev-createOrder",
+            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-createOrder",
             "Runtime": "nodejs16.x",
             "Role": "arn:aws:iam::891377200709:role/Backend-dev-us-east-1-lambdaRole",
-            "Handler": "modules/users/controller.getAllUsers",
-            "CodeSize": 575260,
+            "Handler": "modules/orders/order.createOrderHandler",
+            "CodeSize": 450640,
             "Description": "",
-            "Timeout": 6,
+            "Timeout": 30,
             "MemorySize": 1024,
-            "LastModified": "2024-09-10T08:45:34.000+0000",
-            "CodeSha256": "brmva2f2vCIjgMrhyTJ/nKsXWJnk04QwTCN0c1fG9dQ=",
+            "LastModified": "2024-09-11T07:37:17.000+0000",
+            "CodeSha256": "Io6Gw287vgIW3VjOgGybhxs6w7b9ApkMc/W/mBlICPM=",
             "Version": "$LATEST",
             "VpcConfig": {
               "SubnetIds": [],
@@ -91,15 +91,7 @@
               "Mode": "PassThrough"
             },
             "MasterArn": null,
-            "RevisionId": "454b273a-7721-4fa5-8bd6-68f138ef970a",
-            "Layers": [
-              {
-                "Arn": "arn:aws:lambda:us-east-1:891377200709:layer:sdk:1",
-                "CodeSize": 14655727,
-                "SigningProfileVersionArn": null,
-                "SigningJobArn": null
-              }
-            ],
+            "RevisionId": "ca271bcd-daa2-462a-83fc-1ec36b5fdca9",
             "State": "Active",
             "StateReason": null,
             "StateReasonCode": null,
@@ -126,12 +118,13 @@
               "LogFormat": "Text",
               "ApplicationLogLevel": null,
               "SystemLogLevel": null,
-              "LogGroup": "/aws/lambda/Backend-dev-getAllUsers"
-            }
+              "LogGroup": "/aws/lambda/Backend-dev-createOrder"
+            },
+            "Layers": []
           },
           "Code": {
             "RepositoryType": "S3",
-            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-getAllUsers-d8612524-23e9-47f4-b5ab-0d14ad4b6f1f?versionId=pC75wMmhZMmnDPiAxpmgl62agYeBgXOB&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEE0aCXVzLWVhc3QtMSJHMEUCIQCL0HD6uDj84E4Bavlj86CnDqoy9SllWTu58jlQROlExAIgZhvGqD2GaM30DhxLV5nv%2BwyO0BG3p1TVVQIghSnSHVIquwUIdRAEGgw0NzkyMzMwMjUzNzkiDMhJUf%2BatTFzvuA1%2BSqYBRcY5GN80TBTkKncR0%2FtVTXEtTwKCTmhu3tGj5X2Uet7CkjnNuwiVmbODStlIB1hVIoj%2F3ahx3VH8jMF0EBROaf3QyzIb9gkOAPZn08kHsPCdh%2Bq%2Fi6OFpXQyOviinjEfOzmpQk67t%2BUNvllmfH2yYY2I%2BkWO13a7qYsLxhk8geqvNDvc0M46EYpp2J9brfbQkRKybwbo2KqtEfwOsnYRhHYtFW1AB6Jrdd9E8OoqSCv%2BBWSAnnaxE%2B0FpxIlXznTqvdgZO%2FFMghPzrt5rug4ZpV8KJQPnH43f5tqmqgEY%2FzgbgX%2BaFTbCaPFiHH6s%2B91P0UBrOtZMHzXKQujDYHJFSrueAuiB%2FdsR0Y8EykgAFG2H%2BETGlHpKVGSDtgX45%2FMffyG1FDDEPohxR%2F3ZYKjpLFL1QpFn298JTUxmUc07R82IX9z9TeiD22ZWFCiJ1K%2F8f9a%2FX6LBkAlNM1IPDS%2BMQj1QTlr3qxunFZjGUGWEC2GFRmRs67OARvwh6KLXR%2FPgywI8d8PwyQ7VXjgTzDtU4aVuLZG%2BDBcWEwbkp%2FfLX7%2F9rPjWFANuu5L0RhTO2DjY6SAPN6leS1rB%2ByZMXvsHVmDR2sTle2r9attZpE9Fa%2B9hdxEojLSIab6iYZ0zyxhw578p8fOtrVaXd1jB6ORBHFU812Tu3euZEOb5BM7A8bkMVooj1Mya8x39GMbtGEb%2FtD%2FrpJWfiDVN1pjeR6B7fcB%2FRQ4i8dSt9Rl7Slyqiywx5cpiw0Q2ygk6kmwHtddPcvJRZUYXO54KYL2l6nflgjp0lafPXcnzVT7SupfvkQe%2Fx528cC5Ew%2Fab5r4lXC1ygBUJI%2FHcU%2BBYRFP3FfLqk%2Fr4ZRxoPJ6LdSn%2BaL4w7O9vIaqNm0MrAwo%2FGAtwY6sQGJNnVIf6ENya3QNpKQTTiSpO67W2bXKt1s4mOQ8skt8cnSDD4CbcuOnDYCHWO5p%2FJ0ZKhlwtCHPfb1WJU5Cp0LQ7Uk7ZI%2B929AwG6eY4UwTBRMPGfEsl56epweZ7VLotL4gcmnI6ei5flNv0YgcJKsJAc95%2FOo5cRqrMG7%2FoKxJBeNvQWOipVbTWIi%2BEYEqXuIDXF%2B1FGYoQ3KyMmr%2F8gvgP3oq%2B64k4t%2Fd1V7YjsnBTA%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240910T133926Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVR6EXUELJJ%2F20240910%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=1821f421f256c08e771bca60a95ded249fbefe319d44c32f400fe6e6c1c7e1fe",
+            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-createOrder-bd3f1403-4ff9-47cb-9b4c-923e94ac71b4?versionId=nQN67xy4mUxMqnEVlLx2paazIET1nA3P&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEF8aCXVzLWVhc3QtMSJHMEUCIQDCc0f5BMAIsrUYGUcRxGEoUJGGTJTEhx0NL39w6l8uWgIgV3iFIwdN3N7R%2BwgbLwqT2ms8hrX0%2FkxyU1Ebu47PBZIqwgUIiP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgw0NzkyMzMwMjUzNzkiDFSD4Sji7vc2vtFmhSqWBWi1hPGucrIan5KZbqSr%2FuB9ETEc2A4G6yik3XKdWzMbncVZUyeJiNNYfHgzI9vrmcHeBa4y64CVkC333x7PjViHZm9C%2B929Cc3Uood1VBl6%2BvDRFin7ed2Tbp3lwmkvreKNsG1IInWzyyuP4lA2Fv2fGJxeR4UTNJZixZ1U%2FVM3XqlZFByHVndBZykkU3o6lXieDHH3DfsOkkmCyy4D10DLsmOEiyw2aPOJOz0YvVxeO5B%2BdAbZ0Kb5YGNXTAn1lL4QT5pBLHPa58Le4utegZ2iGMUSQndq7xOooxOyoiZ9z6boL0LwqiTNfTrjnzMY%2F7reADxyDTBtIC9mJu2iUpQLuZlxClKLMJAZBygTkG%2F%2FD8b9kdzV%2FyPgbktwZKweKehlePKdhW54C1dkOAtVDFCb7jlLBKJt%2Bxs%2FicF0DT1OS8%2F1wfB9B6IFAAxZTHQ0hoFlVIicvSP7zgEX3zxaJk37RmT7g9Y%2B5Tzte6hrRMSwpyqISdeMaVeMhc0qNXD90D5%2BlyQfaFZ%2BKUBqcPKsJBxwFGba75h2JQOsYCfitr5kedfy3gFfZhFhQBqGFoJGYb67wzs8BhMYPLqiyIAGVyg7nd7DZogcxOb25mqOLX0%2FZmBvXYq%2FMMBAjPOEFEyktHHIoXcKB4KrQypT1%2ByCDrYD8d4QsCOykPjbjPvsRHrULleXr24wIN8DDwl8pAo5cwwOLd6h2m7JF0TXdnw2%2Fd1uMTT1xg3er12vIB1T2o2ci7KgXkx3xrIruhMGHWFw1RQkAZ2CTYIZUJNL6yfMwRmwZTO4JasgfnQzT7PFDc2aBP6arYScGyV2YxAR7s0%2FBSX%2BeR6XGFC%2Bl1nydfMd0wqVgse2DUas4CYwetBejmqYP5PCkaMiMPfwhLcGOrEB2HgxGlz8M3CCpOgf6x05916ExEx%2FL0FU%2FTdkcDHlfsv%2BJyMdLs3HBGDWJzAKS7HAAlxonrWSSo8ZQo%2BycyjB6U8WiTtsIl4oRevtqEizC%2FxaomQHnX0fGjPOuyjtE5tqDf2glvfwy2nI2VnLQacpEAuH14L5eXLtdZuGzvz4zvKE%2FbHyRUFGx%2BOKaHdCVF2lx2B%2Bmh6Gsp87U5d71Dht%2F8AxQBQjajQM0x7JpnnXHxnT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240911T073903Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVRROGO2OVJ%2F20240911%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4993a42d4e04306c91a23ef222cd70b823522d29ab859e6607f479ffd58cc364",
             "ImageUri": null,
             "ResolvedImageUri": null
           },
@@ -139,7 +132,7 @@
             "aws:cloudformation:stack-name": "Backend-dev",
             "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
             "STAGE": "dev",
-            "aws:cloudformation:logical-id": "GetAllUsersLambdaFunction"
+            "aws:cloudformation:logical-id": "CreateOrderLambdaFunction"
           }
         }
       },
@@ -172,10 +165,7 @@
               }
             }
           ],
-          "name": "Backend-dev-getAllUsers",
-          "package": {
-            "artifact": ".serverless\\getAllUsers.zip"
-          }
+          "name": "Backend-dev-getAllUsers"
         },
         "updateUser": {
           "handler": "modules/users/controller.updateUser",
@@ -270,7 +260,10 @@
               }
             }
           ],
-          "name": "Backend-dev-createOrder"
+          "name": "Backend-dev-createOrder",
+          "package": {
+            "artifact": ".serverless\\createOrder.zip"
+          }
         },
         "updateOrderHandler": {
           "handler": "modules/orders/order.updateOrderHandler",
@@ -310,17 +303,18 @@
         }
       }
     },
-    "serviceRawFile": "app: backend # Make sure this is lowercase\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs16.x\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n      - lambda:InvokeFunction\r\n      Resource:\r\n      - arn:aws:lambda:us-east-1:891377200709:function:<function-name>\r\n    - Effect: Allow\r\n      Action:\r\n        - cognito-idp:AdminCreateUser\r\n        - cognito-idp:AdminAddUserToGroup\r\n        - cognito-idp:AdminGetUser\r\n        - cognito-idp:ListUsers\r\n        - cognito-idp:AdminListUsers\r\n        - cognito-idp:AdminUpdateUserAttributes\r\n        - cognito-idp:AdminDeleteUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB\r\n\r\n    - Effect: Allow\r\n      Action:\r\n        - ses:SendEmail\r\n        - ses:SendTemplatedEmail\r\n      Resource:\r\n        - arn:aws:ses:us-east-1:891377200709:identity/zaynab-wehbe@hotmail.com\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /updateuserId/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  confirmUser:\r\n    handler: modules/users/controller.confirmUser\r\n    events:\r\n      - http:\r\n          path: /confirmUserId\r\n          method: put\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByWorkerIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /ordersbyworker\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderById:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /getorderbyId/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders\r\n          method: post\r\n          cors: true\r\n\r\n  updateOrderHandler:\r\n    handler: modules/orders/order.updateOrderHandler\r\n    events:\r\n      - http:\r\n          path: /orderId/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  AIProcessing:\r\n    handler: modules/trigger/AIProcessing.handler\r\n    timeout: 60\r\n    memorySize: 512\r\n\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-esbuild\r\n\r\nbuild:\r\n  esbuild: false\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
+    "serviceRawFile": "app: backend # Make sure this is lowercase\r\n\r\nservice: Backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs16.x\r\n  environment:\r\n    DB_HOST: posystemdb.cjeu04uek25d.us-east-1.rds.amazonaws.com\r\n    DB_USER: admin\r\n    DB_PASSWORD: posystem01\r\n    DB_NAME: POSystemdb\r\n    DB_PORT: 3306\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n      - lambda:InvokeFunction\r\n      Resource:\r\n      - arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-AIProcessing\r\n    - Effect: Allow\r\n      Action:\r\n        - cognito-idp:AdminCreateUser\r\n        - cognito-idp:AdminAddUserToGroup\r\n        - cognito-idp:AdminGetUser\r\n        - cognito-idp:ListUsers\r\n        - cognito-idp:AdminListUsers\r\n        - cognito-idp:AdminUpdateUserAttributes\r\n        - cognito-idp:AdminDeleteUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:891377200709:userpool/us-east-1_7np4XcTfB\r\n\r\n    - Effect: Allow\r\n      Action:\r\n        - ses:SendEmail\r\n        - ses:SendTemplatedEmail\r\n      Resource:\r\n        - arn:aws:ses:us-east-1:891377200709:identity/zaynab-wehbe@hotmail.com\r\npackage:\r\n  individually: true\r\n\r\nfunctions:\r\n  createUser:\r\n    handler: modules/users/controller.createUser\r\n    events:\r\n      - http:\r\n          path: /user\r\n          method: post\r\n          cors: true\r\n\r\n  getAllUsers:\r\n    handler: modules/users/controller.getAllUsers\r\n    events:\r\n      - http:\r\n          path: /users\r\n          method: get\r\n          cors: true\r\n\r\n\r\n  updateUser:\r\n    handler: modules/users/controller.updateUser\r\n    events:\r\n      - http:\r\n          path: /updateuserId/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  deleteUser:\r\n    handler: modules/users/controller.deleteUser\r\n    events:\r\n      - http:\r\n          path: /user/{id}\r\n          method: delete\r\n          cors: true\r\n\r\n  confirmUser:\r\n    handler: modules/users/controller.confirmUser\r\n    events:\r\n      - http:\r\n          path: /confirmUserId\r\n          method: put\r\n          cors: true\r\n\r\n  getOrders:\r\n    handler: modules/orders/order.getAllOrdersHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /orders\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderByIdWorker:\r\n    handler: modules/orders/order.getOrderByWorkerIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /ordersbyworker\r\n          method: get\r\n          cors: true\r\n\r\n  getOrderById:\r\n    handler: modules/orders/order.getOrderByIdHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /getorderbyId/{id}\r\n          method: get\r\n          cors: true\r\n\r\n  createOrder:\r\n    handler: modules/orders/order.createOrderHandler\r\n    timeout: 30\r\n    events:\r\n      - http:\r\n          path: /createorders\r\n          method: post\r\n          cors: true\r\n\r\n  updateOrderHandler:\r\n    handler: modules/orders/order.updateOrderHandler\r\n    events:\r\n      - http:\r\n          path: /orderId/{id}\r\n          method: put\r\n          cors: true\r\n\r\n  AIProcessing:\r\n    handler: modules/trigger/AIProcessing.handler\r\n    timeout: 60\r\n    memorySize: 512\r\n\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-esbuild\r\n\r\nbuild:\r\n  esbuild: false\r\n\r\ncustom:\r\n  serverless-offline:\r\n    noPrependStageInUrl: true\r\n  esbuild:\r\n    bundle: true\r\n    minify: true\r\n",
     "command": [
       "deploy",
       "function"
     ],
     "options": {
-      "function": "getAllUsers"
+      "function": "createOrder"
     },
     "error": null,
     "params": {},
     "machineId": "54333bd248fc1fc5ab27c94cf051af77",
+    "stage": "dev",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",
     "orgId": "5ac2ad84-54ae-4e7c-aac0-5897b7439329",
@@ -338,12 +332,14 @@
     "userName": "khalil1",
     "subscription": null,
     "userEmail": "khoulioelset2000@gmail.com",
+    "serviceProviderAwsRegion": "us-east-1",
     "serviceProviderAwsCredentials": "<REDACTED>",
     "serviceProviderAwsAccountId": "891377200709",
-    "projectType": "framework",
-    "versionSf": "4.2.5",
+    "projectType": "traditional",
+    "versionSf": "4.3.2",
     "serviceProviderAwsCfStackName": "Backend-dev",
     "integrations": {},
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
     "serviceProviderAwsCfStackCreated": "2024-08-31T15:15:57.392Z",
     "serviceProviderAwsCfStackUpdated": "2024-09-10T08:45:11.692Z",

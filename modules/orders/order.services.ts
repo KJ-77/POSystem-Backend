@@ -32,7 +32,7 @@ export const getAllOrders = async () => {
     const [orders]: [Order[], FieldPacket[]] = await connection.query(`
       SELECT * 
       FROM POSystemdb.orders 
-      WHERE order_status != 'In Progress';
+      WHERE order_status != 'inprogress';
     `);
     const orderPromises = orders.map(async (order: Order) => {
       const [userResult]: [User[], FieldPacket[]] = await connection.query(
@@ -113,7 +113,7 @@ export const createOrder = async (
       `
       INSERT INTO POSystemdb.orders (ID,worker_id,
         order_name, order_desc, link, quantity, unit_price,order_status
-      ) VALUES (?,?, ?, ?, ?, ?, ? ,"In Progress")
+      ) VALUES (?,?, ?, ?, ?, ?, ? ,"inprogress")
     `,
       [orderId, worker_id, order_name, order_desc, link, quantity, unit_price]
     );
