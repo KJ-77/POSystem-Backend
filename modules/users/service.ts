@@ -205,6 +205,17 @@ export const deleteUserservice = async (userId: string): Promise<void> => {
     if (result.affectedRows === 0) {
       throw new Error("error deleting....");
     }
+    const [orderResult]: any = await connection.query(
+      `
+      UPDATE POSystemdb.orders
+      SET order_status = 'Rejected'
+      WHERE worker_id = ? AND order_status = 'Pending';
+      `,
+      [userId]
+    );
+    if (orderResult.affectedRows === 0) {
+      throw new Error("Error updating order status");
+    }
   } catch (error) {
     console.error("Error deleting user:", error);
     throw new Error("Failed to delete user");
@@ -214,6 +225,7 @@ export const deleteUserservice = async (userId: string): Promise<void> => {
     }
   }
 };
+
 
 export const updateEmailAndUsernameBySubService = async (
   sub: string,

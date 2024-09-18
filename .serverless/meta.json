@@ -1,7 +1,7 @@
 {
   "C:\\Users\\User\\Desktop\\backend-PO": {
     "versionSfCore": null,
-    "versionFramework": "4.3.2",
+    "versionFramework": "4.3.3",
     "isWithinCompose": false,
     "isCompose": false,
     "composeOrgName": null,
@@ -59,18 +59,24 @@
         "versionFunctions": true,
         "remoteFunctionData": {
           "Configuration": {
-            "FunctionName": "Backend-dev-updateOrderHandler",
-            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-updateOrderHandler",
+            "FunctionName": "Backend-dev-deleteUser",
+            "FunctionArn": "arn:aws:lambda:us-east-1:891377200709:function:Backend-dev-deleteUser",
             "Runtime": "nodejs16.x",
             "Role": "arn:aws:iam::891377200709:role/Backend-dev-us-east-1-lambdaRole",
-            "Handler": "modules/orders/order.updateOrderHandler",
-            "CodeSize": 450639,
+            "Handler": "modules/users/controller.deleteUser",
+            "CodeSize": 575347,
             "Description": "",
             "Timeout": 6,
             "MemorySize": 1024,
-            "LastModified": "2024-09-10T08:45:34.000+0000",
-            "CodeSha256": "hqriBqytKvy64sTQyN/KEBgyHtd5SDVTrVzEp++2lXU=",
+            "LastModified": "2024-09-13T06:52:32.000+0000",
+            "CodeSha256": "U8IXUWxWeyU1cAcBxbfpdHwG3cQXDlqx2SiuENkHFno=",
             "Version": "$LATEST",
+            "VpcConfig": {
+              "SubnetIds": [],
+              "SecurityGroupIds": [],
+              "VpcId": "",
+              "Ipv6AllowedForDualStack": false
+            },
             "Environment": {
               "Variables": {
                 "DB_PORT": "3306",
@@ -85,7 +91,7 @@
               "Mode": "PassThrough"
             },
             "MasterArn": null,
-            "RevisionId": "66966ec4-19a8-47df-a3d6-f15373bd159e",
+            "RevisionId": "3a7d4f2d-6456-4be1-ba93-c253a97cddef",
             "State": "Active",
             "StateReason": null,
             "StateReasonCode": null,
@@ -106,19 +112,19 @@
               "OptimizationStatus": "Off"
             },
             "RuntimeVersionConfig": {
-              "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:98ed388ef144131e504d460a9e26eb5c938895392a4c008b9f0e431b82c3b646"
+              "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:fb4a0b2f0ab855fc634dba2dedb71544123170314415e1a4c5c9870e2f0a3a5c"
             },
             "LoggingConfig": {
               "LogFormat": "Text",
               "ApplicationLogLevel": null,
               "SystemLogLevel": null,
-              "LogGroup": "/aws/lambda/Backend-dev-updateOrderHandler"
+              "LogGroup": "/aws/lambda/Backend-dev-deleteUser"
             },
             "Layers": []
           },
           "Code": {
             "RepositoryType": "S3",
-            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-updateOrderHandler-88081158-1ef9-48a6-b3b9-b5629ed6b935?versionId=CJkbLXRDXNCaqpBky5LTaSKuR09mWpo8&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEF8aCXVzLWVhc3QtMSJFMEMCH2Y945%2FKbLWFfsQGnfQ5r3Te%2FVeyOgUavnkKJIry3xgCIHftw9w0eEjQrA1OCfUqsbRgvHXiMZNpQ9E6MCrB1PDBKsMFCIj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQBBoMNDc5MjMzMDI1Mzc5Igxlsdihuv%2B8G5b8HZoqlwXEwYpMVx8hAnPZBWcqGX08P2cwS%2F2ucqWYWlTFQAimBOOWSXq6luV6IMgbJiUrlIcL%2BTRNUqMvQ%2FgUNE9hgskLDI6WhH5wyJanzZ1av9FIRU%2BoQvTLc%2FQrefmWf58QfhGGKtuG7Gq9J%2F7dEXP5VMwrfBRNOeWNRgwTcVDr%2B2LSX%2FwmEE8osC3JB0Hpc21DppttNc5TLx6bOChQGm0guzmxb7egQXFxDfPpGsv%2BBywsiittdwkVS6uQMmtiqzNHMQ6EwuOcfk74TjQ3RIfbU2EdCTMaFMhZniMTVrrercINFNs65L3FSWURlGex%2BcjtbzxiTRXmfjn7wgJ89OePBoP2cRl5LH2UVStDrDOgSZ%2FiShtu%2B7v1z8LDqNp0fLpZpaRrQk%2BRM0%2FO0yRy8NiSs9vNojW2tNLYoKOP67nfeSLyHWZYBtW39vtqZ%2BZGjPIWOOLOX%2BQYlDyIIGeblyDxdUrYhtpy5CVRxa0%2Bl2Bzqavcg1SarNkXN0Kh%2BAVmOGr3leHX9%2B0kleYdMx0XqNlyOaVKp8Scm%2FMTdW8wByHRmsqKoxc8W1ranolq6GXRZ5LgNboe5le2K3KUKSXK5PNcHXXfxpvSOK6w7kq2TZjTUkqZF%2B45vQQ6xvNeDeApG%2BFKhrXVR8q%2BkQvTLPtqYqBj4aGDhfUIDi1Gua%2FONa6PaAGzgyA3moyVxowaJ3hFSBiYYRu8S3%2FK9UH6Gd1u9SINooMOOirFUC2PQYcwl7RX8IxNaZy%2BOtgCjrIN%2FM7Ej3Jrdpvq53z34TDXhIvTfNzsWeuVL04ZwqvHSx2p4CSgogssDdz%2FM6fyHfqB%2BlMBjYv43NHaVROL6w9xOpfNjxtwWZemnR5zDhqjf1%2F%2FCV1dB9ZNvDC5Adf5iUUwjYCFtwY6swEJwB%2FwVPb0U3iQarSSK4UUpXLAlbqI8w%2FpRdABrWDAfE6EVwApnNhGnPS0IMOzax%2B7jM2GxjLrib08IdDhGOxbLY%2BteIBy2bUzYTWryFhbUZ5crx5BrBuK1d6WmPICaUbWRLXAgADXVGfKURshSTbfBHweeh5JWZ3DDOV0iO4o%2FZG%2Bqs3iTq57ORbG0%2Brsbem646zm%2Fl%2Fip83dMY3%2FqmNtvEvcw9We3IeQJnwZ3PK6LlE2zg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240911T080556Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVRVY47XKNM%2F20240911%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=acfae4be934611c62e9876bd8b751fbcfb013c2bd787d9fd2433437f81d98d53",
+            "Location": "https://prod-iad-c1-djusa-tasks.s3.us-east-1.amazonaws.com/snapshots/891377200709/Backend-dev-deleteUser-e8ccf3e9-dfa4-4a4e-80db-ef48e8d3af5d?versionId=zmTuGPsyDbQKxLEgJIoHa.N45Q0sgTV5&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEA8aCXVzLWVhc3QtMSJHMEUCIQCa5WEi2yLcMG88BUzCMXD0xLBT3kosU%2Bq9PsEEDTOYRQIgD%2BaojdP6EljCWzPyos%2F2oY5Ch%2Bs3jLC4k1wuyYaraL0qugUISBAEGgw0NzkyMzMwMjUzNzkiDJMTsAv8qDMvFGS%2BlSqXBWDucZ%2FajfMz6ATCqvpp8Sn%2B4HcqiGbsw3%2BGoX33Pn1RijCFHDjsIEsBW1ZdgoUhF4eNbbyCJFc2gsJYwiuF4p8HKf8DHNLRJof4lR0kfN9zg0vEKv9MqhA8GHOF%2FCGmuPt%2F0nFoaJGZjUyKOxSS67wTUJ3LkpRuA9Pe%2FN9NxBH1cexJPsdQU%2BztvPts7oCmy2mGtZgQG0UTzyhfhNQrdNL60e5X81EwjyO5vLz7XXGxGi5n5yQSThkdzC%2Fbcoz1uKLJHaKIC2OfnlqvE5Vc3dtt9Qy4Rcn6NEuKOOVO0kPLJMAOWRbIDRLd%2ByGVMHBiuuDpCu1HUwIX77i1Rd%2FN4px4ZQ3k8pydapGXKlInVf2RxoIhniS3XRfCWx6mvY1RgLXye%2BDMS6xjoyjj%2BkDakrqQEm98nmRdpEr%2BEujUIJCYcXNBBcSdkWcIBCsy%2FWGSZ4cPzEBKeYoXqHNPYS2FRva1CEUSJCi7kmtkSJhCLtGkbPWW7orFECx0sDtsQ92H31DVmVu0A8QBYrzHad71eGSUBQepqS9U9wQ%2FylbJ0c6%2BdOx3kMeYOJ%2BIY%2FQIWJq7LRPoMI4eoYKm3D829pHp2sKJptOMjtxvvLBN%2Bm0Hru7ASbTutki6FsxvSj5mQY%2F74OH6DkallVAiX7lXuSh7BWEDttMaWARB4YD4ErZGFnjaoVGyVGPJF3tyuksNsBJY5GDeKakt0%2F%2FBLPXIUqNb2tjnxZVFAUIbOjHqMdIEhgcODWuCmriv4F%2F5KGu3bDyHOp2i8qfgaEbVCbUw7WccKplK4mbnbPHBqfaFTS0ACzgnzSNDFylsbSP3Z64K6QR6JHwplSDEV9w%2Fcwb6KaIj5uIVpNM8McxJG%2F1eCwFDsd%2FjRjn1g8AgMjDZy6u3BjqxAWIaeTxruDPuTyiFfv3Y4bf%2FbOxoKYYoLjoDRtYX5xDT6uAZDQjWjfOjvAT%2F9cptrsqE2c24ZqZh1c41vmohLOHMeOo1mCBpWVF4SJUtLZ%2FBpFUFkfHkZWMIEJ9snJZ9KaxY3Mm3Iykl6EKNVUWslaYfEjR3fbyvMN2ewmx8MN33z8P257MW1aLYPuHLFCq9R8dFFeDl%2BWAUQ9Q%2F8I7nXFoPDn0wMI0Gi%2Fqi3ev0OZVStA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240918T150111Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAW7FEDUVRYXH5XOTW%2F20240918%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ca99e53eda68d775034acd73b10dc24e4e576b7ec16e2b4722c7d80af29b9788",
             "ImageUri": null,
             "ResolvedImageUri": null
           },
@@ -126,7 +132,7 @@
             "aws:cloudformation:stack-name": "Backend-dev",
             "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
             "STAGE": "dev",
-            "aws:cloudformation:logical-id": "UpdateOrderHandlerLambdaFunction"
+            "aws:cloudformation:logical-id": "DeleteUserLambdaFunction"
           }
         }
       },
@@ -185,7 +191,10 @@
               }
             }
           ],
-          "name": "Backend-dev-deleteUser"
+          "name": "Backend-dev-deleteUser",
+          "package": {
+            "artifact": ".serverless\\deleteUser.zip"
+          }
         },
         "confirmUser": {
           "handler": "modules/users/controller.confirmUser",
@@ -267,10 +276,7 @@
               }
             }
           ],
-          "name": "Backend-dev-updateOrderHandler",
-          "package": {
-            "artifact": ".serverless\\updateOrderHandler.zip"
-          }
+          "name": "Backend-dev-updateOrderHandler"
         },
         "AIProcessing": {
           "handler": "modules/trigger/AIProcessing.handler",
@@ -303,7 +309,7 @@
       "function"
     ],
     "options": {
-      "function": "updateOrderHandler"
+      "function": "deleteUser"
     },
     "error": null,
     "params": {},
@@ -330,7 +336,7 @@
     "serviceProviderAwsCredentials": "<REDACTED>",
     "serviceProviderAwsAccountId": "891377200709",
     "projectType": "traditional",
-    "versionSf": "4.3.2",
+    "versionSf": "4.3.3",
     "serviceProviderAwsCfStackName": "Backend-dev",
     "integrations": {},
     "serviceUniqueId": "arn:aws:cloudformation:us-east-1:891377200709:stack/Backend-dev/ec4d6b60-67ab-11ef-9021-123bc1b8cb13",
